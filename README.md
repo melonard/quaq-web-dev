@@ -20,6 +20,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Test commit by Shane
 Test commit by Sean
+Test commit by Kate
 
 ### `npm run build`
 
