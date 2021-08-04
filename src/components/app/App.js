@@ -1,15 +1,9 @@
 import './App.css';
 import React from 'react';
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
-import chart1 from './chart1.js'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+//import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
+//import chart1 from './chart1.js'
+//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-const links = [  
-  {  
-    name: 'chart1',  
-    path: '/A'  
-  }
-]
 
 
 
@@ -19,7 +13,8 @@ export default class App extends React.Component {
   constructor () {
     super()
     this.state = {
-        result: []
+        sym : "",
+        amount: 0
     }
   
   
@@ -32,7 +27,7 @@ async  componentDidMount() {
     const response = await 
     fetch (url,{
           "body": JSON.stringify({
-            "query": "select last price by sym from trade",
+            "query": "select from (select from select sum size by sym from trade) where size = max size",
             "response": "true",
             "type": "sync"
             }),
@@ -45,19 +40,30 @@ async  componentDidMount() {
     }}
     ) 
     const data = await response.json();
-    console.log(data.result)
-    this.setState({result: data.result})
+    console.log(data.result[0].sym)
+    this.setState({sym: data.result[0].sym})
+    this.setState({size: data.result[0].size})
+
 }
 
 
 
 render() {
-  return (
-    <div>
-      <h1>Bar Chart Showing End of Day Price by Sym</h1>
-      
-      <div>{JSON.stringify(this.state.result)}</div>
-    </div>
-        )
+    return (
+        <div>
+          <table>
+            <tr>
+              <th>Most Traded Sym</th>
+              <th>Volume Traded</th>
+            </tr>
+            <tr>
+              <div>{JSON.stringify(this.state)}</div>
+              <td>{JSON.stringify(this.state.sym)}</td>
+              <td>{JSON.stringify(this.state.size)}</td>
+            </tr>
+          </table>
+          <div></div>
+        </div>
+    )
   }
 }
