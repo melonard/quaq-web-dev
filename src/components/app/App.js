@@ -1,5 +1,17 @@
 import './App.css';
 import React from 'react';
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
+import chart1 from './chart1.js'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+const links = [  
+  {  
+    name: 'chart1',  
+    path: '/A'  
+  }
+]
+
+
 
 export default class App extends React.Component {
 
@@ -9,9 +21,13 @@ export default class App extends React.Component {
     this.state = {
         result: []
     }
+  
+  
+  
 }
 
-async componentDidMount() {
+async  componentDidMount() {
+
     const url = "https://homer.aquaq.co.uk:8040/executeQuery";
     const response = await 
     fetch (url,{
@@ -36,10 +52,12 @@ async componentDidMount() {
 
 
 render() {
-    return (
-        <div>
-          <div>{JSON.stringify(this.state.result)}</div>
-        </div>
-    )
-}
+  return (
+    <div>
+      <h1>Bar Chart Showing End of Day Price by Sym</h1>
+      
+      <div>{JSON.stringify(this.state.result)}</div>
+    </div>
+        )
+  }
 }
