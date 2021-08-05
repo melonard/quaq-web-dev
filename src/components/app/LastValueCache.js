@@ -5,21 +5,22 @@ export default class LastValueCache extends React.Component {
 constructor () {
     super()
     this.state = {
-        sym : "",
+        
         result:[]
     }
   
 }
 
-async  componentDidMount1() {
+async  componentDidMount() {
 
-    const url = "https://homer.aquaq.co.uk:8040/executeQuery";
+    const url = "https://homer.aquaq.co.uk:8040/executeFunction";
     const response = await 
     fetch (url,{
           "body": JSON.stringify({
-            "query": "select diff:first price - last price by sym from trade",
-            "response": "true",
-            "type": "sync"
+            "arguments": {
+            "db":"rdb",
+            "query": "select diff:first price - last price by sym from trade"},
+            "function_name": ".aqrest.execute"
             }),
           method:"post",
           "headers": {
@@ -30,14 +31,22 @@ async  componentDidMount1() {
     }}
     ) 
     const data = await response.json();
-    //console.log(data)
+    console.log(data)
     this.setState({all_data: data.result})
-    this.setState({sym: data.result.sym})
-    this.setState({diff: data.result.diff})
+    this.setState({sym: data.result[1].sym})
+    this.setState({diff: data.result[1].diff})
 }
+
+// if (this.state.diff >= 0) {
+//     this.state.diff.color = "green";
+// } else {
+//     this.state.diff.color = "red";
+// }
+
 render() {
     return (
         <div className="LVC">
+            <div>{JSON.stringify(this.state.all_data)}</div>
             <h3>{JSON.stringify(this.state.sym)}</h3>
             <p>Current Price</p>
             <h5>{JSON.stringify(this.state.diff)}</h5>
