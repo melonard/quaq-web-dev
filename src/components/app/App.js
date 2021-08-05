@@ -13,14 +13,15 @@ export default class App extends React.Component {
 }
 
 async componentDidMount() {
-    const url = "https://homer.aquaq.co.uk:8040/executeQuery";
+    const url = "https://homer.aquaq.co.uk:8040/executeFunction";
     const response = await 
     fetch (url,{
           "body": JSON.stringify({
-            "query": "select from (select from select sum size by sym from trade) where size = max size",
-            "response": "true",
-            "type": "sync"
-            }),
+            "arguments": {
+           "db":"rdb",
+           "query":"select from (select from select sum size by sym from trade) where size = max size"},
+            "function_name": ".aqrest.execute"
+          }),
           method:"post",
           "headers": {
             'Accept': 'application/json',
