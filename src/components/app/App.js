@@ -1,11 +1,5 @@
 import './App.css';
 import React from 'react';
-//import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
-//import chart1 from './chart1.js'
-//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-
-
 
 export default class App extends React.Component {
 
@@ -16,13 +10,9 @@ export default class App extends React.Component {
         sym : "",
         amount: 0
     }
-  
-  
-  
 }
 
-async  componentDidMount() {
-
+async componentDidMount() {
     const url = "https://homer.aquaq.co.uk:8040/executeQuery";
     const response = await 
     fetch (url,{
@@ -57,7 +47,6 @@ render() {
               <th>Volume Traded</th>
             </tr>
             <tr>
-              <div>{JSON.stringify(this.state)}</div>
               <td>{JSON.stringify(this.state.sym)}</td>
               <td>{JSON.stringify(this.state.size)}</td>
             </tr>
