@@ -1,6 +1,8 @@
 import './App.css';
 import React from 'react';
 import LastValueCache from './LastValueCache';
+import MaxPriceSym from './MaxPriceSym';
+import MinPriceSym from './MinPriceSym';
 //import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
 //import chart1 from './chart1.js'
 //import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -63,7 +65,8 @@ render() {
               <td>{JSON.stringify(this.state.size)}</td>
             </tr>
           </table>
-          <div></div>
+          <div><MaxPriceSym/></div>
+          <div><MinPriceSym/></div>
           <LastValueCache />
         </div>
     )

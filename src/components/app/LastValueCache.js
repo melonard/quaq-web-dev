@@ -20,7 +20,7 @@ async  componentDidMount() {
           "body": JSON.stringify({
             "arguments": {
             "db":"rdb",
-            "query": "select diff:first price - last price by sym from trade"},
+            "query": "select diff:last price - first price by sym from trade"},
             "function_name": ".aqrest.execute"
             }),
           method:"post",
@@ -40,10 +40,12 @@ async  componentDidMount() {
     }
 }
 
-// if (this.state.diff >= 0) {
-//     this.state.diff.color = "green";
+// for (let i = 0;i<10;i++){
+// if (this.state.diff[i] >= 0) {
+//     this.state.diff[i].color = "green";
 // } else {
-//     this.state.diff.color = "red";
+//     this.state.diff[i].color = "red";
+// }
 // }
 
 render() {
