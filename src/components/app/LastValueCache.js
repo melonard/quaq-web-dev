@@ -39,8 +39,8 @@ async  componentDidMount() {
     for (let i = 0;i<10;i++){
         this.setState({sym:[...this.state.sym ,data.result[i].sym]})
         this.setState({diff: [...this.state.diff,data.result[i].diff]})
-     }
-    },1000);
+    }
+},1000);
 } catch(e) {
   console.log(e);
 }
