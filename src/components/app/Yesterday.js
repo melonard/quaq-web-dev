@@ -11,9 +11,8 @@ export default class Yesterday extends React.Component {
     super()
     this.state = {
       sym:[],
-      today:[],
-      yesterday:[],
-      first:[]
+      price:[],
+      result:[]
     }
 }
 
@@ -42,14 +41,14 @@ async  componentDidMount() {
                  const data = await response.json();
 
                  this.setState({all_data: data.result})
-                 var diffArr=[]
+                 var priceArr=[]
                  var symArr=[]
                  for (let i = 0;i<10;i++){
-                     diffArr.push(data.result[i].diff)
+                     priceArr.push(data.result[i].price)
                      symArr.push(data.result[i].sym)
                  }
                  this.setState({sym: symArr})
-                 this.setState({diff: diffArr})
+                 this.setState({price: priceArr})
              },1000);
              } catch(e) {
              console.log(e);
@@ -60,13 +59,47 @@ async  componentDidMount() {
 //<div>{JSON.stringify(this.state.all_data)}  </div>
 
 render() {
-    return (
-          <div className="a">
-            <h3>{JSON.stringify(this.state.all_data)}</h3>
+  return (
+    <div className='App'>
+      <div> 
+        
+        <h3>Sym's Latest Price </h3>
+      
+          <table border="5" cellpadding="5">
+      
+            <tr>
+              <th>{JSON.stringify(this.state.sym[0])}</th>
+              <th>{JSON.stringify(this.state.sym[1])}</th>
+              <th>{JSON.stringify(this.state.sym[2])}</th>
+              <th>{JSON.stringify(this.state.sym[3])}</th>
+              <th>{JSON.stringify(this.state.sym[4])}</th>
+              <th>{JSON.stringify(this.state.sym[5])}</th>
+              <th>{JSON.stringify(this.state.sym[6])}</th>
+              <th>{JSON.stringify(this.state.sym[7])}</th>
+              <th>{JSON.stringify(this.state.sym[8])}</th>
+              <th>{JSON.stringify(this.state.sym[9])}</th>
+            </tr>
+            <tr>
+              <td>{JSON.stringify(this.state.price[0])}</td>
+              <td>{JSON.stringify(this.state.price[1])}</td>
+              <td>{JSON.stringify(this.state.price[2])}</td>
+              <td>{JSON.stringify(this.state.price[3])}</td>
+              <td>{JSON.stringify(this.state.price[4])}</td>
+              <td>{JSON.stringify(this.state.price[5])}</td>
+              <td>{JSON.stringify(this.state.price[6])}</td>
+              <td>{JSON.stringify(this.state.price[7])}</td>
+              <td>{JSON.stringify(this.state.price[8])}</td>
+              <td>{JSON.stringify(this.state.price[9])}</td>
+            </tr>
+          </table>
+      </div>
 
-        </div>
-       
-    )
+    </div>
+
+
+
+
+)
   }  
 }
 

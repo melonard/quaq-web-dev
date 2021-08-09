@@ -1,13 +1,11 @@
 import './App.css';
 import React from 'react';
-//import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
 //import ReactTable from "react-table";  
 //import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
 export default class ChartApp extends React.Component {
-
-
   constructor () {
     super()
     this.state = {
@@ -16,7 +14,6 @@ export default class ChartApp extends React.Component {
       result:[]
     }
 }
-
 
 async  componentDidMount() {
 
@@ -56,43 +53,54 @@ async  componentDidMount() {
         }
 }
 
-//<div>{JSON.stringify(this.state.all_data)}  </div>
-
 render() {
     return (
-          <div className="a">
-            <h3>{JSON.stringify(this.state.sym[0])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.price[0])}</h5>
-            <h3>{JSON.stringify(this.state.sym[1])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.price[1])}</h5>
-            <h3>{JSON.stringify(this.state.sym[2])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.price[2])}</h5>
-            <h3>{JSON.stringify(this.state.sym[3])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.price[3])}</h5>
-            <h3>{JSON.stringify(this.state.sym[4])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.price[4])}</h5>
-            <h3>{JSON.stringify(this.state.sym[5])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.price[5])}</h5>
-            <h3>{JSON.stringify(this.state.sym[6])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.price[6])}</h5>
-            <h3>{JSON.stringify(this.state.sym[7])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.price[7])}</h5>
-            <h3>{JSON.stringify(this.state.sym[8])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.price[8])}</h5>
-            <h3>{JSON.stringify(this.state.sym[9])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.price[9])}</h5>
-        </div>
-       
+                <div className='App'>
+                  <div> 
+                    
+                    <h3>Sym's Latest Price </h3>
+                  
+                      <table border="10" cellpadding="10">
+                  
+                        <tr>
+                          <th>{JSON.stringify(this.state.sym[0])}</th>
+                          <th>{JSON.stringify(this.state.sym[1])}</th>
+                          <th>{JSON.stringify(this.state.sym[2])}</th>
+                          <th>{JSON.stringify(this.state.sym[3])}</th>
+                          <th>{JSON.stringify(this.state.sym[4])}</th>
+                          <th>{JSON.stringify(this.state.sym[5])}</th>
+                          <th>{JSON.stringify(this.state.sym[6])}</th>
+                          <th>{JSON.stringify(this.state.sym[7])}</th>
+                          <th>{JSON.stringify(this.state.sym[8])}</th>
+                          <th>{JSON.stringify(this.state.sym[9])}</th>
+                        </tr>
+                        <tr>
+                          <td>{JSON.stringify(this.state.price[0])}</td>
+                          <td>{JSON.stringify(this.state.price[1])}</td>
+                          <td>{JSON.stringify(this.state.price[2])}</td>
+                          <td>{JSON.stringify(this.state.price[3])}</td>
+                          <td>{JSON.stringify(this.state.price[4])}</td>
+                          <td>{JSON.stringify(this.state.price[5])}</td>
+                          <td>{JSON.stringify(this.state.price[6])}</td>
+                          <td>{JSON.stringify(this.state.price[7])}</td>
+                          <td>{JSON.stringify(this.state.price[8])}</td>
+                          <td>{JSON.stringify(this.state.price[9])}</td>
+                        </tr>
+                      </table>
+                  </div>
+                  
+
+                  <BarChart width={600} height={600} data={this.state.all_data}>
+              <Bar dataKey="price" fill="pink" />
+                <CartesianGrid/>
+                <XAxis dataKey="sym" />
+                <YAxis />
+            </BarChart>
+
+                 
+
+                </div>
+
 
       
  

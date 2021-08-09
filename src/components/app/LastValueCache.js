@@ -40,12 +40,6 @@ async  componentDidMount() {
     }
 }
 
-// if (this.state.diff >= 0) {
-//     this.state.diff.color = "green";
-// } else {
-//     this.state.diff.color = "red";
-// }
-
 render() {
     return (
         <div className="LVC">
@@ -84,14 +78,3 @@ render() {
     )
   }
 }
-// function LastValueCache(){
-//     return(
-//         <div className="LVC">
-//             <h3>{JSON.stringify(this.state.sym)}</h3>
-//             <p>Current Price</p>
-//             <h5>{JSON.stringify(this.state.diff)}</h5>
-//         </div>
-
-//     );
-// }
-// export default LastValueCache;

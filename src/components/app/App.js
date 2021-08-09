@@ -49,23 +49,12 @@ async componentDidMount() {
 
 render() {
     return (
-        <div>
-          <table border="10" cellpadding="10">
-            <tr>
-              <th>Most Traded Sym</th>
-              <th>Volume Traded</th>
-            </tr>
-            <tr>
-              <td>{JSON.stringify(this.state.sym)}</td>
-              <td>{JSON.stringify(this.state.size)}</td>
-            </tr>
-          </table>
-          <div><MinPriceSym /></div>
-          <div><MaxPriceSym /></div>
+      
+        <div >
           <div><ChartApp /></div>
           <p>Move the mouse over the button to open the dropdown menu.</p>
                 <div class="dropdown">
-                  <button class="dropbtn">Select Year</button>
+                  <button class="dropbtn">Select Day</button>
                   <div class="dropdown-content">
                     <a href="#no">
                       Today
@@ -81,7 +70,19 @@ render() {
                   </div>
 
                 </div>
-
+          <table border="10" cellpadding="10" >
+            <tr>
+              <th>Most Traded Sym</th>
+              <th>Volume Traded</th>
+            </tr>
+            <tr>
+              <td>{JSON.stringify(this.state.sym)}</td>
+              <td>{JSON.stringify(this.state.size)}</td>
+            </tr>
+          </table>
+          
+          <div><MinPriceSym /></div>
+          <div><MaxPriceSym /></div>
           <div><LastValueCache /></div>
           
         </div>
