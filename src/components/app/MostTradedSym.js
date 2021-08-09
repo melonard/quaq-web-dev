@@ -33,7 +33,6 @@ export default class MostTradedSym extends Component {
             }}
             ) 
             const data = await response.json();
-            console.log(data.result[0].sym)
             this.setState({sym: data.result[0].sym})
             this.setState({size: data.result[0].size})
           },1000);

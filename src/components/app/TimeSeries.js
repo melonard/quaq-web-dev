@@ -1,8 +1,14 @@
 import React from 'react';
 
-import React, { Component } from 'react'
-
-export class timeseries extends Component {
+export default class timeseries extends React.Component {
+    constructor () {
+      super();
+      this.state ={
+        results : [],
+        sym : [],
+        avgPrices : []
+    }
+    }
 
     async componentDidMount() {
         const url = "https://homer.aquaq.co.uk:8040/executeFunction";
@@ -12,9 +18,10 @@ export class timeseries extends Component {
             fetch (url,{
                   "body": JSON.stringify({
                     "arguments": {
-                  "db":"rdb",
-                  "query":"select avgs price by sym from trade": ".aqrest.execute"
-                  }),
+                      "db":"rdb",
+                      "query":"select p: (count i) mavg price by sym from trade"},
+                      "function_name": ".aqrest.execute"
+                  }) ,
                   method:"post",
                   "headers": {
                     'Accept': 'application/json',
@@ -24,9 +31,8 @@ export class timeseries extends Component {
             }}
             ) 
             const data = await response.json();
-            console.log(data.result[0].sym)
-            this.setState({sym: data.result[0].sym})
-            this.setState({size: data.result[0].size})
+            this.setState({results : data.result})
+            console.log(this.state.results)
           },1000);
         } catch(e) {
           console.log(e);
@@ -36,7 +42,7 @@ export class timeseries extends Component {
     render() {
         return (
             <div>
-                
+                <p>Lads</p> 
             </div>
         )
     }
