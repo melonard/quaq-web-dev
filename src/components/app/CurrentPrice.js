@@ -5,7 +5,7 @@ import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
 //import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 
-export default class ChartApp extends React.Component {
+export default class CurrentPrice extends React.Component {
   constructor () {
     super()
     this.state = {

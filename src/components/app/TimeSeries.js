@@ -42,7 +42,7 @@ export default class timeseries extends React.Component {
   render() {
       return (
           <div>
-            <div>{JSON.stringify(this.state.result)}</div>
+            <div>{JSON.stringify(this.state.results)}</div>
               <p>Lads</p> 
           </div>
       )

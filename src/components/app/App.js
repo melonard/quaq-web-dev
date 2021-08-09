@@ -4,7 +4,7 @@ import LastValueCache from './LastValueCache';
 import MostTradedSym from './MostTradedSym';
 import MinPriceSym from './MinPriceSym';
 import MaxPriceSym from './MaxPriceSym';
-import ChartApp from './AppChart';
+import CurrentPrice from './CurrentPrice';
 import Yesterday from './Yesterday';
 import TimeSeries from './TimeSeries';
 
@@ -21,7 +21,7 @@ export default class App extends React.Component {
 render() {
     return (
         <div >
-          <div><ChartApp /></div>
+          <div><CurrentPrice/></div>
           
           <p>Move the mouse over the button to open the dropdown menu.</p>
                 <div class="dropdown">
