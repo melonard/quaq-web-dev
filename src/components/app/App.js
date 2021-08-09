@@ -1,6 +1,8 @@
 import './App.css';
 import React from 'react';
 import LastValueCache from './LastValueCache';
+import MinPriceSym from './MinPriceSym';
+import MaxPriceSym from './MaxPriceSym';
 export default class App extends React.Component {
 
 
@@ -46,7 +48,7 @@ async componentDidMount() {
 render() {
     return (
         <div>
-          <table>
+          <table border="10" cellpadding="10">
             <tr>
               <th>Most Traded Sym</th>
               <th>Volume Traded</th>
@@ -56,6 +58,8 @@ render() {
               <td>{JSON.stringify(this.state.size)}</td>
             </tr>
           </table>
+          <div><MinPriceSym /></div>
+          <div><MaxPriceSym /></div>
           <div><LastValueCache /></div>
         </div>
     )
