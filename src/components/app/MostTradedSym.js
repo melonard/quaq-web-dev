@@ -1,8 +1,16 @@
-import React from 'react';
-
 import React, { Component } from 'react'
 
-export class timeseries extends Component {
+export default class MostTradedSym extends Component {
+
+    
+  constructor () {
+    super()
+    this.state = {
+        sym : "",
+        amount: 0
+    }
+    }
+
 
     async componentDidMount() {
         const url = "https://homer.aquaq.co.uk:8040/executeFunction";
@@ -13,7 +21,8 @@ export class timeseries extends Component {
                   "body": JSON.stringify({
                     "arguments": {
                   "db":"rdb",
-                  "query":"select avgs price by sym from trade": ".aqrest.execute"
+                  "query":"select from (select from select sum size by sym from trade) where size = max size"},
+                    "function_name": ".aqrest.execute"
                   }),
                   method:"post",
                   "headers": {
@@ -24,7 +33,6 @@ export class timeseries extends Component {
             }}
             ) 
             const data = await response.json();
-            console.log(data.result[0].sym)
             this.setState({sym: data.result[0].sym})
             this.setState({size: data.result[0].size})
           },1000);
@@ -35,10 +43,21 @@ export class timeseries extends Component {
     
     render() {
         return (
-            <div>
-                
+            <div className='App'>
+                <table border="10" cellpadding="10">
+                <tr>
+                <th>Most Traded Sym</th>
+                <th>Volume Traded</th>
+                </tr>
+                <tr>
+                <td>{JSON.stringify(this.state.sym)}</td>
+                <td>{JSON.stringify(this.state.size)}</td>
+                </tr>
+                </table>
             </div>
         )
     }
 }
+
+
 
