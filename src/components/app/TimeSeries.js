@@ -4,9 +4,7 @@ export default class timeseries extends React.Component {
     constructor () {
       super();
       this.state ={
-        results : [],
-        sym : [],
-        avgPrices : []
+        results: []
     }
     }
 
@@ -19,7 +17,7 @@ export default class timeseries extends React.Component {
                   "body": JSON.stringify({
                     "arguments": {
                       "db":"rdb",
-                      "query":"select p: (count i) mavg price by sym from trade"},
+                      "query":"select time, p: (count i) mavg price by sym from trade"},
                       "function_name": ".aqrest.execute"
                   }) ,
                   method:"post",
@@ -31,13 +29,14 @@ export default class timeseries extends React.Component {
             }}
             ) 
             const data = await response.json();
-            this.setState({results : data.result})
+            this.setState({results : data.result[1]})
             console.log(this.state.results)
-          },1000);
+          },10000);
         } catch(e) {
           console.log(e);
         }
-    }
+    } 
+    
     
     render() {
         return (
