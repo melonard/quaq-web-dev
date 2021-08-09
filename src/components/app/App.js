@@ -3,6 +3,7 @@ import React from 'react';
 import LastValueCache from './LastValueCache';
 import MinPriceSym from './MinPriceSym';
 import MaxPriceSym from './MaxPriceSym';
+import ChartApp from './AppChart';
 export default class App extends React.Component {
 
 
@@ -60,6 +61,7 @@ render() {
           </table>
           <div><MinPriceSym /></div>
           <div><MaxPriceSym /></div>
+          <div><ChartApp /></div>
           <div><LastValueCache /></div>
         </div>
     )

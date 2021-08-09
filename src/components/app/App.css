@@ -94,3 +94,16 @@
   justify-content:space-evenly;
   align-items: center;
 }
+.a {
+  height:300 px;
+  width:300 px;
+  background: rgba(255, 142, 221, 0.514);
+  border-radius: 20px;
+  border-color: rgb(0, 0, 0);
+  border-width: 2px;
+  border-style: groove;
+  display:flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  align-items: center;
+}
