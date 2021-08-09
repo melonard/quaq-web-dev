@@ -17,33 +17,38 @@ async  componentDidMount() {
     const url = "https://homer.aquaq.co.uk:8040/executeFunction";
     try {
         setInterval(async () => {
-    const response = await 
-    fetch (url,{
-          "body": JSON.stringify({
-            "arguments": {
-            "db":"rdb",
-            "query": "select diff:last price - first price by sym from trade"},
-            "function_name": ".aqrest.execute"
-            }),
-          method:"post",
-          "headers": {
-            'Accept': 'application/json',
-            "Content-Type":"application/json",
-            "accept": "*/*",
-            "Authorization":"Basic dXNlcjpwYXNz"
-    }}
-    ) 
-    const data = await response.json();
-    
-    this.setState({all_data: data.result})
-    for (let i = 0;i<10;i++){
-        this.setState({sym:[...this.state.sym ,data.result[i].sym]})
-        this.setState({diff: [...this.state.diff,data.result[i].diff]})
-    }
-},1000);
-} catch(e) {
-  console.log(e);
-}
+            const response = await 
+            fetch (url,{
+                "body": JSON.stringify({
+                    "arguments": {
+                    "db":"rdb",
+                    "query": "select diff:last price - first price by sym from trade"},
+                    "function_name": ".aqrest.execute"
+                    }),
+                method:"post",
+                "headers": {
+                    'Accept': 'application/json',
+                    "Content-Type":"application/json",
+                    "accept": "*/*",
+                    "Authorization":"Basic dXNlcjpwYXNz"
+            }}
+            ) 
+            const data = await response.json();
+            
+            this.setState({all_data: data.result})
+            var diffArr=[]
+            var symArr=[]
+            for (let i = 0;i<10;i++){
+                diffArr.push(data.result[i].diff)
+                symArr.push(data.result[i].sym)
+            }
+            this.setState({sym: symArr})
+            this.setState({diff: diffArr})
+        },1000);
+        } catch(e) {
+        console.log(e);
+        }
+    //console.log(this.state.all_data)
 }
 
 // for (let i = 0;i<10;i++){
@@ -57,7 +62,6 @@ async  componentDidMount() {
 render() {
     return (
         <div className="LVC">
-            <div>{JSON.stringify(this.state.all_data)}</div>
             <h3>{JSON.stringify(this.state.sym[0])}</h3>
             <p>Current Price</p>
             <h5>{JSON.stringify(this.state.diff[0])}</h5>

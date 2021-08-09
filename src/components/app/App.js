@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-
+import LastValueCache from './LastValueCache';
 export default class App extends React.Component {
 
 
@@ -56,7 +56,7 @@ render() {
               <td>{JSON.stringify(this.state.size)}</td>
             </tr>
           </table>
-          <div></div>
+          <div><LastValueCache /></div>
         </div>
     )
   }
