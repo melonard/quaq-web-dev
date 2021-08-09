@@ -45,7 +45,7 @@ export default class MostTradedSym extends Component {
     render() {
         return (
             <div>
-                <table>
+                <table border="10" cellpadding="10">
                 <tr>
                 <th>Most Traded Sym</th>
                 <th>Volume Traded</th>
