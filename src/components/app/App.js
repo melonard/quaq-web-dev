@@ -4,6 +4,7 @@ import LastValueCache from './LastValueCache';
 import MinPriceSym from './MinPriceSym';
 import MaxPriceSym from './MaxPriceSym';
 import ChartApp from './AppChart';
+import Yesterday from './Yesterday';
 export default class App extends React.Component {
 
 
@@ -62,7 +63,27 @@ render() {
           <div><MinPriceSym /></div>
           <div><MaxPriceSym /></div>
           <div><ChartApp /></div>
+          <p>Move the mouse over the button to open the dropdown menu.</p>
+                <div class="dropdown">
+                  <button class="dropbtn">Select Year</button>
+                  <div class="dropdown-content">
+                    <a href="#no">
+                      Today
+                      <chart1></chart1>
+                    </a>
+                    <a href="#no">
+                      Yesterday          
+                      <div><Yesterday/></div>
+                    </a>
+                    <a href="#no">
+                      2 Days Ago
+                    </a>
+                  </div>
+
+                </div>
+
           <div><LastValueCache /></div>
+          
         </div>
     )
   }
