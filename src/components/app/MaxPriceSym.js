@@ -38,7 +38,7 @@ export default class MaxPriceSym extends React.Component {
       ) 
       const data = await response.json();
       this.setState({sym: data.result[0].sym})
-      this.setState({size: data.result[0].price})
+      this.setState({size: parseFloat(data.result[0].price.toFixed(2))})
     },1000);
   } catch(e) {
     console.log(e);

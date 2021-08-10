@@ -43,7 +43,7 @@ async  componentDidMount() {
                 symArr.push(data.result[i].sym)
             }
             this.setState({sym: symArr})
-            this.setState({diff: diffArr})
+            this.setState({diff: diffArr.map(ele => parseFloat(ele.toFixed(2)))})
         },1000);
         } catch(e) {
         console.log(e);
