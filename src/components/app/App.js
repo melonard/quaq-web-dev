@@ -46,9 +46,11 @@ render() {
           <div><MinPriceSym /></div>
           <div><MaxPriceSym /></div>
           <div><LastValueCache /></div>
-          <div><TimeSeries /></div>
-          <div><Graph/></div>
+         
         </div>
     )
   }
 }
+
+//<div><TimeSeries /></div>
+//<div><Graph/></div>

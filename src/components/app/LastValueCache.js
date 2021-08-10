@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css'
+import Yesterday from './Yesterday';
 
 export default class LastValueCache extends React.Component {
 constructor () {
