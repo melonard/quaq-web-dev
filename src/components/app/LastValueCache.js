@@ -44,7 +44,7 @@ async  componentDidMount() {
 render() {
     return (
         <div className="LVC">
-            <div>{JSON.stringify(this.state.all_data)}</div>
+            {/* <div>{JSON.stringify(this.state.all_data)}</div> */}
             <h3>{JSON.stringify(this.state.sym[0])}</h3>
             <p>Current Price</p>
             <h5>{JSON.stringify(this.state.diff[0])}</h5>

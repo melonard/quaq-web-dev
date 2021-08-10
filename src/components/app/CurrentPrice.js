@@ -47,7 +47,7 @@ async  componentDidMount() {
           }
           this.setState({sym: symArr})
           this.setState({price: priceArr})
-        },1000);
+        },3000);
         } catch(e) {
         console.log(e);
         }
