@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import rd3 from 'react-d3-library'
+//import rd3 from 'react-d3-library'
 //import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
 //import ReactTable from "react-table";  
 //import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -63,7 +63,7 @@ render() {
     <div className='App'>
       <div> 
         
-        <h3>Sym's Latest Price </h3>
+        <h3>Yesterday's Last Price </h3>
       
           <table border="5" cellpadding="5">
       
@@ -95,10 +95,6 @@ render() {
       </div>
 
     </div>
-
-
-
-
 )
   }  
 }
