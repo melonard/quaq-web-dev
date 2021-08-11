@@ -57,7 +57,6 @@ render() {
     return (
                 <div className='App'>
                   <div> 
-                    
                     <h3>Sym's Latest Price </h3>
                   
                       <table border="10" cellpadding="10">
