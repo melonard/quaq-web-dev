@@ -1,8 +1,7 @@
 import './App.css';
-import React, {Component} from 'react';
-import Chart from "react-apexcharts";
+import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
+import {CartesianGrid, XAxis, YAxis, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 
 
 function convertDataPT(data) {
@@ -37,7 +36,7 @@ export default class Graph extends React.Component {
       },
       series: [
         {
-          name: "DOW",
+          name: "",
           data: []
         }
       ]
@@ -67,7 +66,7 @@ async  componentDidMount() {
               // console.log(data)
 
 this.setState({all_data: convertDataPT(data.result)})
-        },30000);
+        },60000);
         } catch(e) {
         console.log(e);
         }
@@ -76,22 +75,23 @@ this.setState({all_data: convertDataPT(data.result)})
  
 render() {
     return (
-        // <div>Graph Of Previous Day's History</div>
+        <div>
+                <h3>Today's Price History</h3>
         <div>
                         <div>
-                          <ResponsiveContainer width="100%" height={300}>
-                            <LineChart data={this.state.all_data} margin={{ top: 15, right: 0, bottom: 15, left: 0 }}>
+                          <ResponsiveContainer width="100%" height={600}>
+                            <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
                               <XAxis dataKey="time" />
                               <YAxis />
 
                               <Legend/>
-                              
                               {["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"].map((entry, index) => {
                                 return (
                                   <Line
                                     type="monotone"
                                     dataKey={entry}
+                                    activeDot={{ r: 8 }}
                                   />
                                 );
                               })}
@@ -99,6 +99,7 @@ render() {
                               <Line type="monotone" dataKey="AIG" stroke="#17A8F5" /> */}
                             </LineChart>
                           </ResponsiveContainer>
+                      </div>
                       </div>
         </div>
     )

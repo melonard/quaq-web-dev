@@ -7,7 +7,9 @@ import MaxPriceSym from './MaxPriceSym';
 import CurrentPrice from './CurrentPrice';
 import Yesterday from './Yesterday';
 import TimeSeries from './TimeSeries';
-import Graph from './Graph'
+import Graph from './Graph';
+import Select from 'react-select';
+//import { CSSTransition } from 'react-transition-group';
 
 export default class App extends React.Component {
   constructor () {
@@ -22,29 +24,34 @@ export default class App extends React.Component {
 render() {
     return (
         <div >
-          <div><CurrentPrice/></div>
+          <div><CurrentPrice/></div>    
+    <form>
+        <label for="framework">Select Data</label>
+        <select id="framework">            
+            <option>Today </option>
+            <option> Yesterday</option>
+            <option>2 Day's Ago</option>
+        </select>
+        <button id="btn">Get the Selected Data</button>
+    </form>
           <div><Graph/></div>
-          <p>Move the mouse over the button to open the dropdown menu.</p>
-                <div class="dropdown">
-                  <button class="dropbtn">Select Day</button>
-                      <div class="dropdown-content">
-                        <a href="#no">
-                          Today
-                          <chart1></chart1>
-                        </a>
-                        <a href="#no">
-                          Yesterday          
-                          <div><Yesterday/></div>
-                        </a>
-                        <a href="#no">
-                          2 Days Ago
-                        </a>
-                      </div>
+          <div><Yesterday/></div>
+
+
+
+
+
+          {/* <p>Move the mouse over the button to open the dropdown menu.</p>
+          <div class="dropdown">
+                <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#">Today</a>
+                    <a href="AppGraph">Yesterday</a>
+                    <a href="#">2 Day's</a>
                 </div>
+          </div> */}
           
-          <div><MostTradedSym /></div>
-          <div><MinPriceSym /></div>
-          <div><MaxPriceSym /></div>
+          <div><MostTradedSym /><MinPriceSym /><MaxPriceSym /></div>
           <div><LastValueCache /></div>
 
         </div>

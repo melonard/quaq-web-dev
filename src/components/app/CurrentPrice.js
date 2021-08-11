@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
+//import { BarChart, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
 //import ReactTable from "react-table";  
 //import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -46,7 +46,7 @@ async  componentDidMount() {
               symArr.push(data.result[i].sym)
           }
           this.setState({sym: symArr})
-          this.setState({price: priceArr})
+          this.setState({price: priceArr.map(ele => parseFloat(ele.toFixed(2)))})
         },3000);
         } catch(e) {
         console.log(e);
