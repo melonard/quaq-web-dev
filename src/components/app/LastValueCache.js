@@ -23,7 +23,7 @@ async  componentDidMount() {
                 "body": JSON.stringify({
                     "arguments": {
                     "db":"rdb",
-                    "query": "select curr:last price, diff:last price - first price by sym from trade"},
+                    "query": "select curr:last price, diff:(last price) - first price by sym from trade"},
                     "function_name": ".aqrest.execute"
                     }),
                 method:"post",
@@ -54,71 +54,30 @@ async  componentDidMount() {
         }
 }
 
-// for (let i = 0;i<10;i++){
-// if (this.state.diff[i] >= 0) {
-//     this.state.diff[i].color = "green";
-// } else {
-//     this.state.diff[i].color = "red";
-// }
-// }
-
 render() {
     return (
-        <div> 
-                    
+        <div>   
                     <h3>Last Value Cache </h3>
-                  
+
                       <table border="10" cellpadding="10">
-                  
                         <tr>
-                          <th>{JSON.stringify(this.state.sym[0])}</th>
-                          <th>{JSON.stringify(this.state.sym[1])}</th>
-                          <th>{JSON.stringify(this.state.sym[2])}</th>
-                          <th>{JSON.stringify(this.state.sym[3])}</th>
-                          <th>{JSON.stringify(this.state.sym[4])}</th>
-                          <th>{JSON.stringify(this.state.sym[5])}</th>
-                          <th>{JSON.stringify(this.state.sym[6])}</th>
-                          <th>{JSON.stringify(this.state.sym[7])}</th>
-                          <th>{JSON.stringify(this.state.sym[8])}</th>
-                          <th>{JSON.stringify(this.state.sym[9])}</th>
+                            {this.state.sym.map((entry,index)=>{
+                                return(<th>{entry}</th>)
+                            })}
                         </tr>
                         <tr>
-                          <td>{JSON.stringify(this.state.curr[0])}</td>
-                          <td>{JSON.stringify(this.state.curr[1])}</td>
-                          <td>{JSON.stringify(this.state.curr[2])}</td>
-                          <td>{JSON.stringify(this.state.curr[3])}</td>
-                          <td>{JSON.stringify(this.state.curr[4])}</td>
-                          <td>{JSON.stringify(this.state.curr[5])}</td>
-                          <td>{JSON.stringify(this.state.curr[6])}</td>
-                          <td>{JSON.stringify(this.state.curr[7])}</td>
-                          <td>{JSON.stringify(this.state.curr[8])}</td>
-                          <td>{JSON.stringify(this.state.curr[9])}</td>
+                        {this.state.curr.map((entry,index)=>{
+                                return(<th>{entry}</th>)
+                            })}
                         </tr>
                         <tr>
-                          <td>{JSON.stringify(this.state.diff[0])}</td>
-                          <td>{JSON.stringify(this.state.diff[1])}</td>
-                          <td>{JSON.stringify(this.state.diff[2])}</td>
-                          <td>{JSON.stringify(this.state.diff[3])}</td>
-                          <td>{JSON.stringify(this.state.diff[4])}</td>
-                          <td>{JSON.stringify(this.state.diff[5])}</td>
-                          <td>{JSON.stringify(this.state.diff[6])}</td>
-                          <td>{JSON.stringify(this.state.diff[7])}</td>
-                          <td>{JSON.stringify(this.state.diff[8])}</td>
-                          <td>{JSON.stringify(this.state.diff[9])}</td>
+                            {this.state.diff.map((entry,index)=>{
+                                return(<td>{entry > 0 ? <font color="green">+{entry}</font> : <font color="red">{entry}</font>}</td>)
+                            })}
+
                         </tr>
-                      </table>
-                  </div>
+                      </table>  
+        </div>
     )
   }
 }
-// function LastValueCache(){
-//     return(
-//         <div className="LVC">
-//             <h3>{JSON.stringify(this.state.sym)}</h3>
-//             <p>Current Price</p>
-//             <h5>{JSON.stringify(this.state.diff)}</h5>
-//         </div>
-
-//     );
-// }
-// export default LastValueCache;
