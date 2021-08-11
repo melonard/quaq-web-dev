@@ -37,7 +37,7 @@ export default class MaxPriceSym extends React.Component {
       }}
       ) 
       const data = await response.json();
-      console.log(data.result[0].sym)
+      //console.log(data.result[0].sym)
       this.setState({sym: data.result[0].sym})
       this.setState({size: data.result[0].price})
     },1000);

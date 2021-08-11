@@ -6,8 +6,9 @@ import MinPriceSym from './MinPriceSym';
 import MaxPriceSym from './MaxPriceSym';
 import CurrentPrice from './CurrentPrice';
 import Yesterday from './Yesterday';
-import TimeSeries from './TimeSeries';
+import TestComponent from './TestComponent';
 import Graph from './Graph'
+
 
 export default class App extends React.Component {
   constructor () {
@@ -47,6 +48,7 @@ render() {
           <div><MaxPriceSym /></div>
           <div><LastValueCache /></div>
          <div><Graph/></div>
+         <div><TestComponent/></div>
         </div>
     )
   }
