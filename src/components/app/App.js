@@ -25,6 +25,9 @@ export default class App extends React.Component {
 render() {
     return (
         <div >
+          <div> <text>{ Date()}</text>
+          
+          </div>
           <div><CurrentPrice/></div>    
     <form>
         <label for="framework">Select Data</label>

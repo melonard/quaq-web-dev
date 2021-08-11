@@ -79,7 +79,8 @@ render() {
                                     type="monotone"
                                     dataKey={entry}
                                     stroke="#17A8F5"
-                                    activeDot={{ r: 8 }}
+                                    dot={false}
+                                    // activeDot={{ r: 8 }}
                                     
                                   />
                                 );
