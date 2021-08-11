@@ -54,10 +54,12 @@ async  componentDidMount() {
         }
 }
 
+
 render() {
     return (
         <div>   
-                    <h3>Last Value Cache </h3>
+                <h3>Last Value Cache </h3>
+                <div><font>{Date()}</font></div>
 
                       <table border="10" cellpadding="10">
                         <tr>
@@ -67,14 +69,13 @@ render() {
                         </tr>
                         <tr>
                         {this.state.curr.map((entry,index)=>{
-                                return(<th>{entry}</th>)
+                                return(<td>{entry}</td>)
                             })}
                         </tr>
                         <tr>
                             {this.state.diff.map((entry,index)=>{
                                 return(<td>{entry > 0 ? <font color="green">+{entry}</font> : <font color="red">{entry}</font>}</td>)
                             })}
-
                         </tr>
                       </table>  
         </div>
