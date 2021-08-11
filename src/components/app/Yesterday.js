@@ -70,7 +70,7 @@ render() {
                 <h3>Yesterday's Price History</h3>
         <div>
                         <div>
-                          <ResponsiveContainer width="100%" height={600}>
+                          <ResponsiveContainer width="100%" height={400}>
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
                               <XAxis dataKey="time" />

@@ -9,6 +9,7 @@ import Yesterday from './Yesterday';
 import TimeSeries from './TimeSeries';
 import Graph from './Graph';
 import Select from 'react-select';
+import TwoDaysAgo from './TwoDaysAgo';
 //import { CSSTransition } from 'react-transition-group';
 
 export default class App extends React.Component {
@@ -28,7 +29,7 @@ render() {
     <form>
         <label for="framework">Select Data</label>
         <select id="framework">            
-            <option>Today </option>
+            <option> Today </option>
             <option> Yesterday</option>
             <option>2 Day's Ago</option>
         </select>
@@ -36,10 +37,7 @@ render() {
     </form>
           <div><Graph/></div>
           <div><Yesterday/></div>
-
-
-
-
+          <div><TwoDaysAgo/></div>
 
           {/* <p>Move the mouse over the button to open the dropdown menu.</p>
           <div class="dropdown">
@@ -58,5 +56,3 @@ render() {
     )
   }
 }
-
-//<div><TimeSeries /></div>
