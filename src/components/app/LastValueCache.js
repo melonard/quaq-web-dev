@@ -60,19 +60,21 @@ render() {
         <div>   
                 <h3>Last Value Cache </h3>
                 <div><font>{Date()}</font></div>
-
                       <table border="10" cellpadding="10">
                         <tr>
+                        <h4>Sym</h4>
                             {this.state.sym.map((entry,index)=>{
                                 return(<th>{entry}</th>)
                             })}
                         </tr>
                         <tr>
+                        <h4>Current Price</h4>
                         {this.state.curr.map((entry,index)=>{
                                 return(<td>{entry}</td>)
                             })}
                         </tr>
                         <tr>
+                        <h4>Difference</h4>
                             {this.state.diff.map((entry,index)=>{
                                 return(<td>{entry > 0 ? <font color="green">+{entry}</font> : <font color="red">{entry}</font>}</td>)
                             })}
