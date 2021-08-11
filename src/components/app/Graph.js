@@ -73,7 +73,7 @@ this.setState({all_data: convertDataPT(data.result)})
         }
     }
 
-
+ 
 render() {
     return (
         // <div>Graph Of Previous Day's History</div>
@@ -86,8 +86,8 @@ render() {
                               <YAxis />
 
                               <Legend/>
-
-                              {["AAPL","AIG","DELL"].map((entry, index) => {
+                              
+                              {["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"].map((entry, index) => {
                                 return (
                                   <Line
                                     type="monotone"
@@ -95,8 +95,8 @@ render() {
                                   />
                                 );
                               })}
-                              <Line type="monotone" dataKey="AAPL" stroke="#FB8833" />
-                              <Line type="monotone" dataKey="AIG" stroke="#17A8F5" />
+                              {/* <Line type="monotone" dataKey="AAPL" stroke="#FB8833" />
+                              <Line type="monotone" dataKey="AIG" stroke="#17A8F5" /> */}
                             </LineChart>
                           </ResponsiveContainer>
                       </div>

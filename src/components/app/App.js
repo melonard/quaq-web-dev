@@ -23,7 +23,7 @@ render() {
     return (
         <div >
           <div><CurrentPrice/></div>
-          
+          <div><Graph/></div>
           <p>Move the mouse over the button to open the dropdown menu.</p>
                 <div class="dropdown">
                   <button class="dropbtn">Select Day</button>
@@ -46,7 +46,7 @@ render() {
           <div><MinPriceSym /></div>
           <div><MaxPriceSym /></div>
           <div><LastValueCache /></div>
-         <div><Graph/></div>
+
         </div>
     )
   }

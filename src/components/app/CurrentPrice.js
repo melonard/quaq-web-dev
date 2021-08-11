@@ -89,12 +89,12 @@ render() {
                   </div>
                   
 
-                  <BarChart width={600} height={600} data={this.state.all_data}>
+                  {/* <BarChart width={600} height={600} data={this.state.all_data}>
               <Bar dataKey="price" fill="pink" />
                 <CartesianGrid/>
                 <XAxis dataKey="sym" />
                 <YAxis />
-            </BarChart>
+            </BarChart> */}
 
                  
 
