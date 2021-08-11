@@ -1,12 +1,21 @@
 import './App.css';
-import React, {Component} from 'react';
-//import LineChart from 'react-linechart';
-import Chart from "react-apexcharts";
-
+import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
-import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
-//import ReactTable from "react-table";  
-//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {CartesianGrid, XAxis, YAxis, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
+
+
+function convertDataPT(data) {
+  let arr = [];
+  for (let i = 0; i < data.length; i++) {
+    let obj = { time: data[i].time };
+    for (let j = 0; j < data[i].sym.length; j++) {
+      let sym = data[i].sym[j];
+      obj[sym] = data[i].price[j];
+    }
+    arr.push(obj);
+  }
+  return arr;
+}
 
 
 export default class Graph extends React.Component {
@@ -27,7 +36,7 @@ export default class Graph extends React.Component {
       },
       series: [
         {
-          name: "DOW",
+          name: "",
           data: []
         }
       ]
@@ -42,11 +51,9 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                  "arguments": {
-                  "db":"hdb",
-                  "query": "select sum price by `time$(60 xbar time.minute) from trade where sym = `AAPL, (`date$time) = -1 + .z.d"},
-                  "function_name": ".aqrest.execute"
-                  }),
+                "arguments": {"db":"rdb","query":"select sym,price by time from (select by sym,time:string 5 xbar time.minute from(select time,sym,price from trade))"},
+                "function_name": ".aqrest.execute"
+              }),
               method:"post",
               "headers": {
                   'Accept': 'application/json',
@@ -58,62 +65,42 @@ async  componentDidMount() {
           const data = await response.json();
               // console.log(data)
 
-this.setState({all_data: data.result})
-
-var mytimeArray=[]
-var mypriceArray=[]
-for (let i = 0;i<24;i++){
-  mypriceArray.push(data.result[i].price)
-  mytimeArray.push(data.result[i].minute)
-  
-}
-this.setState({time: mytimeArray})
-this.setState({price: mypriceArray})
-
-//this.setState({ options : {xaxis:{categories : mytimeArray } } })
-// this.setState({ series : {data: mypriceArray}})
-
-          // console.log(this.state.results)
-          // console.log(this.state.options)
-          // console.log(this.state.series)
-        },30000);
+this.setState({all_data: convertDataPT(data.result)})
+        },60000);
         } catch(e) {
         console.log(e);
         }
     }
 
+ 
 render() {
     return (
-        // <div>Graph Of Previous Day's History</div>
         <div>
-<div>{JSON.stringify(this.state.all_data)}</div> 
-
-{/*               
-              <div className="row">
-                    <div className="mixed-chart">
-                          <Chart
-                            options={this.state.options}
-                            series={this.state.series}
-                            type="line"
-                            width="500"
-                          /> */}
-
+                <h3>Today's Price History</h3>
+        <div>
                         <div>
-                          <ResponsiveContainer width="100%" height={300}>
-                            <LineChart data={this.state.all_data} margin={{ top: 15, right: 0, bottom: 15, left: 0 }}>
+                          <ResponsiveContainer width="100%" height={600}>
+                            <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
-                              <XAxis dataKey="minute" />
+                              <XAxis dataKey="time" />
                               <YAxis />
 
                               <Legend/>
-                              <Line type="monotone" sym="AIG" dataKey="price" stroke="#FB8833" />
-                              {/* <Line type="monotone" sym="AAPL" dataKey="price" stroke="#17A8F5" /> */}
+                              {["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"].map((entry, index) => {
+                                return (
+                                  <Line
+                                    type="monotone"
+                                    dataKey={entry}
+                                    activeDot={{ r: 8 }}
+                                  />
+                                );
+                              })}
+                              {/* <Line type="monotone" dataKey="AAPL" stroke="#FB8833" />
+                              <Line type="monotone" dataKey="AIG" stroke="#17A8F5" /> */}
                             </LineChart>
                           </ResponsiveContainer>
                       </div>
-                
-          
-
+                      </div>
         </div>
     )
   }  

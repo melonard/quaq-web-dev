@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css'
-import Yesterday from './Yesterday';
 
 export default class LastValueCache extends React.Component {
 constructor () {
@@ -8,6 +7,7 @@ constructor () {
     this.state = {
         sym:[],
         diff:[],
+        curr:[],
         result:[]
     }
   
@@ -16,66 +16,101 @@ constructor () {
 async  componentDidMount() {
 
     const url = "https://homer.aquaq.co.uk:8040/executeFunction";
-    const response = await 
-    fetch (url,{
-          "body": JSON.stringify({
-            "arguments": {
-            "db":"rdb",
-            "query": "select diff:first price - last price by sym from trade"},
-            "function_name": ".aqrest.execute"
-            }),
-          method:"post",
-          "headers": {
-            'Accept': 'application/json',
-            "Content-Type":"application/json",
-            "accept": "*/*",
-            "Authorization":"Basic dXNlcjpwYXNz"
-    }}
-    ) 
-    const data = await response.json();
-    console.log(data)
-    this.setState({all_data: data.result})
-    for (let i = 0;i<10;i++){
-        this.setState({sym:[...this.state.sym ,data.result[i].sym]})
-        this.setState({diff: [...this.state.diff,data.result[i].diff]})
-    }
+    try {
+        setInterval(async () => {
+            const response = await 
+            fetch (url,{
+                "body": JSON.stringify({
+                    "arguments": {
+                    "db":"rdb",
+                    "query": "select curr:last price, diff:last price - first price by sym from trade"},
+                    "function_name": ".aqrest.execute"
+                    }),
+                method:"post",
+                "headers": {
+                    'Accept': 'application/json',
+                    "Content-Type":"application/json",
+                    "accept": "*/*",
+                    "Authorization":"Basic dXNlcjpwYXNz"
+            }}
+            ) 
+            const data = await response.json();
+            
+            this.setState({all_data: data.result})
+            var symArr=[]
+            var currArr=[]
+            var diffArr=[]
+            for (let i = 0;i<10;i++){
+                symArr.push(data.result[i].sym)
+                currArr.push(data.result[i].curr)
+                diffArr.push(data.result[i].diff)
+            }
+            this.setState({sym: symArr})
+            this.setState({curr: currArr.map(ele => parseFloat(ele.toFixed(2)))})
+            this.setState({diff: diffArr.map(ele => parseFloat(ele.toFixed(2)))})
+        },1000);
+        } catch(e) {
+        console.log(e);
+        }
 }
+
+// for (let i = 0;i<10;i++){
+// if (this.state.diff[i] >= 0) {
+//     this.state.diff[i].color = "green";
+// } else {
+//     this.state.diff[i].color = "red";
+// }
+// }
 
 render() {
     return (
-        <div className="LVC">
-            {/* <div>{JSON.stringify(this.state.all_data)}</div> */}
-            <h3>{JSON.stringify(this.state.sym[0])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.diff[0])}</h5>
-            <h3>{JSON.stringify(this.state.sym[1])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.diff[1])}</h5>
-            <h3>{JSON.stringify(this.state.sym[2])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.diff[2])}</h5>
-            <h3>{JSON.stringify(this.state.sym[3])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.diff[3])}</h5>
-            <h3>{JSON.stringify(this.state.sym[4])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.diff[4])}</h5>
-            <h3>{JSON.stringify(this.state.sym[5])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.diff[5])}</h5>
-            <h3>{JSON.stringify(this.state.sym[6])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.diff[6])}</h5>
-            <h3>{JSON.stringify(this.state.sym[7])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.diff[7])}</h5>
-            <h3>{JSON.stringify(this.state.sym[8])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.diff[8])}</h5>
-            <h3>{JSON.stringify(this.state.sym[9])}</h3>
-            <p>Current Price</p>
-            <h5>{JSON.stringify(this.state.diff[9])}</h5>
-        </div>
+    <div>
+    <h3>Last Value Cache </h3>
+        <div className='App'> 
+                    
+                    
+                  
+                      <table border="10" cellpadding="10">
+                  
+                        <tr>
+                          <th>{JSON.stringify(this.state.sym[0])}</th>
+                          <th>{JSON.stringify(this.state.sym[1])}</th>
+                          <th>{JSON.stringify(this.state.sym[2])}</th>
+                          <th>{JSON.stringify(this.state.sym[3])}</th>
+                          <th>{JSON.stringify(this.state.sym[4])}</th>
+                          <th>{JSON.stringify(this.state.sym[5])}</th>
+                          <th>{JSON.stringify(this.state.sym[6])}</th>
+                          <th>{JSON.stringify(this.state.sym[7])}</th>
+                          <th>{JSON.stringify(this.state.sym[8])}</th>
+                          <th>{JSON.stringify(this.state.sym[9])}</th>
+                        </tr>
+                        <tr>
+                          <td>{JSON.stringify(this.state.curr[0])}</td>
+                          <td>{JSON.stringify(this.state.curr[1])}</td>
+                          <td>{JSON.stringify(this.state.curr[2])}</td>
+                          <td>{JSON.stringify(this.state.curr[3])}</td>
+                          <td>{JSON.stringify(this.state.curr[4])}</td>
+                          <td>{JSON.stringify(this.state.curr[5])}</td>
+                          <td>{JSON.stringify(this.state.curr[6])}</td>
+                          <td>{JSON.stringify(this.state.curr[7])}</td>
+                          <td>{JSON.stringify(this.state.curr[8])}</td>
+                          <td>{JSON.stringify(this.state.curr[9])}</td>
+                        </tr>
+                        <tr>
+                          <td>{JSON.stringify(this.state.diff[0])}</td>
+                          <td>{JSON.stringify(this.state.diff[1])}</td>
+                          <td>{JSON.stringify(this.state.diff[2])}</td>
+                          <td>{JSON.stringify(this.state.diff[3])}</td>
+                          <td>{JSON.stringify(this.state.diff[4])}</td>
+                          <td>{JSON.stringify(this.state.diff[5])}</td>
+                          <td>{JSON.stringify(this.state.diff[6])}</td>
+                          <td>{JSON.stringify(this.state.diff[7])}</td>
+                          <td>{JSON.stringify(this.state.diff[8])}</td>
+                          <td>{JSON.stringify(this.state.diff[9])}</td>
+                        </tr>
+                      </table>
+                  </div>
+                  </div>
     )
   }
 }
