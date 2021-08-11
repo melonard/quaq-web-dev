@@ -7,6 +7,7 @@ constructor () {
     this.state = {
         sym:[],
         diff:[],
+        curr:[],
         result:[]
     }
   
@@ -22,7 +23,7 @@ async  componentDidMount() {
                 "body": JSON.stringify({
                     "arguments": {
                     "db":"rdb",
-                    "query": "select diff:last price - first price by sym from trade"},
+                    "query": "select curr:last price, diff:last price - first price by sym from trade"},
                     "function_name": ".aqrest.execute"
                     }),
                 method:"post",
@@ -36,19 +37,21 @@ async  componentDidMount() {
             const data = await response.json();
             
             this.setState({all_data: data.result})
-            var diffArr=[]
             var symArr=[]
+            var currArr=[]
+            var diffArr=[]
             for (let i = 0;i<10;i++){
-                diffArr.push(data.result[i].diff)
                 symArr.push(data.result[i].sym)
+                currArr.push(data.result[i].curr)
+                diffArr.push(data.result[i].diff)
             }
             this.setState({sym: symArr})
+            this.setState({curr: currArr.map(ele => parseFloat(ele.toFixed(2)))})
             this.setState({diff: diffArr.map(ele => parseFloat(ele.toFixed(2)))})
         },1000);
         } catch(e) {
         console.log(e);
         }
-    //console.log(this.state.all_data)
 }
 
 // for (let i = 0;i<10;i++){
@@ -78,6 +81,18 @@ render() {
                           <th>{JSON.stringify(this.state.sym[7])}</th>
                           <th>{JSON.stringify(this.state.sym[8])}</th>
                           <th>{JSON.stringify(this.state.sym[9])}</th>
+                        </tr>
+                        <tr>
+                          <td>{JSON.stringify(this.state.curr[0])}</td>
+                          <td>{JSON.stringify(this.state.curr[1])}</td>
+                          <td>{JSON.stringify(this.state.curr[2])}</td>
+                          <td>{JSON.stringify(this.state.curr[3])}</td>
+                          <td>{JSON.stringify(this.state.curr[4])}</td>
+                          <td>{JSON.stringify(this.state.curr[5])}</td>
+                          <td>{JSON.stringify(this.state.curr[6])}</td>
+                          <td>{JSON.stringify(this.state.curr[7])}</td>
+                          <td>{JSON.stringify(this.state.curr[8])}</td>
+                          <td>{JSON.stringify(this.state.curr[9])}</td>
                         </tr>
                         <tr>
                           <td>{JSON.stringify(this.state.diff[0])}</td>
