@@ -45,8 +45,8 @@ async  componentDidMount() {
               priceArr.push(data.result[i].price)
               symArr.push(data.result[i].sym)
           }
-          this.setState({sym: symArr})
-          this.setState({price: priceArr})
+          this.setState({sym: symArr.map(ele => parseFloat(ele.toFixed(2)))})
+          this.setState({price: priceArr.map(ele => parseFloat(ele.toFixed(2)))})
         },3000);
         } catch(e) {
         console.log(e);
