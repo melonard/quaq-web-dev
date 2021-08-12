@@ -19,7 +19,8 @@ function convertDataPT(data) {
   }
   return arr;
 }
-
+const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
+const filter = ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]
 
 export default class Yesterday extends React.Component {
   constructor () {
@@ -82,12 +83,12 @@ render() {
                               <YAxis />
 
                               <Legend/>
-                              {["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"].map((entry, index) => {
+                              {filter.map((entry, index) => {
                                 return (
                                   <Line
                                     type="monotone"
                                     dataKey={entry}
-                                    stroke="#FB8833"
+                                    stroke={COLORS[index % COLORS.length]}  
                                   />
                                 );
                               })}

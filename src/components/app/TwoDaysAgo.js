@@ -16,6 +16,9 @@ function convertDataPT(data) {
   return arr;
 }
 
+const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
+const filter = ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]
+
 export default class TwoDaysAgo extends React.Component {
   constructor () {
     super()
@@ -70,12 +73,12 @@ render() {
                               <YAxis />
 
                               <Legend/>
-                              {["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"].map((entry, index) => {
+                              {filter.map((entry, index) => {
                                 return (
                                   <Line
                                     type="monotone"
                                     dataKey={entry}
-                                    stroke="#82ca9d"
+                                    stroke={COLORS[index % COLORS.length]} 
                                   />
                                 );
                               })}
