@@ -13,6 +13,7 @@ function convertDataPT(data) {
       obj[sym] = data[i].price[j];
     }
     arr.push(obj);
+    console.log(arr)
   }
   return arr;
 }
@@ -40,7 +41,7 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"rdb","query":"-1_select sym,price by time from (select by sym,time:string 5 xbar time.minute from(select time,sym,price from trade))"},
+                "arguments": {"db":"rdb","query":"-1_select sym, price by time from (select avg avgs price by sym,time:string 5 xbar time.minute from(select med avgs price by sym,time from trade))"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
@@ -55,7 +56,7 @@ async  componentDidMount() {
               // console.log(data)
 
 this.setState({all_data: convertDataPT(data.result)})
-        },60000);
+        },10000);
         } catch(e) {
         console.log(e);
         }
