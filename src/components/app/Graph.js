@@ -41,7 +41,7 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"rdb","query":"-1_select sym, price by time from (select avg price by sym,time:string 5 xbar time.minute from(select time,sym,price from trade))"},
+                "arguments": {"db":"rdb","query":"-1_select sym, price by time from (select avg avgs price by sym,time:string 5 xbar time.minute from(select med avgs price by sym,time from trade))"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
