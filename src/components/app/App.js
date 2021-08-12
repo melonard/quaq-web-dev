@@ -10,6 +10,7 @@ import TimeSeries from './TimeSeries';
 import Graph from './Graph';
 import Select from 'react-select';
 import TwoDaysAgo from './TwoDaysAgo';
+import Volatility from './Volatility';
 //import { CSSTransition } from 'react-transition-group';
 
 export default class App extends React.Component {
@@ -54,6 +55,7 @@ render() {
           
           <div><MostTradedSym /><MinPriceSym /><MaxPriceSym /></div>
           <div><LastValueCache /></div>
+          <div><Volatility/></div>
 
         </div>
     )

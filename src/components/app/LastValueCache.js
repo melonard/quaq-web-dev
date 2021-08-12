@@ -59,7 +59,9 @@ render() {
     return (
         <div>   
                 <h3>Last Value Cache </h3>
-                <div><font>{Date()}</font></div>
+               
+                <div ><font>{Date()}</font></div>
+                 <div className='App'>
                       <table border="10" cellpadding="10">
                         <tr>
                         <h4>Sym</h4>
@@ -80,6 +82,7 @@ render() {
                             })}
                         </tr>
                       </table>  
+        </div>
         </div>
     )
   }
