@@ -45,7 +45,7 @@ async  componentDidMount() {
               priceArr.push(data.result[i].price)
               symArr.push(data.result[i].sym)
           }
-          this.setState({sym: symArr.map(ele => parseFloat(ele.toFixed(2)))})
+          this.setState({sym: symArr})
           this.setState({price: priceArr.map(ele => parseFloat(ele.toFixed(2)))})
         },3000);
         } catch(e) {
@@ -87,17 +87,6 @@ render() {
                         </tr>
                       </table>
                   </div>
-                  
-
-                  {/* <BarChart width={600} height={600} data={this.state.all_data}>
-              <Bar dataKey="price" fill="pink" />
-                <CartesianGrid/>
-                <XAxis dataKey="sym" />
-                <YAxis />
-            </BarChart> */}
-
-                 
-
                 </div>
 
 

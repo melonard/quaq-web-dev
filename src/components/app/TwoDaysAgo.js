@@ -3,7 +3,6 @@ import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
 import {CartesianGrid, XAxis, YAxis, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 
-
 function convertDataPT(data) {
   let arr = [];
   for (let i = 0; i < data.length; i++) {
@@ -17,10 +16,7 @@ function convertDataPT(data) {
   return arr;
 }
 
-
-export default class Graph extends React.Component {
-
-
+export default class TwoDaysAgo extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -28,7 +24,8 @@ export default class Graph extends React.Component {
       price:[],
       result:[]
     }
-  }
+}
+
 
 async  componentDidMount() {
 
@@ -38,7 +35,7 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"rdb","query":"-1_select sym,100 mavg price by time from (select by sym,time:string 5 xbar time.minute from(select time,sym,price from trade))"},
+                "arguments": {"db":"hdb","query":"select sym,price by time from (select by sym,time:string 5 xbar time.minute from(select time,sym,price from trade where (`date$time) = -2 + .z.d))"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
@@ -49,21 +46,21 @@ async  componentDidMount() {
                   "Authorization":"Basic dXNlcjpwYXNz"
           }}
           ) 
-          const data = await response.json();
-              // console.log(data)
+                 const data = await response.json();
 
-this.setState({all_data: convertDataPT(data.result)})
-        },10000);
-        } catch(e) {
-        console.log(e);
-        }
-    }
+                 this.setState({all_data: convertDataPT(data.result)})
+                 
+             },1000);
+             } catch(e) {
+             console.log(e);
+             }
+         //console.log(this.state.all_data)
+     }
 
- 
 render() {
-    return (
-        <div>
-                <h3>Today's Price History</h3>
+  return (
+    <div>
+        <h3>Two Day's Ago Price History</h3>
         <div>
                         <div>
                           <ResponsiveContainer width="100%" height={400}>
@@ -78,10 +75,7 @@ render() {
                                   <Line
                                     type="monotone"
                                     dataKey={entry}
-                                    stroke="#17A8F5"
-                                    dot={false}
-                                    // activeDot={{ r: 8 }}
-                                    
+                                    stroke="#82ca9d"
                                   />
                                 );
                               })}
@@ -92,6 +86,9 @@ render() {
                       </div>
                       </div>
         </div>
-    )
+)
   }  
 }
+
+
+

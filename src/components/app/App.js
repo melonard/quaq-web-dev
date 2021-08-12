@@ -10,38 +10,35 @@ import TestComponent from './TestComponent';
 import Graph from './Graph'
 import TimeSeries from './TimeSeries';
 import Select from 'react-select';
+import TwoDaysAgo from './TwoDaysAgo';
 //import { CSSTransition } from 'react-transition-group';
+
 
 
 export default class App extends React.Component {
   constructor () {
     super()
     this.state = {
-        sym : "",
-        amount: 0
+      btnOption: true,
     }
+    this.handleClick = this.handleClick.bind(this)
 }
 
+handleClick(){
+  this.setState({btnOption : !this.state.btnOption})
+}
 
 render() {
+
     return (
         <div >
           <div><CurrentPrice/></div>    
-    <form>
-        <label for="framework">Select Data</label>
-        <select id="framework">            
-            <option>Today </option>
-            <option> Yesterday</option>
-            <option>2 Day's Ago</option>
-        </select>
-        <button id="btn">Get the Selected Data</button>
-    </form>
+          
           <div><Graph/></div>
-          <div><Yesterday/></div>
-
-
-
-
+          <button id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </button>
+          <div>
+          {this.state.btnOption === true ? <div><Yesterday/></div> :
+          <div><TwoDaysAgo/></div>}</div>
 
           {/* <p>Move the mouse over the button to open the dropdown menu.</p>
           <div class="dropdown">
@@ -55,12 +52,8 @@ render() {
           
           <div><MostTradedSym /><MinPriceSym /><MaxPriceSym /></div>
           <div><LastValueCache /></div>
-         <div><Graph/></div>
-         <div><TestComponent/></div>
 
         </div>
     )
   }
 }
-
-//<div><TimeSeries /></div>
