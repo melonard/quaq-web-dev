@@ -6,14 +6,12 @@ import MinPriceSym from './MinPriceSym';
 import MaxPriceSym from './MaxPriceSym';
 import CurrentPrice from './CurrentPrice';
 import Yesterday from './Yesterday';
-import TestComponent from './TestComponent';
-import Graph from './Graph'
 import TimeSeries from './TimeSeries';
+import Graph from './Graph';
 import Select from 'react-select';
 import TwoDaysAgo from './TwoDaysAgo';
+import Volatility from './Volatility';
 //import { CSSTransition } from 'react-transition-group';
-
-
 
 export default class App extends React.Component {
   constructor () {
@@ -32,9 +30,12 @@ render() {
 
     return (
         <div >
-          <div><CurrentPrice/></div>    
+          <div> <text>{ Date()}</text>
           
+          </div>
+          <div><CurrentPrice/></div>    
           <div><Graph/></div>
+          <div>Click to change day</div>
           <button id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </button>
           <div>
           {this.state.btnOption === true ? <div><Yesterday/></div> :
@@ -52,6 +53,7 @@ render() {
           
           <div><MostTradedSym /><MinPriceSym /><MaxPriceSym /></div>
           <div><LastValueCache /></div>
+          <div><Volatility/></div>
 
         </div>
     )

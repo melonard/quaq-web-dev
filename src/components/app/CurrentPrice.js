@@ -60,38 +60,30 @@ render() {
                     <h3>Sym's Latest Price </h3>
                   
                       <table border="10" cellpadding="10">
-                  
                         <tr>
-                          <th>{JSON.stringify(this.state.sym[0])}</th>
-                          <th>{JSON.stringify(this.state.sym[1])}</th>
-                          <th>{JSON.stringify(this.state.sym[2])}</th>
-                          <th>{JSON.stringify(this.state.sym[3])}</th>
-                          <th>{JSON.stringify(this.state.sym[4])}</th>
-                          <th>{JSON.stringify(this.state.sym[5])}</th>
-                          <th>{JSON.stringify(this.state.sym[6])}</th>
-                          <th>{JSON.stringify(this.state.sym[7])}</th>
-                          <th>{JSON.stringify(this.state.sym[8])}</th>
-                          <th>{JSON.stringify(this.state.sym[9])}</th>
+                        <h4>Sym</h4>
+                        {this.state.sym.map((entry,index)=>{
+                                return(<th>{entry}</th>)
+                            })}
                         </tr>
                         <tr>
-                          <td>{JSON.stringify(this.state.price[0])}</td>
-                          <td>{JSON.stringify(this.state.price[1])}</td>
-                          <td>{JSON.stringify(this.state.price[2])}</td>
-                          <td>{JSON.stringify(this.state.price[3])}</td>
-                          <td>{JSON.stringify(this.state.price[4])}</td>
-                          <td>{JSON.stringify(this.state.price[5])}</td>
-                          <td>{JSON.stringify(this.state.price[6])}</td>
-                          <td>{JSON.stringify(this.state.price[7])}</td>
-                          <td>{JSON.stringify(this.state.price[8])}</td>
-                          <td>{JSON.stringify(this.state.price[9])}</td>
+                        <h4>Current Price</h4>
+                        {this.state.price.map((entry,index)=>{
+                                return(<td>{entry}</td>)
+                            })}
                         </tr>
                       </table>
                   </div>
+                  
+
+                  {/* <BarChart width={600} height={600} data={this.state.all_data}>
+              <Bar dataKey="price" fill="pink" />
+                <CartesianGrid/>
+                <XAxis dataKey="sym" />
+                <YAxis />
+            </BarChart> */}
+
                 </div>
-
-
-      
- 
     )
   }  
 }

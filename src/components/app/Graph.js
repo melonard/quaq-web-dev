@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
-import {CartesianGrid, XAxis, YAxis, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
+import {CartesianGrid, XAxis, YAxis, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 
 
 function convertDataPT(data) {
@@ -13,14 +13,17 @@ function convertDataPT(data) {
       obj[sym] = data[i].price[j];
     }
     arr.push(obj);
+    console.log(arr)
   }
   return arr;
 }
 
 
+const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
+const filter = ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]
+
 export default class Graph extends React.Component {
-
-
+  
   constructor () {
     super()
     this.state = {
@@ -38,7 +41,7 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"rdb","query":"-1_select sym,100 mavg price by time from (select by sym,time:string 5 xbar time.minute from(select time,sym,price from trade))"},
+                "arguments": {"db":"rdb","query":"-1_select sym, price by time from (select avg price by sym,time:string 5 xbar time.minute from(select time,sym,price from trade))"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
@@ -69,24 +72,23 @@ render() {
                           <ResponsiveContainer width="100%" height={400}>
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
-                              <XAxis dataKey="time" />
+                              <XAxis dataKey="time" stroke="#000000"/>
                               <YAxis />
-
                               <Legend/>
-                              {["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"].map((entry, index) => {
-                                return (
-                                  <Line
-                                    type="monotone"
-                                    dataKey={entry}
-                                    stroke="#17A8F5"
-                                    dot={false}
-                                    // activeDot={{ r: 8 }}
-                                    
-                                  />
-                                );
-                              })}
-                              {/* <Line type="monotone" dataKey="AAPL" stroke="#FB8833" />
-                              <Line type="monotone" dataKey="AIG" stroke="#17A8F5" /> */}
+
+                              {filter.map((entry, index) => {
+                                            return (
+                                                        <Line
+                                                          type="monotone"
+                                                          dataKey={entry}
+                                                         stroke={COLORS[index % COLORS.length]}              
+                                                          dot={false}                                    
+                                                        />                                                                                                   
+                                                  );
+                                                             }
+                                          )
+                              
+                              }
                             </LineChart>
                           </ResponsiveContainer>
                       </div>
@@ -95,3 +97,5 @@ render() {
     )
   }  
 }
+
+
