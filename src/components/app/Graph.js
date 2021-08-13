@@ -56,6 +56,7 @@ async  componentDidMount() {
               // console.log(data)
 
 this.setState({all_data: convertDataPT(data.result)})
+this.setState({date: new Date().toUTCString()})
         },10000);
         } catch(e) {
         console.log(e);
@@ -69,6 +70,9 @@ render() {
                 <h3>Today's Price History</h3>
         <div>
                         <div>
+                        <div class="date">
+                          <p> Last Updated: {this.state.date}</p>
+                        </div>
                           <ResponsiveContainer width="100%" height={400}>
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />

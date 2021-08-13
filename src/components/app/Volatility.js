@@ -3,6 +3,7 @@ import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
 import {CartesianGrid, XAxis, YAxis, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 
+// `time xgroup select vol:dev price by time: string 5 xbar time.minute, sym from trade where sym in `DELL`
 
 function convertDataPT(data) {
   let arr = [];
@@ -38,7 +39,7 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"rdb","query":"`time xgroup update 14 mdev vol by sym from select vol:last price by sym,time:string 5 xbar time.minute from trade"},
+                "arguments": {"db":"hdb","query":"1_`time xgroup update 14 mdev vol by sym from select vol:last price by sym,time:string 5 xbar time.minute from trade where (`date$time) = -1 + .z.d, sym in `DELL"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
@@ -53,6 +54,7 @@ async  componentDidMount() {
               // console.log(data)
 
 this.setState({all_data: convertDataPT(data.result)})
+this.setState({date: new Date().toUTCString()})
         },60000);
         } catch(e) {
         console.log(e);
@@ -63,8 +65,11 @@ this.setState({all_data: convertDataPT(data.result)})
 render() {
     return (
         <div>
-                <h3>Today's Price Volatility</h3>
+                <h3>Yesterday's Price Volatility</h3>
         <div>
+                        <div class="date">
+                          <p> Last Updated: {this.state.date}</p>
+                        </div>
                         <div>
                           <ResponsiveContainer width="100%" height={400}>
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>

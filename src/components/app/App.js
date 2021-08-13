@@ -30,9 +30,6 @@ render() {
 
     return (
         <div >
-          <div> <text>{ Date()}</text>
-          
-          </div>
           <div><CurrentPrice/></div>    
           <div><Graph/></div>
           <div>Click to change day</div>

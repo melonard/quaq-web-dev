@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css'
+//var currentdate = new Date()
 
 export default class LastValueCache extends React.Component {
 constructor () {
@@ -48,6 +49,7 @@ async  componentDidMount() {
             this.setState({sym: symArr})
             this.setState({curr: currArr.map(ele => parseFloat(ele.toFixed(2)))})
             this.setState({diff: diffArr.map(ele => parseFloat(ele.toFixed(2)))})
+            this.setState({date: new Date().toUTCString()})
         },1000);
         } catch(e) {
         console.log(e);
@@ -59,8 +61,7 @@ render() {
     return (
         <div>   
                 <h3>Last Value Cache </h3>
-               
-                <div ><font>{Date()}</font></div>
+                <div class="date"><p> Last Updated: {this.state.date}</p></div>
                  <div className='App'>
                       <table border="10" cellpadding="10">
                         <tr>
