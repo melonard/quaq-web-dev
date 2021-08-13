@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
 import {CartesianGrid, XAxis, YAxis, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
-
+import Multiselect from 'multiselect-react-dropdown';
 
 function convertDataPT(data) {
   let arr = [];
@@ -18,7 +18,7 @@ function convertDataPT(data) {
 }
 
 const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
-const filter = ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]
+
 
 export default class Volatility extends React.Component {
   
@@ -27,9 +27,21 @@ export default class Volatility extends React.Component {
     this.state = {
       sym:[],
       vol:[],
-      result:[]
+      result:[],
+      options: [{name: 'AAPL', id: 1},{name: 'AIG', id: 2},{name: 'AMD', id: 3},{name: 'DELL', id: 4},{name: 'DOW', id: 5},{name: 'GOOG', id: 6},{name: 'HPQ', id: 7},{name: 'IBM', id: 8},{name: 'INTC', id: 9},{name: 'MSFT', id: 10}],
+      filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"],
+      filterOn:false
     }
+    this.onSelect = this.onSelect.bind(this)
+}
+
+onSelect(selectedList, selectedItem) {
+  var nArr=[];
+  for (let i=0; i< selectedList.length;i++){
+    nArr.push(selectedList[i].name)
   }
+    this.setState({filter : nArr})
+}
 
 async  componentDidMount() {
 
@@ -39,7 +51,7 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"rdb","query":"`time xgroup update 14 mdev vol by sym from select vol:last price by sym,time:string 5 xbar time.minute from trade"},
+                "arguments": {"db":"hdb","query":"`time xgroup update 50 mdev vol by sym from select vol:last price by sym,time:string 30 xbar time.second from trade where (`date$time) =.z.d-1"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
@@ -54,7 +66,7 @@ async  componentDidMount() {
               // console.log(data)
 
 this.setState({all_data: convertDataPT(data.result)})
-        },60000);
+        },10000);
         } catch(e) {
         console.log(e);
         }
@@ -63,8 +75,17 @@ this.setState({all_data: convertDataPT(data.result)})
  
 render() {
     return (
+        
         <div>
                 <h3>Today's Price Volatility</h3>
+                <Multiselect
+                options={this.state.options} // Options to display in the dropdown
+                selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
+                onSelect={this.onSelect} // Function will trigger on select event
+                onRemove={this.onSelect} // Function will trigger on remove event
+                displayValue="name" // Property name to display in the dropdown options
+                />
+
         <div>
                         <div>
                           <ResponsiveContainer width="100%" height={400}>
@@ -74,7 +95,7 @@ render() {
                               <YAxis />
                               <Legend/>
 
-                              {filter.map((entry, index) => {
+                              {this.state.filter.map((entry, index) => {
                                             return (
                                                         <Line
                                                           type="monotone"

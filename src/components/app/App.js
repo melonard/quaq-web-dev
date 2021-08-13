@@ -29,11 +29,10 @@ handleClick(){
 
 render() {
     return (
-        <div >
-          <div> <text>{ Date()}</text>
-          
-          </div>
-          <div><CurrentPrice/></div>    
+        <div>
+
+          {/* <div><CurrentPrice/></div>  */}   
+          <div><LastValueCache /></div>
           <div><Graph/></div>
           <div>Click to change day</div>
           <button id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </button>
@@ -51,8 +50,12 @@ render() {
                 </div>
           </div> */}
           
-          <div><MostTradedSym /><MinPriceSym /><MaxPriceSym /></div>
-          <div><LastValueCache /></div>
+          <div class="float-child"><MostTradedSym /></div>
+          <div class="float-child"><MinPriceSym /></div>
+          <div class="float-child"><MaxPriceSym /></div>
+
+
+
           <div><Volatility/></div>
 
         </div>

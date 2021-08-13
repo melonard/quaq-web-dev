@@ -13,7 +13,6 @@ function convertDataPT(data) {
       obj[sym] = data[i].price[j];
     }
     arr.push(obj);
-    console.log(arr)
   }
   return arr;
 }
@@ -27,6 +26,7 @@ export default class Graph extends React.Component {
   constructor () {
     super()
     this.state = {
+      loaded:false,
       sym:[],
       price:[],
       result:[]
@@ -56,7 +56,8 @@ async  componentDidMount() {
               // console.log(data)
 
 this.setState({all_data: convertDataPT(data.result)})
-        },10000);
+this.setState({loaded:true})
+        },15000);
         } catch(e) {
         console.log(e);
         }
@@ -69,7 +70,7 @@ render() {
                 <h3>Today's Price History</h3>
         <div>
                         <div>
-                          <ResponsiveContainer width="100%" height={400}>
+                          {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
                               <XAxis dataKey="time" stroke="#000000"/>
@@ -90,12 +91,11 @@ render() {
                               
                               }
                             </LineChart>
-                          </ResponsiveContainer>
+                          </ResponsiveContainer> : <p>Loading...</p>}
                       </div>
                       </div>
         </div>
     )
   }  
 }
-
 

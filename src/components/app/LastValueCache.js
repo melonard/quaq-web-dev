@@ -23,7 +23,7 @@ async  componentDidMount() {
                 "body": JSON.stringify({
                     "arguments": {
                     "db":"rdb",
-                    "query": "select curr:last price, diff:(last price) - first price by sym from trade"},
+                    "query": "select curr:last price, diff:last deltas price by sym from trade"},
                     "function_name": ".aqrest.execute"
                     }),
                 method:"post",
@@ -59,8 +59,7 @@ render() {
     return (
         <div>   
                 <h3>Last Value Cache </h3>
-               
-                <div ><font>{Date()}</font></div>
+            
                  <div className='App'>
                       <table border="10" cellpadding="10">
                         <tr>
