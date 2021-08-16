@@ -8,6 +8,7 @@ constructor () {
         sym:[],
         diff:[],
         curr:[],
+        openDiff:[],
         result:[]
     }
   
@@ -23,7 +24,7 @@ async  componentDidMount() {
                 "body": JSON.stringify({
                     "arguments": {
                     "db":"rdb",
-                    "query": "select curr:last price, diff:last deltas price by sym from trade"},
+                    "query": "select curr:last price, diff:last deltas price, openDiff: (first price) - last price by sym from trade"},
                     "function_name": ".aqrest.execute"
                     }),
                 method:"post",
@@ -40,14 +41,17 @@ async  componentDidMount() {
             var symArr=[]
             var currArr=[]
             var diffArr=[]
+            var openDiffArr=[]
             for (let i = 0;i<10;i++){
                 symArr.push(data.result[i].sym)
                 currArr.push(data.result[i].curr)
                 diffArr.push(data.result[i].diff)
+                openDiffArr.push(data.result[i].openDiff)
             }
             this.setState({sym: symArr})
             this.setState({curr: currArr.map(ele => parseFloat(ele.toFixed(2)))})
             this.setState({diff: diffArr.map(ele => parseFloat(ele.toFixed(2)))})
+            this.setState({openDiff: openDiffArr.map(ele => parseFloat(ele.toFixed(2)))})
         },1000);
         } catch(e) {
         console.log(e);
@@ -88,6 +92,12 @@ render() {
                         <tr>
                         <h4>Difference</h4>
                             {this.state.diff.map((entry,index)=>{
+                                return(<td>{entry > 0 ? <font color="green">+{entry}</font> : <font color="red">{entry}</font>}</td>)
+                            })}
+                        </tr>
+                        <tr>
+                        <h4>Difference from Open</h4>
+                            {this.state.openDiff.map((entry,index)=>{
                                 return(<td>{entry > 0 ? <font color="green">+{entry}</font> : <font color="red">{entry}</font>}</td>)
                             })}
                         </tr>
