@@ -13,6 +13,13 @@ import TwoDaysAgo from './TwoDaysAgo';
 import Volatility from './Volatility';
 //import { CSSTransition } from 'react-transition-group';
 
+window.addEventListener("offline", function() {
+  alert("The application is currently offline and is unable to display up-to-date data until the connection has been restored. \n \nPlease check your internet connection.");
+});
+window.addEventListener("online", function() {
+  alert("The connection has been restored. \n \nThe application will now display up-to-date data.");
+});
+
 export default class App extends React.Component {
   constructor () {
     super()
