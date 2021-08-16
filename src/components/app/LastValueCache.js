@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css'
+import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
 export default class LastValueCache extends React.Component {
 constructor () {
@@ -24,7 +25,7 @@ async  componentDidMount() {
                 "body": JSON.stringify({
                     "arguments": {
                     "db":"rdb",
-                    "query": "select curr:last price, diff:last deltas price, openDiff: (first price) - last price by sym from trade"},
+                    "query": "select curr:last price, diff:last deltas price, openDiff:(last price) - first price by sym from trade"},
                     "function_name": ".aqrest.execute"
                     }),
                 method:"post",
@@ -69,19 +70,19 @@ render() {
                 </div>
                  <div className='App'>
                       <table border="10" cellpadding="10">
-                        <col width="80px" />
-                        <col width="80px" />
-                        <col width="80px" />
-                        <col width="80px" />
-                        <col width="80px" />
-                        <col width="80px" />
-                        <col width="80px" />
-                        <col width="80px" />
-                        <col width="80px" />
-                        <col width="80px" />
-                        <col width="80px" />
+                        <col width="100px" />
+                        <col width="100px" />
+                        <col width="100px" />
+                        <col width="100px" />
+                        <col width="100px" />
+                        <col width="100px" />
+                        <col width="100px" />
+                        <col width="100px" />
+                        <col width="100px" />
+                        <col width="100px" />
+                        <col width="100px" />
                         <tr>
-                        <h4>Sym</h4>
+                        <h4>Stock</h4>
                             {this.state.sym.map((entry,index)=>{
                                 return(<th>{entry}</th>)
                             })}
@@ -95,13 +96,13 @@ render() {
                         <tr>
                         <h4>Difference</h4>
                             {this.state.diff.map((entry,index)=>{
-                                return(<td>{entry > 0 ? <font color="green">+{entry}</font> : <font color="red">{entry}</font>}</td>)
+                                return(<td>{entry > 0 ? <font color="green">+{entry} <AiOutlineArrowUp/></font> : <font color="red">{entry} <AiOutlineArrowDown/></font>}</td>)
                             })}
                         </tr>
                         <tr>
                         <h4>Difference from Open</h4>
                             {this.state.openDiff.map((entry,index)=>{
-                                return(<td>{entry > 0 ? <font color="green">+{entry}</font> : <font color="red">{entry}</font>}</td>)
+                                return(<td>{entry > 0 ? <font color="green">+{entry} <AiOutlineArrowUp/></font> : <font color="red">{entry} <AiOutlineArrowDown/></font>}</td>)
                             })}
                         </tr>
                       </table>  
