@@ -48,6 +48,7 @@ async  componentDidMount() {
             this.setState({sym: symArr})
             this.setState({curr: currArr.map(ele => parseFloat(ele.toFixed(2)))})
             this.setState({diff: diffArr.map(ele => parseFloat(ele.toFixed(2)))})
+            this.setState({date: new Date().toLocaleString()})
         },1000);
         } catch(e) {
         console.log(e);
@@ -59,7 +60,9 @@ render() {
     return (
         <div>   
                 <h3>Last Value Cache </h3>
-            
+                <div class="date">
+                <p> Last Updated: {this.state.date}</p>
+                </div>
                  <div className='App'>
                       <table border="10" cellpadding="10">
                         <col width="80px" />
