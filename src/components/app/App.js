@@ -32,8 +32,8 @@ render() {
         <div>
 
           {/* <div><CurrentPrice/></div>  */}   
-          <div><LastValueCache /></div>
-          <div><Graph/></div>
+{/*           <div><LastValueCache /></div>
+          <div><Graph/></div> */}
           <div>Click to change day</div>
           <button id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </button>
           <div>
