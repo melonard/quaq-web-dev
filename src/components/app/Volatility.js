@@ -68,7 +68,7 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"hdb","query":"select by (`timestamp$time) from (`time xgroup update 10 mdev vol by sym from select vol:last price by sym,time: 100000000000 xbar `long$time from trade where (`date$time) >.z.d-"+ this.state.timeFilter.toString() +")"},
+                "arguments": {"db":"hdb","query":"select by (`timestamp$time) from (`time xgroup update 10 mdev vol by sym from select vol:last price by sym,time: 500000000000 xbar `long$time from trade where  (`date$time) >.z.d-"+ this.state.timeFilter.toString() +")"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
