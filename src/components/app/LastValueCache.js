@@ -62,6 +62,17 @@ render() {
             
                  <div className='App'>
                       <table border="10" cellpadding="10">
+                        <col width="80px" />
+                        <col width="80px" />
+                        <col width="80px" />
+                        <col width="80px" />
+                        <col width="80px" />
+                        <col width="80px" />
+                        <col width="80px" />
+                        <col width="80px" />
+                        <col width="80px" />
+                        <col width="80px" />
+                        <col width="80px" />
                         <tr>
                         <h4>Sym</h4>
                             {this.state.sym.map((entry,index)=>{
