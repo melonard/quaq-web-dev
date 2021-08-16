@@ -44,7 +44,12 @@ onSelect(selectedList, selectedItem) {
   for (let i=0; i< selectedList.length;i++){
     nArr.push(selectedList[i].name)
   }
+  if(nArr.length > 0){
     this.setState({filter : nArr})
+  }
+  else{
+    this.setState({filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]})
+  }
 }
 
 _onSelect(selectedItem){
