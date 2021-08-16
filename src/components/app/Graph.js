@@ -7,7 +7,7 @@ import {CartesianGrid, XAxis, YAxis, Cell, Legend, Tooltip, Line, ResponsiveCont
 function convertDataPT(data) {
   let arr = [];
   for (let i = 0; i < data.length; i++) {
-    let obj = { time: data[i].time };
+    let obj = { time: data[i].time }; 
     for (let j = 0; j < data[i].sym.length; j++) {
       let sym = data[i].sym[j];
       obj[sym] = data[i].price[j];

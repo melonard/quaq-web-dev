@@ -39,7 +39,15 @@
   }
 }
 
-
+.button {
+  background-color: rgb(0, 153, 255);
+  color: white;
+  font-size: 20px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
 
 .dropbtn {
   background-color: #b6eeb8;

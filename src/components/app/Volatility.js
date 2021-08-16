@@ -3,11 +3,12 @@ import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
 import {CartesianGrid, XAxis, YAxis, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 import Multiselect from 'multiselect-react-dropdown';
+import Dropdown from 'react-dropdown';
 
 function convertDataPT(data) {
   let arr = [];
   for (let i = 0; i < data.length; i++) {
-    let obj = { time: data[i].time };
+    let obj = { time: new Date(data[i].time) };
     for (let j = 0; j < data[i].sym.length; j++) {
       let sym = data[i].sym[j];
       obj[sym] = data[i].vol[j];
@@ -30,9 +31,12 @@ export default class Volatility extends React.Component {
       result:[],
       options: [{name: 'AAPL', id: 1},{name: 'AIG', id: 2},{name: 'AMD', id: 3},{name: 'DELL', id: 4},{name: 'DOW', id: 5},{name: 'GOOG', id: 6},{name: 'HPQ', id: 7},{name: 'IBM', id: 8},{name: 'INTC', id: 9},{name: 'MSFT', id: 10}],
       filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"],
-      filterOn:false
+      filterOn:false,
+      timeFilter:2,
+      timeOptions:[{name: 'Previous Day', id:1},{name: 'Previous Week', id:1},{name: 'Previous Month', id:3}]
     }
     this.onSelect = this.onSelect.bind(this)
+    this._onSelect = this._onSelect.bind(this)
 }
 
 onSelect(selectedList, selectedItem) {
@@ -43,6 +47,19 @@ onSelect(selectedList, selectedItem) {
     this.setState({filter : nArr})
 }
 
+_onSelect(selectedItem){
+  console.log(selectedItem.value)
+  if (selectedItem.value === "Yesterday"){
+    this.setState({timeFilter:2})
+  }
+  else if (selectedItem.value === "Last Week"){
+    this.setState({timeFilter:8})
+  } 
+  else {
+    this.setState({timeFilter: 31})
+  }
+}
+
 async  componentDidMount() {
 
   const url = "https://homer.aquaq.co.uk:8040/executeFunction";
@@ -51,7 +68,7 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"hdb","query":"`time xgroup update 50 mdev vol by sym from select vol:last price by sym,time:string 30 xbar time.second from trade where (`date$time) =.z.d-1"},
+                "arguments": {"db":"hdb","query":"select by (`timestamp$time) from (`time xgroup update 10 mdev vol by sym from select vol:last price by sym,time: 100000000000 xbar `long$time from trade where (`date$time) >.z.d-"+ this.state.timeFilter.toString() +")"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
@@ -117,10 +134,10 @@ render() {
                             </LineChart>
                           </ResponsiveContainer>
                       </div>
+                      <Dropdown options={["Yesterday","Last Week", "Past 30 Days"]} onChange={this._onSelect} placeholder="Select an option" />;
                       </div>
         </div>
     )
   }  
 }
-
 
