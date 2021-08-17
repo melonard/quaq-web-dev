@@ -86,7 +86,7 @@ render() {
                 <p> Last Updated: {this.state.date}</p>
                 </div>
                  <div className='App'>
-                      <table border="10" cellPadding="10">
+                      <table className='minimalistBlack'>
                         <col width="120px" />
                         <col width="110px" />
                         <col width="110px" />
