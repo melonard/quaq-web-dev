@@ -122,6 +122,7 @@ render() {
                 <h3>Today's Price Volatility</h3>
                 <Multiselect
                 options={this.state.options} // Options to display in the dropdown
+                placeholder="Select Symbols" // Default value of dropdown
                 selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
                 onSelect={this.onSelect} // Function will trigger on select event
                 onRemove={this.onSelect} // Function will trigger on remove event
