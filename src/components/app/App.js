@@ -39,15 +39,15 @@ handleClick(){
  
 render() {
     return (
-
-        <div>
-          <header  className='title'> 
-  <h1><b>Q.U.A.Q</b></h1>
-  <p>  <strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong> </p>
-</header>
+        <div style={{
+          backgroundColor: '#FFB8FC',
+        }}>
 
           {/* <div><CurrentPrice/></div>  */}   
           <div><LastValueCache /></div>
+          <div class="float-child"><MostTradedSym /></div>
+          <div class="float-child"><MinPriceSym /></div>
+          <div class="float-child"><MaxPriceSym /></div>
           <div><Graph/></div>
           <div>Click to change day</div>
           <Button id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </Button>
@@ -65,9 +65,7 @@ render() {
                 </div>
           </div> */}
           
-          <div class="float-child"><MostTradedSym /></div>
-          <div class="float-child"><MinPriceSym /></div>
-          <div class="float-child"><MaxPriceSym /></div>
+
 
 
 

@@ -92,7 +92,7 @@
 }
 
 .float-child {
-  width: 33%;
+  width: 33.333%;
   float: left;
   padding: 100px , 20px;
 }  

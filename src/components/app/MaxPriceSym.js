@@ -51,7 +51,7 @@ export default class MaxPriceSym extends React.Component {
   render() {
       return (
           <div className='App'>
-            <table border="10" cellPadding="10">
+            <table className='minimalistBlack'>
               <col width="160px" />
                 <col width="150px" />
                   <tr>
@@ -59,7 +59,7 @@ export default class MaxPriceSym extends React.Component {
                     <th>Max Price ($)</th>
                   </tr>
                   <tr>
-                    <td>{this.state.sym}</td>
+                    <th>{this.state.sym}</th>
                     <td>{this.state.size}</td>
                   </tr>
             </table>

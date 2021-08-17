@@ -44,7 +44,7 @@ export default class MostTradedSym extends Component {
     render() {
         return (
             <div className='App'>
-                <table border="10" cellPadding="10">
+                <table className='minimalistBlack'>
                 <col width="160px" />
                   <col width="150px" />
                     <tr>
@@ -52,7 +52,7 @@ export default class MostTradedSym extends Component {
                     <th>Volume Traded</th>
                     </tr>
                     <tr>
-                    <td>{this.state.sym}</td>
+                    <th>{this.state.sym}</th>
                     <td>{JSON.stringify(this.state.size)}</td>
                     </tr>
                 </table>
