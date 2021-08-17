@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
 import {CartesianGrid, XAxis, YAxis,Brush, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
+import Multiselect from 'multiselect-react-dropdown';
 
 
 function convertDataPT(data) {
@@ -28,9 +29,28 @@ export default class Graph extends React.Component {
       loaded:false,
       sym:[],
       price:[],
+      options: [{name: 'AAPL', id: 1},{name: 'AIG', id: 2},{name: 'AMD', id: 3},{name: 'DELL', id: 4},{name: 'DOW', id: 5},{name: 'GOOG', id: 6},{name: 'HPQ', id: 7},{name: 'IBM', id: 8},{name: 'INTC', id: 9},{name: 'MSFT', id: 10}],
+      filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"],
       result:[]
     }
+    this.onSelect = this.onSelect.bind(this)
   }
+  
+onSelect(selectedList, selectedItem) {
+  var nArr=[];
+  for (let i=0; i< selectedList.length;i++){
+    nArr.push(selectedList[i].name)
+  }
+  if(nArr.length > 0){
+    this.setState({filter : nArr})
+  }
+  else{
+    this.setState({filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]})
+  }
+}
+
+
+
 
 async  componentDidMount() {
 
@@ -68,6 +88,13 @@ render() {
     return (
         <div>
                 <h3>Today's Price History</h3>
+                <Multiselect
+                options={this.state.options} // Options to display in the dropdown
+                selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
+                onSelect={this.onSelect} // Function will trigger on select event
+                onRemove={this.onSelect} // Function will trigger on remove event
+                displayValue="name" // Property name to display in the dropdown options
+                />
         <div>
                         <div>
                         <div class="date">
@@ -81,7 +108,7 @@ render() {
                               <Brush  dataKey="time" />
                               <Legend/>
 
-                              {filter.map((entry, index) => {
+                              {this.state.filter.map((entry, index) => {
                                             return (
                                                         <Line
                                                           type="monotone"
