@@ -44,17 +44,19 @@ export default class MostTradedSym extends Component {
     render() {
         return (
             <div className='App'>
-                <table border="10" cellpadding="10">
-                <tr>
-                <th>Most Traded Sym</th>
-                <th>Volume Traded</th>
-                </tr>
-                <tr>
-                <td>{JSON.stringify(this.state.sym)}</td>
-                <td>{JSON.stringify(this.state.size)}</td>
-                </tr>
+                <table border="10" cellPadding="10">
+                <col width="160px" />
+                  <col width="150px" />
+                    <tr>
+                    <th>Most Traded Sym</th>
+                    <th>Volume Traded</th>
+                    </tr>
+                    <tr>
+                    <td>{this.state.sym}</td>
+                    <td>{JSON.stringify(this.state.size)}</td>
+                    </tr>
                 </table>
-            </div>
+                </div>
         )
     }
 }

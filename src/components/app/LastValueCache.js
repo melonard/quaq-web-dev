@@ -65,11 +65,11 @@ render() {
     return (
         <div>   
                 <h3>Last Value Cache </h3>
-                <div class="date">
+                <div className="date">
                 <p> Last Updated: {this.state.date}</p>
                 </div>
                  <div className='App'>
-                      <table border="10" cellpadding="10">
+                      <table border="10" cellPadding="10">
                         <col width="100px" />
                         <col width="100px" />
                         <col width="100px" />

@@ -38,7 +38,7 @@ export default class MinPriceSym extends React.Component {
       ) 
       const data = await response.json();
       this.setState({sym: data.result[0].sym})
-      this.setState({size: parseFloat(data.result[0].price.toFixed(2))})
+      this.setState({size: data.result[0].price.toFixed(2)})
     },1000);
 } catch(e) {
   console.log(e);
@@ -52,14 +52,16 @@ export default class MinPriceSym extends React.Component {
       return (
           <div className='App'>
             <table border="10" cellpadding="10">
-              <tr>
-                <th>Min Price Sym</th>
-                <th>Min Price</th>
-              </tr>
-              <tr>
-                <td>{JSON.stringify(this.state.sym)}</td>
-                <td>{JSON.stringify(this.state.size)}</td>
-              </tr>
+            <col width="160px" />
+              <col width="150px" />
+                <tr>
+                  <th>Min Price Sym</th>
+                  <th>Min Price</th>
+                </tr>
+                <tr>
+                  <td>{this.state.sym}</td>
+                  <td>{this.state.size}</td>
+                </tr>
             </table>
             </div>
       )

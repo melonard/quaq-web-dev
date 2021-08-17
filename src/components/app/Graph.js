@@ -70,7 +70,7 @@ render() {
                 <h3>Today's Price History</h3>
         <div>
                         <div>
-                        <div class="date">
+                        <div className="date">
                           <p> Last Updated: {this.state.date}</p>
                         </div>
                           {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
