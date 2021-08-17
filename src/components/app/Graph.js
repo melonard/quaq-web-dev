@@ -87,7 +87,7 @@ this.setState({loaded:true})
 render() {
     return (
         <div>
-                <h3>Today's Price History</h3>
+                <h3>Running Average Price</h3>
                 <Multiselect
                 options={this.state.options} // Options to display in the dropdown
                 selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
