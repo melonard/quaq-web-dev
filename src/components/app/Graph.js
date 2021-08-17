@@ -67,7 +67,7 @@ this.setState({loaded:true})
 render() {
     return (
         <div>
-                <h3>Today's Price History</h3>
+                <h3>Running Average Price</h3>
         <div>
                         <div>
                         <div class="date">

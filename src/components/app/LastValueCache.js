@@ -64,7 +64,7 @@ async  componentDidMount() {
 render() {
     return (
         <div>   
-                <h3>Last Value Cache </h3>
+                <h3>Stock Price Fluxuation</h3>
                 <div class="date">
                 <p> Last Updated: {this.state.date}</p>
                 </div>
@@ -88,13 +88,13 @@ render() {
                             })}
                         </tr>
                         <tr>
-                        <h4>Current Price</h4>
+                        <h4>Current Price ($)</h4>
                         {this.state.curr.map((entry,index)=>{
                                 return(<td>{entry}</td>)
                             })}
                         </tr>
                         <tr>
-                        <h4>Difference</h4>
+                        <h4>Last Value Cache</h4>
                             {this.state.diff.map((entry,index)=>{
                                 return(<td>{entry > 0 ? <font color="green">+{entry} <AiOutlineArrowUp/></font> : <font color="red">{entry} <AiOutlineArrowDown/></font>}</td>)
                             })}

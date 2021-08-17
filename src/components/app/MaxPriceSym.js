@@ -54,7 +54,7 @@ export default class MaxPriceSym extends React.Component {
             <table border="10" cellpadding="10">
               <tr>
                 <th>Max Price Sym</th>
-                <th>Max Price</th>
+                <th>Max Price ($)</th>
               </tr>
               <tr>
                 <td>{JSON.stringify(this.state.sym)}</td>

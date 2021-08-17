@@ -54,7 +54,7 @@ export default class MinPriceSym extends React.Component {
             <table border="10" cellpadding="10">
               <tr>
                 <th>Min Price Sym</th>
-                <th>Min Price</th>
+                <th>Min Price ($)</th>
               </tr>
               <tr>
                 <td>{JSON.stringify(this.state.sym)}</td>
