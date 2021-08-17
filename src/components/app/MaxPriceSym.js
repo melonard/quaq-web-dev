@@ -56,7 +56,7 @@ export default class MaxPriceSym extends React.Component {
                 <col width="150px" />
                   <tr>
                     <th>Max Price Sym</th>
-                    <th>Max Price</th>
+                    <th>Max Price ($)</th>
                   </tr>
                   <tr>
                     <td>{this.state.sym}</td>

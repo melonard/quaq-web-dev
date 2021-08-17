@@ -56,7 +56,7 @@ export default class MinPriceSym extends React.Component {
               <col width="150px" />
                 <tr>
                   <th>Min Price Sym</th>
-                  <th>Min Price</th>
+                  <th>Min Price ($)</th>
                 </tr>
                 <tr>
                   <td>{this.state.sym}</td>
