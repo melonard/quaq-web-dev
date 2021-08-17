@@ -35,9 +35,16 @@ handleClick(){
 }
 
 
+
+ 
 render() {
     return (
+
         <div>
+          <header  className='title'> 
+  <h1><b>Q.U.A.Q</b></h1>
+  <p>  <strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong> </p>
+</header>
 
           {/* <div><CurrentPrice/></div>  */}   
           <div><LastValueCache /></div>

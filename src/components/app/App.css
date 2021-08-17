@@ -2,6 +2,8 @@
   display:flex;
   justify-content:space-around;
   align-items:flex-start;
+  font-family: Arial, Helvetica, sans-serif;
+  
 }
 
 .App-logo {
@@ -93,9 +95,9 @@
   width: 33%;
   float: left;
   padding: 100px , 20px;
-
 }  
 
+}
 .LVC {
   height:300 px;
   width:300 px;
@@ -108,4 +110,20 @@
   flex-direction: column;
   justify-content:space-evenly;
   align-items: center;
+}
+
+.title {
+  height:200 px;
+  width:250 px;
+  background: rgb(187, 231, 185);
+  border-radius: 20px;
+  border-color: rgb(0, 0, 0);
+  border-width: 2px;
+  border-style: groove;
+  display:flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  align-items: center;
+  font-size: 30px;
+  line-height: 40px;
 }

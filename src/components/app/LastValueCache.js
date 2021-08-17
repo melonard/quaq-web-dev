@@ -2,8 +2,6 @@ import React from 'react';
 import './App.css'
 import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
-
-
 export default class LastValueCache extends React.Component {
 constructor () {
     super()
@@ -18,9 +16,6 @@ constructor () {
     }
   
 }
-
-
-
 
 async  componentDidMount() {
 
@@ -110,13 +105,20 @@ render() {
                                 return(<td>{entry}</td>)
                             })}
                         </tr>
+
+
+
+
+
+
                         <tr>
                         <h4>Last Value Cache</h4>
                             {this.state.diff.map((entry,index)=>{
-                                return(<td>{entry > 0 ? <font color="green">+{entry} <AiOutlineArrowUp/></font> : <font color="red">{entry} <AiOutlineArrowDown/></font>}</td>)
+                                return(<td>{entry > 0 ? <font color="green">+{entry} <AiOutlineArrowUp/></font> : <font color="red">{entry} <AiOutlineArrowDown/></font>}
+                                
+                                </td>)
                             })}
                         </tr>
-
                         <tr>
                         <h4>% Difference LVC</h4>
 
@@ -124,6 +126,7 @@ render() {
                                 return(<td>{entry > 0 ? <font color="green">({entry}%) </font> : <font color="red">({entry}%) </font>}</td>)
                             })}
                         </tr>
+
 
                         <tr>
                         <h4>Difference from Open</h4>
