@@ -3,7 +3,7 @@ import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
 import {CartesianGrid, XAxis, YAxis, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 import Multiselect from 'multiselect-react-dropdown';
-import Dropdown from 'react-dropdown';
+import { Button, Menu, MenuItem, Fade  } from '@material-ui/core';
 
 function convertDataPT(data) {
   let arr = [];
@@ -26,6 +26,8 @@ export default class Volatility extends React.Component {
   constructor () {
     super()
     this.state = {
+      anchorEl : null,
+      open: false,
       sym:[],
       vol:[],
       result:[],
@@ -36,8 +38,23 @@ export default class Volatility extends React.Component {
       timeOptions:[{name: 'Previous Day', id:1},{name: 'Previous Week', id:1},{name: 'Previous Month', id:3}]
     }
     this.onSelect = this.onSelect.bind(this)
-    this._onSelect = this._onSelect.bind(this)
+    this.setAnchorEl = this.setAnchorEl.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.yesterday = this.yesterday.bind(this)
+    this.month = this.month.bind(this)
+    this.week = this.week.bind(this)
 }
+
+handleClick(event) {
+  this.setAnchorEl(event.currentTarget);
+}
+  setAnchorEl(value){
+      this.setState({
+          anchorEl: value,
+          open: !this.state.open
+      })
+  }
+
 
 onSelect(selectedList, selectedItem) {
   var nArr=[];
@@ -52,18 +69,21 @@ onSelect(selectedList, selectedItem) {
   }
 }
 
-_onSelect(selectedItem){
-  console.log(selectedItem.value)
-  if (selectedItem.value === "Yesterday"){
-    this.setState({timeFilter:2})
-  }
-  else if (selectedItem.value === "Last Week"){
-    this.setState({timeFilter:8})
-  } 
-  else {
-    this.setState({timeFilter: 31})
-  }
+
+yesterday() {
+  this.setState({timeFilter:2})
+  this.setAnchorEl(null);
 }
+week() {
+  this.setState({timeFilter:8})
+  this.setAnchorEl(null);
+}
+month() {
+  this.setState({timeFilter:31})
+  this.setAnchorEl(null);
+}
+
+
 
 async  componentDidMount() {
 
@@ -139,10 +159,16 @@ render() {
                             </LineChart>
                           </ResponsiveContainer>
                       </div>
-                      <Dropdown options={["Yesterday","Last Week", "Past 30 Days"]} onChange={this._onSelect} placeholder="Select an option" />;
+                      <Button aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
+                          Timeframe
+                      </Button>
+                      <Menu id="fade-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleClose} TransitionComponent={Fade}>
+                      <MenuItem onClick={this.yesterday}>Yesterday</MenuItem>
+                      <MenuItem onClick={this.week}>Past 7 Days</MenuItem>
+                      <MenuItem onClick={this.month}>Past 30 Days</MenuItem>
+                      </Menu>
                       </div>
         </div>
     )
   }  
 }
-
