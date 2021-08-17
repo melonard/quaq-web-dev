@@ -11,6 +11,7 @@ import Graph from './Graph';
 import Select from 'react-select';
 import TwoDaysAgo from './TwoDaysAgo';
 import Volatility from './Volatility';
+import { Button } from '@material-ui/core';
 //import { CSSTransition } from 'react-transition-group';
 
 window.addEventListener("offline", function() {
@@ -42,7 +43,7 @@ render() {
           <div><LastValueCache /></div>
           <div><Graph/></div>
           <div>Click to change day</div>
-          <button id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </button>
+          <Button id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </Button>
           <div>
           {this.state.btnOption === true ? <div><Yesterday/></div> :
           <div><TwoDaysAgo/></div>}</div>
