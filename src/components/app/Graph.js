@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
-import {CartesianGrid, XAxis, YAxis, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
+import {CartesianGrid, XAxis, YAxis,Brush, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 
 
 function convertDataPT(data) {
@@ -16,7 +16,6 @@ function convertDataPT(data) {
   }
   return arr;
 }
-
 
 const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
 const filter = ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]
@@ -68,7 +67,7 @@ this.setState({loaded:true})
 render() {
     return (
         <div>
-                <h3>Running Average Price</h3>
+                <h3>Today's Price History</h3>
         <div>
                         <div>
                         <div class="date">
@@ -79,6 +78,7 @@ render() {
                               <Tooltip />
                               <XAxis dataKey="time" stroke="#000000"/>
                               <YAxis />
+                              <Brush  dataKey="time" />
                               <Legend/>
 
                               {filter.map((entry, index) => {
