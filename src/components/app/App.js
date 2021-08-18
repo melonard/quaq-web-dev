@@ -63,21 +63,6 @@ render() {
           <div>
           {this.state.btnOption === true ? <div><Yesterday/></div> :
           <div><TwoDaysAgo/></div>}</div>
-
-          {/* <p>Move the mouse over the button to open the dropdown menu.</p>
-          <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <a href="#">Today</a>
-                    <a href="AppGraph">Yesterday</a>
-                    <a href="#">2 Day's</a>
-                </div>
-          </div> */}
-          
-
-
-
-
           <div><Volatility/></div>
 
         </div>
