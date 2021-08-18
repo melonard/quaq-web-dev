@@ -12,6 +12,7 @@ import Select from 'react-select';
 import TwoDaysAgo from './TwoDaysAgo';
 import Volatility from './Volatility';
 import { Button } from '@material-ui/core';
+import duck4 from './../duck4clear2.png'
 //import { CSSTransition } from 'react-transition-group';
 
 window.addEventListener("offline", function() {
@@ -42,6 +43,14 @@ render() {
         <div style={{
           backgroundColor: '#FFB8FC',
         }}>
+
+<marquee scrollamount="20" behavior="scroll" direction="right"><img src={duck4} width="140" height="140" /></marquee>
+           <header className='title'> 
+              
+              <h2>Q.U.A.Q</h2>
+              <marquee scrollamount="20" behavior="scroll" direction="left" font-size="2cm"><strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></marquee>
+                     
+          </header>
 
           {/* <div><CurrentPrice/></div>  */}   
           <div><LastValueCache /></div>
