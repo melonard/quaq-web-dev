@@ -189,9 +189,15 @@ table.minimalistBlack tfoot td {
   font-family:Bronzetti Expanded;
   font-size: 50px;
   color: #2d3091;
+  
 }
 
-/* .marq {
-  padding-top: 0px;
-  padding-bottom: 0px;
-} */
+.date {
+  color: #029344;
+}
+
+.header {
+  text-align: center;
+  color: #2d3091;
+  font-size: 15px;
+}

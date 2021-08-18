@@ -4,6 +4,7 @@ import '../../../node_modules/react-linechart/dist/styles.css';
 import {CartesianGrid, XAxis, YAxis, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 import Multiselect from 'multiselect-react-dropdown';
 import { Button, Menu, MenuItem, Fade  } from '@material-ui/core';
+import duck1 from './../duck1.png'
 
 function convertDataPT(data) {
   let arr = [];
@@ -119,7 +120,7 @@ render() {
     return (
         
         <div>
-                <h3>Today's Price Volatility</h3>
+               
                       <Button color = "secondary" aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
                           Timeframe
                       </Button>
@@ -137,9 +138,11 @@ render() {
                 displayValue="name" // Property name to display in the dropdown options
                 />
 
-        <div>
+        <div><text className="header">  
+          <h3>Today's Price Volatility</h3></text>
                         <div>
-                          <ResponsiveContainer width="100%" height={400}>
+                        {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
+                         
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
                               <XAxis dataKey="time" stroke="#000000"/>
@@ -161,7 +164,9 @@ render() {
                               }
 
                             </LineChart>
-                          </ResponsiveContainer>
+                          </ResponsiveContainer>: <p>
+                          <marquee scrollamount="10" behavior="scroll" direction="right"><img src={duck1} width="80" height="80" />  <span> <h3>Loading... </h3></span></marquee> 
+                                                  </p>}
                       </div>
                       
                       </div>

@@ -3,6 +3,7 @@ import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
 import {CartesianGrid, XAxis, YAxis,Brush, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 import Multiselect from 'multiselect-react-dropdown';
+import duck1 from './../duck1.png'
 
 
 function convertDataPT(data) {
@@ -87,7 +88,7 @@ this.setState({loaded:true})
 render() {
     return (
         <div>
-                <h3>Running Average Price</h3>
+                
                 <Multiselect
                 options={this.state.options} // Options to display in the dropdown
                 placeholder="Select Symbols" // Default value of dropdown
@@ -96,11 +97,16 @@ render() {
                 onRemove={this.onSelect} // Function will trigger on remove event
                 displayValue="name" // Property name to display in the dropdown options
                 />
-        <div>
-                        <div>
+
+        <div>              
+           
+                     
                         <div className="date">
-                          <p> Last Updated: {this.state.date}</p>
+                          <p> Last Updated: {this.state.date}</p>                       
                         </div>
+                          <div> 
+                          <text className="header"> <h3>Running Average Price</h3></text>
+                          </div>
                           {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
@@ -123,8 +129,10 @@ render() {
                               
                               }
                             </LineChart>
-                          </ResponsiveContainer> : <p>Loading...</p>}
-                      </div>
+                          </ResponsiveContainer> : <p>
+                          <marquee scrollamount="10" behavior="scroll" direction="right"><img src={duck1} width="80" height="80" />  <span> <h3>Loading... </h3></span></marquee> 
+                                                  </p>}
+                      
                       </div>
         </div>
     )
