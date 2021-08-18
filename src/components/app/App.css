@@ -123,7 +123,7 @@
 }
 
 .title {
-  height:100 px;
+  height:250 px;
   width:250 px;
   background: #95b8de;
   border-radius: 20px;
@@ -176,4 +176,16 @@ table.minimalistBlack tfoot {
 }
 table.minimalistBlack tfoot td {
   font-size: 14px;
+}
+
+
+
+.center {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  text-align: center;
+  font-family:Bronzetti Expanded;
+  font-size: 50px;
+  color: #2d3091;
 }

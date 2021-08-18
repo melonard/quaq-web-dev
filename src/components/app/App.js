@@ -13,6 +13,7 @@ import TwoDaysAgo from './TwoDaysAgo';
 import Volatility from './Volatility';
 import { Button } from '@material-ui/core';
 import duck4 from './../duck4clear2.png'
+import quaq from './../quaq3.png'
 //import { CSSTransition } from 'react-transition-group';
 
 window.addEventListener("offline", function() {
@@ -41,16 +42,22 @@ handleClick(){
 render() {
     return (
         <div style={{
-          backgroundColor: '#FFB8FC',
+          backgroundColor: 'white',
         }}>
 
-<marquee scrollamount="20" behavior="scroll" direction="right"><img src={duck4} width="140" height="140" /></marquee>
-           <header className='title'> 
-              
-              <h2>Q.U.A.Q</h2>
-              <marquee scrollamount="20" behavior="scroll" direction="left" font-size="2cm"><strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></marquee>
-                     
-          </header>
+<span>
+<img position="absolute" src={quaq} width="350" height="110" />
+
+<div class="center"><strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></div>
+
+{/* <marquee width="75%" scrollamount="20" behavior="alternate" direction="left" ><strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></marquee>  */}
+</span>
+
+ <div>
+ <marquee  scrollamount="20" behavior="scroll" direction="right"><img src={duck4} width="200" height="200" /></marquee>
+ </div>      
+   <h2> </h2>
+  
 
           {/* <div><CurrentPrice/></div>  */}   
           <div><LastValueCache /></div>
