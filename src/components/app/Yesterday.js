@@ -81,7 +81,6 @@ render() {
                               <Tooltip />
                               <XAxis dataKey="time" />
                               <YAxis />
-
                               <Legend/>
                               {filter.map((entry, index) => {
                                 return (
@@ -92,8 +91,6 @@ render() {
                                   />
                                 );
                               })}
-                              {/* <Line type="monotone" dataKey="AAPL" stroke="#FB8833" />
-                              <Line type="monotone" dataKey="AIG" stroke="#17A8F5" /> */}
                             </LineChart>
                           </ResponsiveContainer>
                       </div>

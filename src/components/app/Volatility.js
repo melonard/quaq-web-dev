@@ -120,6 +120,14 @@ render() {
         
         <div>
                 <h3>Today's Price Volatility</h3>
+                      <Button color = "secondary" aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
+                          Timeframe
+                      </Button>
+                      <Menu id="fade-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleClose} TransitionComponent={Fade}>
+                      <MenuItem onClick={this.yesterday}>Yesterday</MenuItem>
+                      <MenuItem onClick={this.week}>Past 7 Days</MenuItem>
+                      <MenuItem onClick={this.month}>Past 30 Days</MenuItem>
+                      </Menu>
                 <Multiselect
                 options={this.state.options} // Options to display in the dropdown
                 placeholder="Select Symbols" // Default value of dropdown
@@ -152,22 +160,10 @@ render() {
                               
                               }
 
-
-
-
-                              {/* <Line type="monotone" dataKey="AAPL" stroke="#FB8833" />
-                              <Line type="monotone" dataKey="AIG" stroke="#17A8F5" /> */}
                             </LineChart>
                           </ResponsiveContainer>
                       </div>
-                      <Button color = "secondary" aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
-                          Timeframe
-                      </Button>
-                      <Menu id="fade-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleClose} TransitionComponent={Fade}>
-                      <MenuItem onClick={this.yesterday}>Yesterday</MenuItem>
-                      <MenuItem onClick={this.week}>Past 7 Days</MenuItem>
-                      <MenuItem onClick={this.month}>Past 30 Days</MenuItem>
-                      </Menu>
+                      
                       </div>
         </div>
     )
