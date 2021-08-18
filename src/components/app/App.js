@@ -40,8 +40,6 @@ render() {
         <div style={{
           backgroundColor: '#FFB8FC',
         }}>
-
-          {/* <div><CurrentPrice/></div>  */}   
           <div><LastValueCache /></div>
           <div class="float-child"><MostTradedSym /></div>
           <div class="float-child"><MinPriceSym /></div>

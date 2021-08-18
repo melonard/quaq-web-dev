@@ -3,6 +3,15 @@ import './App.css'
 import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 
 
+function joinArr(arr1,arr2){
+    var joinedArr=[];
+    for (let i = 0; i<arr1.length; i++){
+        var temp1=""+arr1[i];
+        var temp2=""+arr2[i];
+        joinedArr.push(temp1 +' (' + temp2+'%)')
+    }
+    return(joinedArr)
+}
 
 export default class LastValueCache extends React.Component {
 constructor () {
@@ -14,7 +23,9 @@ constructor () {
         openDiff:[],
         result:[],
         LVCpercent:[],
-        percent:[]
+        percent:[],
+        lvc:[],
+        dfo:[]
     }
   
 }
@@ -69,7 +80,8 @@ async  componentDidMount() {
             this.setState({date: new Date().toLocaleString()}) 
             this.setState({LVCpercent: LVCpercentArr.map(ele => parseFloat(ele.toFixed(2)))})
             this.setState({percent: percentArr.map(ele => parseFloat(ele.toFixed(2)))})
-
+            this.setState({lvc: joinArr(this.state.diff, this.state.LVCpercent)})
+            this.setState({dfo: joinArr(this.state.openDiff, this.state.percent)})
         },1000);
         } catch(e) {
         console.log(e);
@@ -112,32 +124,32 @@ render() {
                         </tr>
                         <tr>
                         <h4>Last Value Cache</h4>
-                            {this.state.diff.map((entry,index)=>{
-                                return(<td>{entry > 0 ? <font color="green">+{entry} <AiOutlineArrowUp/></font> : <font color="red">{entry} <AiOutlineArrowDown/></font>}</td>)
+                            {this.state.lvc.map((entry,index)=>{
+                                return(<td>{entry[0]!='-' ? <font color="green">+{entry} <AiOutlineArrowUp/></font> : <font color="red">{entry} <AiOutlineArrowDown/></font>}</td>)
                             })}
                         </tr>
 
-                        <tr>
+{/*                         <tr>
                         <h4>% Difference LVC</h4>
 
                             {this.state.LVCpercent.map((entry,index)=>{
                                 return(<td>{entry > 0 ? <font color="green">({entry}%) </font> : <font color="red">({entry}%) </font>}</td>)
                             })}
-                        </tr>
+                        </tr> */}
 
                         <tr>
                         <h4>Difference from Open</h4>
-                            {this.state.openDiff.map((entry,index)=>{
-                                return(<td>{entry > 0 ? <font color="green">+{entry} <AiOutlineArrowUp/></font> : <font color="red">{entry} <AiOutlineArrowDown/></font>}</td>)
+                            {this.state.dfo.map((entry,index)=>{
+                                return(<td>{entry[0]!='-' ? <font color="green">+{entry} <AiOutlineArrowUp/></font> : <font color="red">{entry} <AiOutlineArrowDown/></font>}</td>)
                             })}
                             </tr>
-                        <tr>
+{/*                         <tr>
                         <h4>% Difference from Open</h4>
 
                             {this.state.percent.map((entry,index)=>{
                                 return(<td>{entry > 0 ? <font color="green">({entry}%) </font> : <font color="red">({entry}%) </font>}</td>)
                             })}
-                        </tr>
+                        </tr> */}
                       </table>  
         </div>
         </div>

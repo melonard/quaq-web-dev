@@ -42,6 +42,7 @@
 .button {
   background-color: rgb(0, 153, 255);
   color: white;
+  font-family: 'Roboto', sans-serif;
   font-size: 20px;
   padding: 10px 60px;
   border-radius: 5px;
@@ -56,10 +57,12 @@
   font-size: 16px;
   border: none;
   cursor: pointer;
+  font-family: 'Roboto', sans-serif;
 }
 
 .dropdown {
   position: relative;
+  font-family: 'Roboto', sans-serif;
   display: inline-block;
 }
 
@@ -67,6 +70,7 @@
   display: none;
   position: absolute;
   background-color: #f9f9f9;
+  font-family: 'Roboto', sans-serif;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -74,6 +78,7 @@
 
 .dropdown-content a {
   color: black;
+  font-family: 'Roboto', sans-serif;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -91,6 +96,7 @@
 
 .float-child {
   width: 33.333%;
+  font-family: 'Roboto', sans-serif;
   float: left;
   padding: 100px , 20px;
 
@@ -100,6 +106,7 @@
   height:300 px;
   width:300 px;
   background: rgb(43, 245, 36);
+  font-family: 'Roboto', sans-serif;
   border-radius: 20px;
   border-color: blue;
   border-width: 2px;
@@ -111,7 +118,7 @@
 }
 
 table.minimalistBlack {
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-family: 'Roboto', sans-serif;
   border: 1px solid #000000;
   background-color: #81B6EE;
   width: 100%;

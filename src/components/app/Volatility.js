@@ -159,7 +159,7 @@ render() {
                             </LineChart>
                           </ResponsiveContainer>
                       </div>
-                      <Button aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
+                      <Button color = "secondary" aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
                           Timeframe
                       </Button>
                       <Menu id="fade-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleClose} TransitionComponent={Fade}>
