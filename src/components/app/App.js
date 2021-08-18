@@ -41,7 +41,7 @@ handleClick(){
 render() {
     return (
         <div style={{
-          backgroundColor: '#FFB8FC',
+          backgroundColor: '#36454F',
         }}>
 
 <marquee scrollamount="20" behavior="scroll" direction="right"><img src={duck4} width="140" height="140" /></marquee>

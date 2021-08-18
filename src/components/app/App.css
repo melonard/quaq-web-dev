@@ -52,6 +52,14 @@
   cursor: pointer;
 }
 
+.header{
+  font-family: 'Roboto', sans-serif;
+}
+
+.div{
+  font-family: 'Roboto', sans-serif;
+}
+
 .dropbtn {
   background-color: #b6eeb8;
   color: white;
