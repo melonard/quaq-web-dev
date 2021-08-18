@@ -14,6 +14,7 @@ import Volatility from './Volatility';
 import { Button } from '@material-ui/core';
 import duck4 from './../duck4clear2.png'
 import quaq from './../quaq3.png'
+import { ResponsiveContainer } from 'recharts'
 //import { CSSTransition } from 'react-transition-group';
 
 window.addEventListener("offline", function() {
@@ -47,13 +48,15 @@ render() {
 
 <span>
 <img position="absolute" src={quaq} width="350" height="110" />
-<div class="center"><strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></div>
+<div class="center"><strong>Qu</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></div>
 {/* <marquee width="75%" scrollamount="20" behavior="alternate" direction="left" ><strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></marquee>  */}
 </span>
 
+<ResponsiveContainer width="100%" height={110}>
  <div>
  <marquee class="marq" scrollamount="20" behavior="scroll" direction="right"><img src={duck4} width="200" height="200" /></marquee>
  </div>       
+ </ResponsiveContainer>
           <div><LastValueCache /></div>
           <div class="float-child"><MostTradedSym /></div>
           <div class="float-child"><MinPriceSym /></div>
