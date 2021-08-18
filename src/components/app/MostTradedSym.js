@@ -44,7 +44,7 @@ export default class MostTradedSym extends Component {
     render() {
         return (
             <div className='App'>
-                <table className='minimalistBlack'>
+                <table className={this.props.darkMode? 'minimalistBlackD' : 'minimalistBlack'}>
                 <col width="160px" />
                   <col width="150px" />
                     <tr>

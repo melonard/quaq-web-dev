@@ -51,7 +51,7 @@ export default class MaxPriceSym extends React.Component {
   render() {
       return (
           <div className='App'>
-            <table className='minimalistBlack'>
+            <table className={this.props.darkMode? 'minimalistBlackD' : 'minimalistBlack'}>
               <col width="160px" />
                 <col width="150px" />
                   <tr>

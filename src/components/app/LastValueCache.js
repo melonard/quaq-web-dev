@@ -91,11 +91,13 @@ render() {
         <div>   
                  <text className="header"><h3> Stock Price Fluxuation   </h3></text>
              
+                <h3>Stock Price Fluctuation
+                </h3>
                 <div className="date">
                 <p > Last Updated: {this.state.date}</p>
                 </div>
                  <div className='App'>
-                      <table className='minimalistBlack'>
+                      <table className={this.props.darkMode? 'minimalistBlackD' : 'minimalistBlack'}>
                         <col width="120px" />
                         <col width="110px" />
                         <col width="110px" />

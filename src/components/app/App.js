@@ -29,22 +29,26 @@ export default class App extends React.Component {
     super()
     this.state = {
       btnOption: true,
+      darkMode: false
     }
     this.handleClick = this.handleClick.bind(this)
+    this.modeSwitch = this.modeSwitch.bind(this)
 }
 
 handleClick(){
   this.setState({btnOption : !this.state.btnOption})
 }
-
+modeSwitch(){
+  this.setState({darkMode: !this.state.darkMode})
+}
 
 
  
 render() {
     return (
-        <div style={{
-          backgroundColor: 'white',
-        }}>
+      <div style={{
+        backgroundColor: (this.state.darkMode ? '#000000' : '#FFFFFF'),
+      }}>
 
 <span>
 <img position="absolute" src={quaq} width="350" height="110" />
@@ -57,10 +61,11 @@ render() {
  <marquee class="marq" scrollamount="20" behavior="scroll" direction="right"><img src={duck4} width="200" height="200" /></marquee>
  </div>       
  </ResponsiveContainer>
-          <div><LastValueCache /></div>
-          <div class="float-child"><MostTradedSym /></div>
-          <div class="float-child"><MinPriceSym /></div>
-          <div class="float-child"><MaxPriceSym /></div>
+          <div><Button variant="contained"  id='btnDark'  onClick={this.modeSwitch}>{this.state.darkMode ? 'Light Mode' : 'Dark Mode'}</Button></div>
+          <div><LastValueCache darkMode={this.state.darkMode}/></div>
+          <div class="float-child"><MostTradedSym darkMode={this.state.darkMode}/></div>
+          <div class="float-child"><MinPriceSym darkMode={this.state.darkMode}/></div>
+          <div class="float-child"><MaxPriceSym darkMode={this.state.darkMode}/></div>
           <div><Graph/></div>
           <div>Click to change day</div>
           <Button id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </Button>
