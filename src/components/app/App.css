@@ -2,6 +2,8 @@
   display:flex;
   justify-content:space-around;
   align-items:flex-start;
+  font-family: Arial, Helvetica, sans-serif;
+  
 }
 
 .App-logo {
@@ -99,8 +101,11 @@
   font-family: 'Roboto', sans-serif;
   float: left;
   padding: 100px , 20px;
+  flex-direction: column;
+  justify-content:space-evenly;
+  align-items: center;
+}
 
-}  
 
 .LVC {
   height:300 px;
@@ -117,6 +122,23 @@
   align-items: center;
 }
 
+.title {
+  height:100 px;
+  width:250 px;
+  background: #95b8de;
+  border-radius: 20px;
+  border-color: rgb(0, 0, 0);
+  border-width: 2px;
+  border-style: groove;
+  display:flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  align-items: center;
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 40px;
+}
+
 table.minimalistBlack {
   font-family: 'Roboto', sans-serif;
   border: 1px solid #000000;
@@ -125,9 +147,6 @@ table.minimalistBlack {
   height: 100px;
   text-align: center;
   border-collapse: collapse;
-}
-table.minimalistBlack td, table.minimalistBlack th {
-  border: 1px solid #346391;
 }
 table.minimalistBlack tbody td {
   font-size: 13px;

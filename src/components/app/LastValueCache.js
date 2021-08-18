@@ -30,9 +30,6 @@ constructor () {
   
 }
 
-
-
-
 async  componentDidMount() {
 
     const url = "https://homer.aquaq.co.uk:8040/executeFunction";
@@ -122,6 +119,12 @@ render() {
                                 return(<td>{entry}</td>)
                             })}
                         </tr>
+
+
+
+
+
+
                         <tr>
                         <h4>Last Value Cache</h4>
                             {this.state.lvc.map((entry,index)=>{
@@ -136,6 +139,7 @@ render() {
                                 return(<td>{entry > 0 ? <font color="green">({entry}%) </font> : <font color="red">({entry}%) </font>}</td>)
                             })}
                         </tr> */}
+
 
                         <tr>
                         <h4>Difference from Open</h4>

@@ -12,6 +12,7 @@ import Select from 'react-select';
 import TwoDaysAgo from './TwoDaysAgo';
 import Volatility from './Volatility';
 import { Button } from '@material-ui/core';
+import duck4 from './../duck4clear2.png'
 //import { CSSTransition } from 'react-transition-group';
 
 window.addEventListener("offline", function() {
@@ -35,11 +36,23 @@ handleClick(){
 }
 
 
+
+ 
 render() {
     return (
         <div style={{
           backgroundColor: '#FFB8FC',
         }}>
+
+<marquee scrollamount="20" behavior="scroll" direction="right"><img src={duck4} width="140" height="140" /></marquee>
+           <header className='title'> 
+              
+              <h2>Q.U.A.Q</h2>
+              <marquee scrollamount="20" behavior="scroll" direction="left" font-size="2cm"><strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></marquee>
+                     
+          </header>
+
+          {/* <div><CurrentPrice/></div>  */}   
           <div><LastValueCache /></div>
           <div class="float-child"><MostTradedSym /></div>
           <div class="float-child"><MinPriceSym /></div>
@@ -50,21 +63,6 @@ render() {
           <div>
           {this.state.btnOption === true ? <div><Yesterday/></div> :
           <div><TwoDaysAgo/></div>}</div>
-
-          {/* <p>Move the mouse over the button to open the dropdown menu.</p>
-          <div class="dropdown">
-                <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-                <div id="myDropdown" class="dropdown-content">
-                    <a href="#">Today</a>
-                    <a href="AppGraph">Yesterday</a>
-                    <a href="#">2 Day's</a>
-                </div>
-          </div> */}
-          
-
-
-
-
           <div><Volatility/></div>
 
         </div>
