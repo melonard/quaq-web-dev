@@ -63,7 +63,7 @@ async  componentDidMount() {
 render() {
   return (
     <div>
-        <h3>Two Day's Ago Price History</h3>
+        
         <div>
                         <div>
                           <ResponsiveContainer width="100%" height={400}>
