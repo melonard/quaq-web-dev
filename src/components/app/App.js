@@ -66,13 +66,14 @@ render() {
           <div class="float-child"><MostTradedSym darkMode={this.state.darkMode}/></div>
           <div class="float-child"><MinPriceSym darkMode={this.state.darkMode}/></div>
           <div class="float-child"><MaxPriceSym darkMode={this.state.darkMode}/></div>
-          <div><Graph/></div>
+          <div><Graph darkMode={this.state.darkMode}/></div>
+          {this.state.btnOption ?<text className="header"> <h3>Yesterday's Price History</h3></text>:<text className="header"><h3>Two Day's Ago Price History</h3></text>}
           <div>Click to change day</div>
-          <Button id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </Button>
+          <Button variant="contained" id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </Button>
           <div>
-          {this.state.btnOption === true ? <div><Yesterday/></div> :
-          <div><TwoDaysAgo/></div>}</div>
-          <div><Volatility/></div>
+          {this.state.btnOption === true ? <div><Yesterday darkMode={this.state.darkMode}/></div> :
+          <div><TwoDaysAgo darkMode={this.state.darkMode}/></div>}</div>
+          <div><Volatility darkMode={this.state.darkMode}/></div>
 
         </div>
     )

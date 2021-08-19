@@ -29,6 +29,7 @@ export default class Volatility extends React.Component {
     this.state = {
       anchorEl : null,
       open: false,
+      loaded: false,
       sym:[],
       vol:[],
       result:[],
@@ -109,6 +110,7 @@ async  componentDidMount() {
               // console.log(data)
 
 this.setState({all_data: convertDataPT(data.result)})
+this.setState({loaded:true})
         },10000);
         } catch(e) {
         console.log(e);
@@ -120,8 +122,9 @@ render() {
     return (
         
         <div>
-               
-                      <Button color = "secondary" aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
+               <text className="header">  
+              <h3>Today's Price Volatility</h3></text>
+                      <Button variant='contained' aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
                           Timeframe
                       </Button>
                       <Menu id="fade-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleClose} TransitionComponent={Fade}>
@@ -138,8 +141,7 @@ render() {
                 displayValue="name" // Property name to display in the dropdown options
                 />
 
-        <div><text className="header">  
-          <h3>Today's Price Volatility</h3></text>
+        <div>
                         <div>
                         {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                          
@@ -165,7 +167,7 @@ render() {
 
                             </LineChart>
                           </ResponsiveContainer>: <p>
-                          <marquee scrollamount="10" behavior="scroll" direction="right"><img src={duck1} width="80" height="80" />  <span> <h3>Loading... </h3></span></marquee> 
+                          <marquee scrollamount="10" behavior="scroll" direction="right"><img src={duck1} width="80" height="80" />  <span> <h3 className = {this.props.darkMode ? 'dh3' : 'lh3'}>Loading... </h3></span></marquee> 
                                                   </p>}
                       </div>
                       

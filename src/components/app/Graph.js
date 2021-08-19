@@ -87,8 +87,10 @@ this.setState({loaded:true})
  
 render() {
     return (
+        
         <div>
-                
+        <p className='space'></p>
+        <text className="header"> <h3>Running Average Price</h3></text>
                 <Multiselect
                 options={this.state.options} // Options to display in the dropdown
                 placeholder="Select Symbols" // Default value of dropdown
@@ -105,7 +107,7 @@ render() {
                           <p> Last Updated: {this.state.date}</p>                       
                         </div>
                           <div> 
-                          <text className="header"> <h3>Running Average Price</h3></text>
+
                           </div>
                           {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>

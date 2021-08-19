@@ -32,6 +32,18 @@
   color: #61dafb;
 }
 
+.space{
+  margin-bottom : 3cm
+}
+
+.lh3{
+  color :#000000
+}
+
+.dh3 {
+  color : #FFFFFF 
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -138,6 +150,68 @@
   font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 40px;
+}
+
+.dtitle {
+  height:100 px;
+  width:250 px;
+  background : #000000;
+  color: #FFFFFF;
+  border-radius: 20px;
+  border-color: rgb(0, 0, 0);
+  border-width: 2px;
+  border-style: groove;
+  display:flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  align-items: center;
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+  line-height: 40px;
+}
+
+
+table.minimalistBlackD {
+  font-family: 'Roboto', sans-serif;
+  border: 2px solid #383838;
+  background-color: #4A4A4A;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  border-collapse: collapse;
+  color: #FFFFFF;
+}
+table.minimalistBlackD tbody td {
+  font-size: 13px;
+  color: #E6E6E6;
+}
+table.minimalistBlackD td:nth-child(even) {
+  background: #383838;
+  color: #FFFFFF;
+}
+table.minimalistBlackD thead {
+  background: #323232;
+  border-bottom: 3px solid #000000;
+  color: #FFFFFF;
+}
+table.minimalistBlackD thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #E6E6E6;
+  text-align: center;
+  border-left: 2px solid #4A4A4A;
+  color: #FFFFFF;
+}
+table.minimalistBlackD tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+  border-top: 3px solid #000000;
+  color: #FFFFFF;
+}
+table.minimalistBlackD tfoot td {
+  font-size: 14px;
+  color: #FFFFFF;
 }
 
 table.minimalistBlack {
