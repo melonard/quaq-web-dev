@@ -76,7 +76,7 @@ render() {
           {this.state.btnOption === true ? <div><Yesterday darkMode={this.state.darkMode}/></div> :
           <div><TwoDaysAgo darkMode={this.state.darkMode}/></div>}</div>
           <div><Volatility darkMode={this.state.darkMode}/></div>
-
+          <div> <VolumePie/> <AmountPie/></div>
         </div>
     )
   }
