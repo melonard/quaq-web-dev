@@ -110,7 +110,7 @@ async  componentDidMount() {
 
 this.setState({all_data: convertDataPT(data.result)})
 this.setState({loaded:true})
-        },10000);
+        },5000);
         } catch(e) {
         console.log(e);
         }
@@ -141,13 +141,6 @@ render() {
                 />
 
         <div>
-  
-        <div className="date">
-                          <p> Last Updated: {this.state.date}</p>                       
-                        </div>
-                          <div> 
-                          <text className="header"> <h3>Today's Price Volatility</h3></text>
-                          </div>
 
                         {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                          

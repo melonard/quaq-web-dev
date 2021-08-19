@@ -15,8 +15,9 @@ import VolumePie from './VolumePie'
 import AmountPie from './AmountPie'
 import { Button } from '@material-ui/core';
 import duck4 from './../duck4clear2.png'
-import quaq from './../quaq3.png'
-import { ResponsiveContainer } from 'recharts'
+import quaq from './../quaq3.png';
+import { ResponsiveContainer } from 'recharts';
+import { Icon } from '@material-ui/core';
 //import { CSSTransition } from 'react-transition-group';
 
 window.addEventListener("offline", function() {
@@ -73,10 +74,10 @@ render() {
           <div>Click to change day</div>
           <Button variant="contained" id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </Button>
           <div>
-          {this.state.btnOption === true ? <div><Yesterday darkMode={this.state.darkMode}/></div> :
-          <div><TwoDaysAgo darkMode={this.state.darkMode}/></div>}</div>
+          {this.state.btnOption === true ? <Yesterday darkMode={this.state.darkMode}/> :
+          <TwoDaysAgo darkMode={this.state.darkMode}/>}</div>
           <div><Volatility darkMode={this.state.darkMode}/></div>
-          <div> <VolumePie/> <AmountPie/></div>
+          <div> <VolumePie darkMode={this.state.darkMode}/> <AmountPie darkMode={this.state.darkMode}/></div>
         </div>
     )
   }

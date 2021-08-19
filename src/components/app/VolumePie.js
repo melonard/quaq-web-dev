@@ -46,7 +46,7 @@ async  componentDidMount() {
 
 this.setState({all_data: (data.result)})
 this.setState({loaded:true})
-        },15000);
+        },5000);
         } catch(e) {
         console.log(e);
         }
@@ -55,8 +55,10 @@ this.setState({loaded:true})
  
 render() {
     return (
-        <div>                    
-                          <div  class="pie" > 
+      <div style={{
+        backgroundColor: (this.props.darkMode ? '#000000' : '#FFFFFF'),
+      }}>                        
+                          <div  class={this.props.darkMode?"pieD":"pie"} > 
 
                           <div>
                           <text className="header" > <h3>Volume Traded Today</h3></text>
