@@ -57,33 +57,32 @@ handleClick(event) {
   }
 
 
-onSelect(selectedList, selectedItem) {
-  var nArr=[];
-  for (let i=0; i< selectedList.length;i++){
-    nArr.push(selectedList[i].name)
+  onSelect(selectedList, selectedItem) {
+    var nArr=[];
+    for (let i=0; i< selectedList.length;i++){
+      nArr.push(selectedList[i].name)
+    }
+    if(nArr.length > 0){
+      this.setState({filter : nArr})
+    }
+    else{
+      this.setState({filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]})
+    }
   }
-  if(nArr.length > 0){
-    this.setState({filter : nArr})
+
+  yesterday() {
+    this.setState({timeFilter:2})
+    this.setAnchorEl(null);
   }
-  else{
-    this.setState({filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]})
+  week() {
+    this.setState({timeFilter:8})
+    this.setAnchorEl(null);
   }
-}
-
-
-yesterday() {
-  this.setState({timeFilter:2})
-  this.setAnchorEl(null);
-}
-week() {
-  this.setState({timeFilter:8})
-  this.setAnchorEl(null);
-}
-month() {
-  this.setState({timeFilter:31})
-  this.setAnchorEl(null);
-}
-
+  month() {
+    this.setState({timeFilter:31})
+    this.setAnchorEl(null);
+  }
+  
 
 
 async  componentDidMount() {
@@ -108,7 +107,8 @@ async  componentDidMount() {
           const data = await response.json();
               // console.log(data)
 
-this.setState({all_data: convertDataPT(data.result)})
+              this.setState({all_data: convertDataPT(data.result)})
+              this.setState({loaded:true})
         },10000);
         } catch(e) {
         console.log(e);
@@ -138,9 +138,15 @@ render() {
                 displayValue="name" // Property name to display in the dropdown options
                 />
 
-        <div><text className="header">  
-          <h3>Today's Price Volatility</h3></text>
-                        <div>
+        <div>
+  
+        <div className="date">
+                          <p> Last Updated: {this.state.date}</p>                       
+                        </div>
+                          <div> 
+                          <text className="header"> <h3>Today's Price Volatility</h3></text>
+                          </div>
+
                         {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                          
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
@@ -169,7 +175,7 @@ render() {
                                                   </p>}
                       </div>
                       
-                      </div>
+                     
         </div>
     )
   }  

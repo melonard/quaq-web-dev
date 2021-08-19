@@ -201,3 +201,14 @@ table.minimalistBlack tfoot td {
   color: #2d3091;
   font-size: 15px;
 }
+
+
+
+.pie {
+  display: block;
+  float: left;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+
+}

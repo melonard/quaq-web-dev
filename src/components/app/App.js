@@ -11,6 +11,8 @@ import Graph from './Graph';
 import Select from 'react-select';
 import TwoDaysAgo from './TwoDaysAgo';
 import Volatility from './Volatility';
+import VolumePie from './VolumePie'
+import AmountPie from './AmountPie'
 import { Button } from '@material-ui/core';
 import duck4 from './../duck4clear2.png'
 import quaq from './../quaq3.png'
@@ -73,7 +75,7 @@ render() {
           {this.state.btnOption === true ? <div><Yesterday/></div> :
           <div><TwoDaysAgo/></div>}</div>
           <div><Volatility/></div>
-
+          <div><VolumePie/><AmountPie/></div>
         </div>
     )
   }
