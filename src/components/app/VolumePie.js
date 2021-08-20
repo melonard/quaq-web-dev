@@ -7,8 +7,8 @@ import Multiselect from 'multiselect-react-dropdown';
 import duck1 from './../duck1.png'
 
 
-const COLORS = ['#1a4630', '#2d3393', '#eef4f2', '#059445', '#778ab1', '#65b590','#41ae78', '#74cc99', '#9c94cf', '#465e93']
-
+//const COLORS = ['#1a4630', '#2d3393', '#eef4f2', '#059445', '#778ab1', '#65b590','#41ae78', '#74cc99', '#9c94cf', '#465e93']
+const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
 
 export default class VolumePie extends React.Component {
   

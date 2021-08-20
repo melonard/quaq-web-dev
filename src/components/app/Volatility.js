@@ -140,7 +140,9 @@ render() {
                 displayValue="name" // Property name to display in the dropdown options
                 />
 
-        <div>
+        <div style={{
+        backgroundColor: (this.props.darkMode ? '#000000' : '#FFFFFF'),
+        }}>
 
                         {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                          

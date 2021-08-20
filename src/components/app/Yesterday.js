@@ -87,6 +87,7 @@ render() {
                                     type="monotone"
                                     dataKey={entry}
                                     stroke={COLORS[index % COLORS.length]}  
+                                    dot={false}  
                                   />
                                 );
                               })}

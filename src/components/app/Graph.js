@@ -114,7 +114,7 @@ render() {
                               <Tooltip />
                               <XAxis dataKey="time" stroke="#000000"/>
                               <YAxis />
-                              <Brush  dataKey="time" />
+                              <Brush dataKey="time"   fill='rgba(0, 0, 0, 0)'/>
                               <Legend/>
 
                               {this.state.filter.map((entry, index) => {
