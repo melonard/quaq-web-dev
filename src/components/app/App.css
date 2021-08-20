@@ -286,3 +286,11 @@ table.minimalistBlack tfoot td {
   margin-right: auto;
 
 }
+.pieD {
+  display: block;
+  float: left;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #000000;
+}
