@@ -90,9 +90,6 @@ render() {
     return (
         <div>   
                  <text className="header"><h3> Stock Price Fluxuation   </h3></text>
-             
-                <h3>Stock Price Fluctuation
-                </h3>
                 <div className="date">
                 <p > Last Updated: {this.state.date}</p>
                 </div>
