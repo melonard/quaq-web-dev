@@ -76,7 +76,7 @@ render() {
                               <Legend />
                           </PieChart>
                           </ResponsiveContainer> : <p>
-                          <marquee scrollamount="10" behavior="scroll" direction="right"><img src={duck1} width="80" height="80" />  <span> <h3>Loading... </h3></span></marquee> 
+                          <marquee scrollamount="10" behavior="scroll" direction="right"><img src={duck1} width="80" height="80" />  <span> <h3 className = {this.props.darkMode ? 'dh3' : 'lh3'}>Loading... </h3></span></marquee> 
                                                   </p>}
                       
                       </div></div>

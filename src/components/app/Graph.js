@@ -78,7 +78,7 @@ async  componentDidMount() {
 this.setState({all_data: convertDataPT(data.result)})
 this.setState({date: new Date().toLocaleString()})
 this.setState({loaded:true})
-        },15000);
+        },5000);
         } catch(e) {
         console.log(e);
         }
@@ -112,7 +112,7 @@ render() {
                           {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
-                              <XAxis dataKey="time" stroke="#000000"/>
+                              <XAxis dataKey="time"/>
                               <YAxis />
                               <Brush dataKey="time"   fill='rgba(0, 0, 0, 0)'/>
                               <Legend/>
@@ -132,7 +132,7 @@ render() {
                               }
                             </LineChart>
                           </ResponsiveContainer> : <p>
-                          <marquee scrollamount="10" behavior="scroll" direction="right"><img src={duck1} width="80" height="80" />  <span> <h3>Loading... </h3></span></marquee> 
+                          <marquee scrollamount="10" behavior="scroll" direction="right"><img src={duck1} width="80" height="80" />  <span> <h3 className = {this.props.darkMode ? 'dh3' : 'lh3'}>Loading... </h3></span></marquee> 
                                                   </p>}
                       
                       </div>
