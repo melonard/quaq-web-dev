@@ -32,7 +32,8 @@ export default class Graph extends React.Component {
       price:[],
       options: [{name: 'AAPL', id: 1},{name: 'AIG', id: 2},{name: 'AMD', id: 3},{name: 'DELL', id: 4},{name: 'DOW', id: 5},{name: 'GOOG', id: 6},{name: 'HPQ', id: 7},{name: 'IBM', id: 8},{name: 'INTC', id: 9},{name: 'MSFT', id: 10}],
       filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"],
-      result:[]
+      result:[],
+      time: 1000
     }
     this.onSelect = this.onSelect.bind(this)
   }
@@ -78,7 +79,7 @@ async  componentDidMount() {
 this.setState({all_data: convertDataPT(data.result)})
 this.setState({date: new Date().toLocaleString()})
 this.setState({loaded:true})
-        },5000);
+        },30000);
         } catch(e) {
         console.log(e);
         }
@@ -88,9 +89,9 @@ this.setState({loaded:true})
 render() {
     return (
         
-        <div>
+        <div style={{paddingTop: 20}}>
         <p className='space'></p>
-        <text className="header"> <h3>Running Average Price</h3></text>
+        <p className="header"> <h3>Running Average Price</h3></p>
                 <Multiselect
                 options={this.state.options} // Options to display in the dropdown
                 placeholder="Select Symbols" // Default value of dropdown

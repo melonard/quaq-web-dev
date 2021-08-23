@@ -88,8 +88,8 @@ async  componentDidMount() {
 
 render() {
     return (
-        <div>   
-                 <text className="header"><h3> Stock Price Fluctuation   </h3></text>
+        <div style={{marginBottom: 20}} >   
+                 <p className="header"><h3> Stock Price Fluctuation   </h3></p>
                 <div className="date">
                 <p > Last Updated: {this.state.date}</p>
                 </div>

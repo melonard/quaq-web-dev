@@ -32,6 +32,7 @@ export default class App extends React.Component {
     super()
     this.state = {
       btnOption: true,
+      symList: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"],
       darkMode: false
     }
     this.handleClick = this.handleClick.bind(this)
@@ -45,12 +46,42 @@ modeSwitch(){
   this.setState({darkMode: !this.state.darkMode})
 }
 
+async  componentDidMount() {
 
+  const url = "https://homer.aquaq.co.uk:8040/executeFunction";
+  try {
+      setInterval(async () => {
+          const response = await 
+          fetch (url,{
+              "body": JSON.stringify({
+                "arguments": {"db":"rdb","query":"select distinct sym from trade"},
+                "function_name": ".aqrest.execute"
+              }),
+              method:"post",
+              "headers": {
+                  'Accept': 'application/json',
+                  "Content-Type":"application/json",
+                  "accept": "*/*",
+                  "Authorization":"Basic dXNlcjpwYXNz"
+          }}
+          ) 
+          const data = await response.json();
+          var symArr=[];
+          for (let i = 0; i< data.result.length; i++){
+            symArr.push(data.result[i].sym)
+          }
+          this.setState({symList: symArr})
+        },1000);
+        } catch(e) {
+        console.log(e);
+        }
+    }
  
 render() {
     return (
       <div style={{
         backgroundColor: (this.state.darkMode ? '#000000' : '#FFFFFF'),
+        margin: 30,
       }}>
 
 <span>
@@ -65,19 +96,19 @@ render() {
  </div>       
  </ResponsiveContainer>
           <div><Button variant="contained"  id='btnDark'  onClick={this.modeSwitch} startIcon={<Avatar src={this.state.darkMode ? 'https://png.pngtree.com/png-clipart/20190921/original/pngtree-sun-line-black-icon-png-image_4750183.jpg' :'https://png.pngtree.com/png-clipart/20190628/original/pngtree-vector-new-moon-icon-png-image_4049286.jpg'}/>}></Button></div>
-          <div><LastValueCache darkMode={this.state.darkMode}/></div>
-          <div class="float-child"><MostTradedSym darkMode={this.state.darkMode}/></div>
-          <div class="float-child"><MinPriceSym darkMode={this.state.darkMode}/></div>
-          <div class="float-child"><MaxPriceSym darkMode={this.state.darkMode}/></div>
-          <div><Graph darkMode={this.state.darkMode}/></div>
+          <div><LastValueCache darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          <div class="float-child"><MostTradedSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          <div class="float-child"><MinPriceSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          <div class="float-child"><MaxPriceSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          <div><Graph darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           {this.state.btnOption ?<text className="header"> <h3>Yesterday's Price History</h3></text>:<text className="header"><h3>Two Day's Ago Price History</h3></text>}
           <div>Click to change day</div>
           <Button variant="contained" id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </Button>
           <div>
-          {this.state.btnOption === true ? <Yesterday darkMode={this.state.darkMode}/> :
-          <TwoDaysAgo darkMode={this.state.darkMode}/>}</div>
-          <div><Volatility darkMode={this.state.darkMode}/></div>
-          <div> <VolumePie darkMode={this.state.darkMode}/> <AmountPie darkMode={this.state.darkMode}/></div>
+          {this.state.btnOption === true ? <Yesterday darkMode={this.state.darkMode} syms={this.state.symList}/> :
+          <TwoDaysAgo darkMode={this.state.darkMode} syms={this.state.symList}/>}</div>
+          <div><Volatility darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          <div> <VolumePie darkMode={this.state.darkMode} syms={this.state.symList}/> <AmountPie darkMode={this.state.darkMode}/></div>
         </div>
     )
   }
