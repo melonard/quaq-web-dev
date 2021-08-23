@@ -58,16 +58,21 @@ render() {
                           <div  class={this.props.darkMode?"pieD":"pie"} > 
 
                           <div>
-                          <p className="header" > <h3>Volume Traded Today</h3></p>
+                          <text className="header" > <h3>Volume Traded Today</h3></text>
                           </div>
                           {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                            
                            
-                          <BarChart width={730} height={300} data={this.state.all_data} > 
+                          <BarChart width={730} height={300} data={this.state.all_data} margin={{
+            top: 20,
+            right: 20,
+            left: 20,
+            bottom: 20,
+          }} > 
                           <CartesianGrid/>
                               <XAxis dataKey="sym"  />
                               <YAxis/>
-                              <Bar data={this.state.all_data}  dataKey="size" nameKey="sym" label={{ position: 'top' }}>
+                              <Bar data={this.state.all_data}  dataKey="size" nameKey="sym" label={{ position: 'top' }} >
                                   {
                                       this.state.all_data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
                                   } 

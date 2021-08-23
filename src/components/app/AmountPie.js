@@ -67,7 +67,7 @@ render() {
                           <BarChart width={730} height={300} data={this.state.all_data} margin={{
             top: 20,
             right: 20,
-            left: 20,
+            left: 70,
             bottom: 20,
           }} > 
                           <CartesianGrid/>
