@@ -25,7 +25,8 @@ constructor () {
         LVCpercent:[],
         percent:[],
         lvc:[],
-        dfo:[]
+        dfo:[],
+        length:10
     }
   
 }
@@ -61,7 +62,7 @@ async  componentDidMount() {
             var LVCpercentArr=[]
             var percentArr=[]
 
-            for (let i = 0;i<10;i++){
+            for (let i = 0;i<data.result.length;i++){
                 symArr.push(data.result[i].sym)
                 currArr.push(data.result[i].curr)
                 diffArr.push(data.result[i].diff)
@@ -79,6 +80,7 @@ async  componentDidMount() {
             this.setState({percent: percentArr.map(ele => parseFloat(ele.toFixed(2)))})
             this.setState({lvc: joinArr(this.state.diff, this.state.LVCpercent)})
             this.setState({dfo: joinArr(this.state.openDiff, this.state.percent)})
+            this.setState({length:Math.floor(100/(1+data.result.length))})
         },1000);
         } catch(e) {
         console.log(e);
@@ -95,7 +97,11 @@ render() {
                 </div>
                  <div className='App'>
                       <table className={this.props.darkMode? 'minimalistBlackD' : 'minimalistBlack'}>
-                        <col width="120px" />
+                      <col width={""+this.state.length+"%"}/>
+                      {this.state.sym.map((entry,index)=>{
+                                return(<col width={""+this.state.length+"%"}/>)
+                            })}
+{/*                         <col width="110px" />
                         <col width="110px" />
                         <col width="110px" />
                         <col width="110px" />
@@ -104,8 +110,9 @@ render() {
                         <col width="110px" />
                         <col width="110px" />
                         <col width="110px" />
-                        <col width="110px" />
-                        <col width="110px" />
+                        <col width="110px" /> */}
+
+
                         <tr>
                         <h4>Stock</h4>
                             {this.state.sym.map((entry,index)=>{
