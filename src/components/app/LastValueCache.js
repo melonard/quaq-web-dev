@@ -89,7 +89,7 @@ async  componentDidMount() {
 render() {
     return (
         <div>   
-                 <text className="header"><h3> Stock Price Fluxuation   </h3></text>
+                 <text className="header"><h3> Stock Price Fluctuation   </h3></text>
                 <div className="date">
                 <p > Last Updated: {this.state.date}</p>
                 </div>

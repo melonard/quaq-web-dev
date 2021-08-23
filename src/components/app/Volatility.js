@@ -122,7 +122,7 @@ render() {
         
         <div>
                <text className="header">  
-              <h3>Today's Price Volatility</h3></text>
+              <h3>Historical Price Volatility</h3></text>
                       <Button variant='contained' aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
                           Timeframe
                       </Button>
