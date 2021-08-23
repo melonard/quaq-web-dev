@@ -81,7 +81,7 @@ render() {
     return (
       <div style={{
         backgroundColor: (this.state.darkMode ? '#000000' : '#FFFFFF'),
-        margin: 30,
+        padding: 30,
       }}>
 
 <span>

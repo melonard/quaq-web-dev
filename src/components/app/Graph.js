@@ -47,7 +47,7 @@ onSelect(selectedList, selectedItem) {
     this.setState({filter : nArr})
   }
   else{
-    this.setState({filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]})
+    this.setState({filter: this.props.syms})
   }
 }
 
