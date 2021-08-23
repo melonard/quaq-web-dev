@@ -51,6 +51,7 @@ render() {
     return (
       <div style={{
         backgroundColor: (this.state.darkMode ? '#000000' : '#FFFFFF'),
+        margin: 30,
       }}>
 
 <span>
@@ -70,7 +71,7 @@ render() {
           <div class="float-child"><MinPriceSym darkMode={this.state.darkMode}/></div>
           <div class="float-child"><MaxPriceSym darkMode={this.state.darkMode}/></div>
           <div><Graph darkMode={this.state.darkMode}/></div>
-          {this.state.btnOption ?<text className="header"> <h3>Yesterday's Price History</h3></text>:<text className="header"><h3>Two Day's Ago Price History</h3></text>}
+          {this.state.btnOption ?<p className="header"> <h3>Yesterday's Price History</h3></p>:<p className="header"><h3>Two Day's Ago Price History</h3></p>}
           <div>Click to change day</div>
           <Button variant="contained" id="btn" onClick={this.handleClick}>{this.state.btnOption ? "2 Days Ago": "Yesterday"} </Button>
           <div>

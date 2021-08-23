@@ -88,9 +88,9 @@ this.setState({loaded:true})
 render() {
     return (
         
-        <div>
+        <div style={{paddingTop: 20}}>
         <p className='space'></p>
-        <text className="header"> <h3>Running Average Price</h3></text>
+        <p className="header"> <h3>Running Average Price</h3></p>
                 <Multiselect
                 options={this.state.options} // Options to display in the dropdown
                 placeholder="Select Symbols" // Default value of dropdown

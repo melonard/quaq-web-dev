@@ -61,7 +61,7 @@ render() {
                           <div  class={this.props.darkMode?"pieD":"pie"} > 
 
                           <div>
-                          <text className="header" > <h3>Volume Traded Today</h3></text>
+                          <p className="header" > <h3>Volume Traded Today</h3></p>
                           </div>
                           {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                            
