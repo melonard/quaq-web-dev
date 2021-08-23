@@ -1,13 +1,10 @@
 import './App.css';
 import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
-
-import { PieChart, Pie, CartesianGrid, XAxis, YAxis,Brush, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
+import { BarChart, Bar, CartesianGrid, XAxis, YAxis,Brush, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 import Multiselect from 'multiselect-react-dropdown';
 import duck1 from './../duck1.png'
 
-
-//const COLORS = ['#1a4630', '#2d3393', '#eef4f2', '#059445', '#778ab1', '#65b590','#41ae78', '#74cc99', '#9c94cf', '#465e93']
 const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
 
 export default class VolumePie extends React.Component {
@@ -66,15 +63,17 @@ render() {
                           {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                            
                            
-                          <PieChart width={730} height={300} >
-                              <Pie data={this.state.all_data} color="#000000" dataKey="size" nameKey="sym" cx="50%" cy="50%" outerRadius={120} fill="#8884d8" label >
+                          <BarChart width={730} height={300} data={this.state.all_data} > 
+                          <CartesianGrid/>
+                              <XAxis dataKey="sym"  />
+                              <YAxis/>
+                              <Bar data={this.state.all_data}  dataKey="size" nameKey="sym" label={{ position: 'top' }}>
                                   {
                                       this.state.all_data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
                                   } 
-                              </Pie>
+                              </Bar>
                               <Tooltip/>
-                              <Legend />
-                          </PieChart>
+                          </BarChart>
                           </ResponsiveContainer> : <p>
                           <marquee scrollamount="10" behavior="scroll" direction="right"><img src={duck1} width="80" height="80" />  <span> <h3 className = {this.props.darkMode ? 'dh3' : 'lh3'}>Loading... </h3></span></marquee> 
                                                   </p>}
