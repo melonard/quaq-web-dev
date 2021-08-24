@@ -149,7 +149,7 @@ render() {
                          
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
-                              <XAxis dataKey="time" stroke="#000000"/>
+                              <XAxis dataKey="time"/>
                               <YAxis />
                               <Legend/>
 
