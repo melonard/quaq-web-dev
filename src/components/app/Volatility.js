@@ -5,11 +5,12 @@ import {CartesianGrid, XAxis, YAxis, Cell, Legend, Tooltip, Line, ResponsiveCont
 import Multiselect from 'multiselect-react-dropdown';
 import { Button, Menu, MenuItem, Fade  } from '@material-ui/core';
 import duck1 from './../duck1.png'
+import moment from 'moment'
 
 function convertDataPT(data) {
   let arr = [];
   for (let i = 0; i < data.length; i++) {
-    let obj = { time: new Date(data[i].time) };
+    let obj = { time: new moment(data[i].time).format('LLL') };
     for (let j = 0; j < data[i].sym.length; j++) {
       let sym = data[i].sym[j];
       obj[sym] = data[i].vol[j];
@@ -117,12 +118,16 @@ this.setState({loaded:true})
     }
 
  
+
+
+
 render() {
     return (
-        
+ 
         <div>
                <text className="header">  
-              <h3>Historical Price Volatility</h3></text>
+              <h3>Historical Price Volatility       
+                </h3></text>
                       <Button variant='contained' aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
                           Timeframe
                       </Button>
@@ -148,25 +153,28 @@ render() {
                          
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
-                              <XAxis dataKey="time" stroke="#000000"/>
+                              <XAxis dataKey="time" stroke="#000000" />
                               <YAxis />
                               <Legend/>
 
                               {this.state.filter.map((entry, index) => {
                                             return (
                                                         <Line
+                                                        
                                                           type="monotone"
                                                           dataKey={entry}
                                                           stroke={COLORS[index % COLORS.length]}
                                                           dot={false}                                    
                                                         />
-                                                  );
+                                                  ); 
                                                              }
                                           )
                               
                               }
 
                             </LineChart>
+
+
                           </ResponsiveContainer>: <p>
                           <marquee scrollamount="10" behavior="scroll" direction="right"><img src={duck1} width="80" height="80" />  <span> <h3 className = {this.props.darkMode ? 'dh3' : 'lh3'}>Loading... </h3></span></marquee> 
                                                   </p>}
