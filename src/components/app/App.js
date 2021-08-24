@@ -100,6 +100,7 @@ render() {
           <div class="float-child"><MostTradedSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           <div class="float-child"><MinPriceSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           <div class="float-child"><MaxPriceSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          <div> <VolumePie darkMode={this.state.darkMode} syms={this.state.symList}/> <AmountPie darkMode={this.state.darkMode}/></div>
           <div><Graph darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           {this.state.btnOption ?<text className="header"> <h3>Yesterday's Price History</h3></text>:<text className="header"><h3>Two Day's Ago Price History</h3></text>}
           <div>Click to change day</div>
@@ -107,9 +108,8 @@ render() {
           <div>
           {this.state.btnOption === true ? <Yesterday darkMode={this.state.darkMode} syms={this.state.symList}/> :
           <TwoDaysAgo darkMode={this.state.darkMode} syms={this.state.symList}/>}</div>
-          <div ><Volatility darkMode={this.state.darkMode} syms={this.state.symList}/></div>
-          <div> <VolumePie darkMode={this.state.darkMode} syms={this.state.symList}/> <AmountPie darkMode={this.state.darkMode}/></div>
-        </div>
+          <div><Volatility darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          </div>
     )
   }
 }
