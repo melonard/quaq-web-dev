@@ -33,6 +33,7 @@ export default class Volatility extends React.Component {
       open: false,
       loaded: false,
       sym:[],
+      bSize: 500000000000,
       vol:[],
       result:[],
       options: [{name: 'AAPL', id: 1},{name: 'AIG', id: 2},{name: 'AMD', id: 3},{name: 'DELL', id: 4},{name: 'DOW', id: 5},{name: 'GOOG', id: 6},{name: 'HPQ', id: 7},{name: 'IBM', id: 8},{name: 'INTC', id: 9},{name: 'MSFT', id: 10}],
@@ -95,7 +96,6 @@ handleClick(event) {
 
 
 async  componentDidMount() {
-
   const url = "https://homer.aquaq.co.uk:8040/executeFunction";
   try {
       setInterval(async () => {
