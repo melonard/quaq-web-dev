@@ -69,7 +69,7 @@ render() {
             right: 20,
             left: 70,
             bottom: 20,
-          }} > 
+          }}> 
                           <CartesianGrid/>
                               <XAxis dataKey="sym" />
                               <YAxis/>

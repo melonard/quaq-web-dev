@@ -17,7 +17,7 @@ import { Avatar, Button } from '@material-ui/core';
 import duck4 from './../duck4clear2.png'
 import quaq from './../quaq3.png';
 import { ResponsiveContainer } from 'recharts';
-import { Icon } from '@material-ui/core';
+
 //import { CSSTransition } from 'react-transition-group';
 
 window.addEventListener("offline", function() {
@@ -94,8 +94,8 @@ render() {
  <div>
  <marquee class="marq" scrollamount="20" behavior="scroll" direction="right"><img src={duck4} width="200" height="200" /></marquee>
  </div>       
- </ResponsiveContainer>
-          <div><Button variant="contained"  id='btnDark'  onClick={this.modeSwitch} startIcon={<Avatar src={this.state.darkMode ? 'https://png.pngtree.com/png-clipart/20190921/original/pngtree-sun-line-black-icon-png-image_4750183.jpg' :'https://png.pngtree.com/png-clipart/20190628/original/pngtree-vector-new-moon-icon-png-image_4049286.jpg'}/>}></Button></div>
+ </ResponsiveContainer >
+          <div ><Button   id='btnDark'  onClick={this.modeSwitch} startIcon={<Avatar src={this.state.darkMode ? 'https://png.pngtree.com/png-clipart/20190921/original/pngtree-sun-line-black-icon-png-image_4750183.jpg' :'https://png.pngtree.com/png-clipart/20190628/original/pngtree-vector-new-moon-icon-png-image_4049286.jpg'}/>}></Button></div>
           <div><LastValueCache darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           <div class="float-child"><MostTradedSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           <div class="float-child"><MinPriceSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
@@ -107,7 +107,7 @@ render() {
           <div>
           {this.state.btnOption === true ? <Yesterday darkMode={this.state.darkMode} syms={this.state.symList}/> :
           <TwoDaysAgo darkMode={this.state.darkMode} syms={this.state.symList}/>}</div>
-          <div><Volatility darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          <div ><Volatility darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           <div> <VolumePie darkMode={this.state.darkMode} syms={this.state.symList}/> <AmountPie darkMode={this.state.darkMode}/></div>
         </div>
     )

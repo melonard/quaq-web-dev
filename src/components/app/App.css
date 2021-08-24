@@ -290,7 +290,14 @@ table.minimalistBlack tfoot td {
 .pieD {
   float: left;
   width: 50%;
+  background-color: #000000;
   margin-left: auto;
   margin-right: auto;
-  background-color: #000000;
+  position: "absolute";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
 }

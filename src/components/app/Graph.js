@@ -20,7 +20,6 @@ function convertDataPT(data) {
 }
 
 const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
-const filter = ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]
 
 export default class Graph extends React.Component {
   
@@ -79,7 +78,8 @@ async  componentDidMount() {
 this.setState({all_data: convertDataPT(data.result)})
 this.setState({date: new Date().toLocaleString()})
 this.setState({loaded:true})
-        },30000);
+this.setState({filter: this.props.syms.sort()})
+        },5000);
         } catch(e) {
         console.log(e);
         }
@@ -93,6 +93,7 @@ render() {
         <p className='space'></p>
         <p className="header"> <h3>Running Average Price</h3></p>
                 <Multiselect
+                showArrow={true}
                 options={this.state.options} // Options to display in the dropdown
                 placeholder="Select Symbols" // Default value of dropdown
                 selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
@@ -100,7 +101,6 @@ render() {
                 onRemove={this.onSelect} // Function will trigger on remove event
                 displayValue="name" // Property name to display in the dropdown options
                 />
-
         <div>              
            
                      
