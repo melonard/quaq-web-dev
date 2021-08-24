@@ -26,7 +26,7 @@ export default class Yesterday extends React.Component {
   constructor () {
     super()
     this.state = {
-      sym:[],
+      sym:["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"],
       price:[],
       result:[]
     }
@@ -55,12 +55,6 @@ async  componentDidMount() {
                  const data = await response.json();
 
                  this.setState({all_data: convertDataPT(data.result)})
-                 var symArr=[]
-                 for (let i = 0;i<10;i++){
-                    symArr.push(data.result[i].sym)
-                }
-                this.setState({sym: symArr})
-                 
              },1000);
              } catch(e) {
              console.log(e);
@@ -81,7 +75,7 @@ render() {
                               <XAxis dataKey="time" />
                               <YAxis />
                               <Legend/>
-                              {filter.map((entry, index) => {
+                              {this.state.sym.map((entry, index) => {
                                 return (
                                   <Line
                                     type="monotone"

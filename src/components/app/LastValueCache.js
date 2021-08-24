@@ -70,7 +70,6 @@ async  componentDidMount() {
                 percentArr.push(100* data.result[i].openDiff /(data.result[i].curr-data.result[i].openDiff)) 
                 LVCpercentArr.push(100* data.result[i].diff /(data.result[i].curr-data.result[i].diff))              
             }
-      
             this.setState({sym: symArr})
             this.setState({curr: currArr.map(ele => parseFloat(ele.toFixed(2)))})
             this.setState({diff: diffArr.map(ele => parseFloat(ele.toFixed(2)))})

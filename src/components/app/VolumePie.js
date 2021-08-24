@@ -27,7 +27,7 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"rdb","query":"select sum size by sym from trade"},
+                "arguments": {"db":"rdb","query":"select sum size by sym from trade where sym <> `AAPL"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",

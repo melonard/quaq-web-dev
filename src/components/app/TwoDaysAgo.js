@@ -17,15 +17,14 @@ function convertDataPT(data) {
 }
 
 const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
-const filter = ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]
 
 export default class TwoDaysAgo extends React.Component {
   constructor () {
     super()
     this.state = {
-      sym:[],
       price:[],
-      result:[]
+      result:[],
+      sym : ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]
     }
 }
 
@@ -50,9 +49,9 @@ async  componentDidMount() {
           }}
           ) 
                  const data = await response.json();
-
+                 var symArr =[];
                  this.setState({all_data: convertDataPT(data.result)})
-                 
+                this.setState({sym: data.result[0].sym})
              },1000);
              } catch(e) {
              console.log(e);
@@ -73,7 +72,7 @@ render() {
                               <YAxis />
 
                               <Legend/>
-                              {filter.map((entry, index) => {
+                              {this.state.sym.map((entry, index) => {
                                 return (
                                   <Line
                                     type="monotone"

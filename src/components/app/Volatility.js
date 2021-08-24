@@ -27,6 +27,8 @@ export default class Volatility extends React.Component {
   
   constructor () {
     super()
+    this.multiselectRef = React.createRef();
+
     this.state = {
       anchorEl : null,
       open: false,
@@ -46,6 +48,12 @@ export default class Volatility extends React.Component {
     this.yesterday = this.yesterday.bind(this)
     this.month = this.month.bind(this)
     this.week = this.week.bind(this)
+    this.resetValues = this.resetValues.bind(this)
+}
+
+resetValues() {
+  // By calling the belowe method will reset the selected values programatically
+  this.multiselectRef.current.resetSelectedValues();
 }
 
 handleClick(event) {
@@ -137,6 +145,8 @@ render() {
                       <MenuItem onClick={this.month}>Past 30 Days</MenuItem>
                       </Menu>
                 <Multiselect
+                ref={this.multiselectRef}
+                showArrow={true}
                 options={this.state.options} // Options to display in the dropdown
                 placeholder="Select Symbols" // Default value of dropdown
                 selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
@@ -144,6 +154,7 @@ render() {
                 onRemove={this.onSelect} // Function will trigger on remove event
                 displayValue="name" // Property name to display in the dropdown options
                 />
+                <Button variant='contained' onClick={this.resetValues}> Reset Filter</Button>
 
         <div style={{
         backgroundColor: (this.props.darkMode ? '#000000' : '#FFFFFF'),

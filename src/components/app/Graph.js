@@ -4,7 +4,7 @@ import '../../../node_modules/react-linechart/dist/styles.css';
 import {CartesianGrid, XAxis, YAxis,Brush, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 import Multiselect from 'multiselect-react-dropdown';
 import duck1 from './../duck1.png'
-
+import { Button } from '@material-ui/core';
 
 function convertDataPT(data) {
   let arr = [];
@@ -20,12 +20,12 @@ function convertDataPT(data) {
 }
 
 const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
-const filter = ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]
 
 export default class Graph extends React.Component {
   
   constructor () {
     super()
+    this.multiselectRef = React.createRef();
     this.state = {
       loaded:false,
       sym:[],
@@ -36,6 +36,7 @@ export default class Graph extends React.Component {
       time: 1000
     }
     this.onSelect = this.onSelect.bind(this)
+    this.resetValues = this.resetValues.bind(this)
   }
   
 onSelect(selectedList, selectedItem) {
@@ -51,7 +52,10 @@ onSelect(selectedList, selectedItem) {
   }
 }
 
-
+resetValues() {
+  // By calling the belowe method will reset the selected values programatically
+  this.multiselectRef.current.resetSelectedValues();
+}
 
 
 async  componentDidMount() {
@@ -79,7 +83,8 @@ async  componentDidMount() {
 this.setState({all_data: convertDataPT(data.result)})
 this.setState({date: new Date().toLocaleString()})
 this.setState({loaded:true})
-        },30000);
+this.setState({filter: this.props.syms.sort()})
+        },5000);
         } catch(e) {
         console.log(e);
         }
@@ -93,6 +98,8 @@ render() {
         <p className='space'></p>
         <p className="header"> <h3>Running Average Price</h3></p>
                 <Multiselect
+                ref={this.multiselectRef}
+                showArrow={true}
                 options={this.state.options} // Options to display in the dropdown
                 placeholder="Select Symbols" // Default value of dropdown
                 selectedValues={this.state.selectedValue} // Preselected value to persist in dropdown
@@ -100,7 +107,7 @@ render() {
                 onRemove={this.onSelect} // Function will trigger on remove event
                 displayValue="name" // Property name to display in the dropdown options
                 />
-
+                <Button variant='contained' onClick={this.resetValues}> Reset Filter</Button>
         <div>              
            
                      
