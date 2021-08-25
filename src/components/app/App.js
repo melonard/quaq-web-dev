@@ -86,11 +86,11 @@ render() {
       }}>
       
 <span>
-<img position="absolute" src={quaq} width="20%" height="110" />
+<img position="absolute" src={quaq} width="20%" height="10%" className='title' />
 <div class="center"><strong>Qu</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></div>
 {/* <marquee width="75%" scrollamount="20" behavior="alternate" direction="left" ><strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></marquee>  */}
 </span>
-<ResponsiveContainer width="100%" height={135}>
+<ResponsiveContainer width="100%" height={135} >
  <div>
  <marquee class="marq" scrollamount="20" behavior="scroll" direction="right"><img src={duck4} width="200" height="200" /></marquee>
  </div>    

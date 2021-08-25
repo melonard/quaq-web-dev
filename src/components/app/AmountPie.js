@@ -7,8 +7,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import duck1 from './../duck1.png'
 
 const COLORS = ['#0088FE', '#EF00FC', '#FC000C', '#FC7100', '#FCEF00','#8AFC00', '#000CFC', '#7B2BB5', '#DD5444', '#5BA05B']
-
-
+ 
 export default class AmountPie extends React.Component {
   
   constructor () {
@@ -62,7 +61,7 @@ render() {
                           <div>
                           <text className="header" > <h3>Dollar Value Traded Today</h3></text>
                           </div>
-                          {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
+                          {this.state.loaded ?<ResponsiveContainer width="100%" height={500}>
                            
                           <BarChart  width={730} height={300} data={this.state.all_data} margin={{
             top: 20,
