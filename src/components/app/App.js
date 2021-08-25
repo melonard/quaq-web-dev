@@ -17,6 +17,7 @@ import { Avatar, Button } from '@material-ui/core';
 import duck4 from './../duck4clear2.png'
 import quaq from './../quaq3.png';
 import { ResponsiveContainer } from 'recharts';
+import Footer from './Footer'
 
 //import { CSSTransition } from 'react-transition-group';
 
@@ -79,6 +80,7 @@ async  componentDidMount() {
  
 render() {
     return (
+      
       <div className='div' style={{
         backgroundColor: (this.state.darkMode ? '#000000' : '#FFFFFF')
       }}>
@@ -110,8 +112,13 @@ render() {
           {this.state.btnOption === true ? <Yesterday darkMode={this.state.darkMode} syms={this.state.symList}/> :
           <TwoDaysAgo darkMode={this.state.darkMode} syms={this.state.symList}/>}</div>
           <div><Volatility darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          <div className='space'/>
+          
           </div>
+          <div className ='foot'><Footer className='foot'/></div>
           </div>
+
+          
     )
   }
 }
