@@ -137,14 +137,7 @@ render() {
                <text className="header">  
               <h3>Historical Price Volatility       
                 </h3></text>
-                      <Button variant='contained' aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
-                          Timeframe
-                      </Button>
-                      <Menu id="fade-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleClose} TransitionComponent={Fade}>
-                      <MenuItem onClick={this.yesterday}>Yesterday</MenuItem>
-                      <MenuItem onClick={this.week}>Past 7 Days</MenuItem>
-                      <MenuItem onClick={this.month}>Past 30 Days</MenuItem>
-                      </Menu>
+
                 <Multiselect
                 ref={this.multiselectRef}
                 showArrow={true}
@@ -156,6 +149,14 @@ render() {
                 displayValue="name" // Property name to display in the dropdown options
                 />
                 <Button variant='contained' onClick={this.resetValues}> Reset Filter</Button>
+                <Button variant='contained' aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
+                          Timeframe
+                      </Button>
+                      <Menu id="fade-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleClose} TransitionComponent={Fade}>
+                      <MenuItem onClick={this.yesterday}>Yesterday</MenuItem>
+                      <MenuItem onClick={this.week}>Past 7 Days</MenuItem>
+                      <MenuItem onClick={this.month}>Past 30 Days</MenuItem>
+                      </Menu>
 
         <div style={{
         backgroundColor: (this.props.darkMode ? '#000000' : '#FFFFFF'),
