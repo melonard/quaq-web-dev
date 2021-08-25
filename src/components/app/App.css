@@ -4,7 +4,23 @@
   align-items:flex-start;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #000000;
+  overflow-x: hidden; 
   
+}
+
+.div {
+  overflow-y: hidden;
+  overflow-x: hidden; 
+  width : 100%
+}
+.divc {
+  overflow-y: hidden;
+  overflow-x: hidden; 
+  width : 98%;
+  align-items: center;
+  text-align: center;
+  float:none;
+  margin: auto;
 }
 
 .App-logo {
@@ -282,7 +298,7 @@ table.minimalistBlack tfoot td {
 .pie {
   display: block;
   float: left;
-  width: 50%;
+  width: 48%;
   margin-left: auto;
   margin-right: auto;
 
@@ -300,4 +316,16 @@ table.minimalistBlack tfoot td {
   left: 0;
   margin: 0;
   padding: 0;
+}
+
+::-webkit-scrollbar:horizontal {
+  display: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.x-scroll-disabled {
+	overflow-x: hidden;
 }

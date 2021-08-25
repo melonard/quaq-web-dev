@@ -79,22 +79,21 @@ async  componentDidMount() {
  
 render() {
     return (
-      <div style={{
-        backgroundColor: (this.state.darkMode ? '#000000' : '#FFFFFF'),
-        padding: 30,
+      <div className='div' style={{
+        backgroundColor: (this.state.darkMode ? '#000000' : '#FFFFFF')
       }}>
-
+      
 <span>
 <img position="absolute" src={quaq} width="20%" height="110" />
 <div class="center"><strong>Qu</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></div>
 {/* <marquee width="75%" scrollamount="20" behavior="alternate" direction="left" ><strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></marquee>  */}
 </span>
-
 <ResponsiveContainer width="100%" height={135}>
  <div>
  <marquee class="marq" scrollamount="20" behavior="scroll" direction="right"><img src={duck4} width="200" height="200" /></marquee>
- </div>       
+ </div>    
  </ResponsiveContainer >
+ <div className='divc'> 
           <div ><Button   id='btnDark'  onClick={this.modeSwitch} startIcon={<Avatar src={this.state.darkMode ? 'https://png.pngtree.com/png-clipart/20190921/original/pngtree-sun-line-black-icon-png-image_4750183.jpg' :'https://png.pngtree.com/png-clipart/20190628/original/pngtree-vector-new-moon-icon-png-image_4049286.jpg'}/>}></Button></div>
           <div><LastValueCache darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           <div class="float-child"><MostTradedSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
@@ -109,6 +108,7 @@ render() {
           {this.state.btnOption === true ? <Yesterday darkMode={this.state.darkMode} syms={this.state.symList}/> :
           <TwoDaysAgo darkMode={this.state.darkMode} syms={this.state.symList}/>}</div>
           <div><Volatility darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          </div>
           </div>
     )
   }
