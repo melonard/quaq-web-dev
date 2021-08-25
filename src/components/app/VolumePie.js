@@ -60,7 +60,7 @@ render() {
                           <div>
                           <text className="header" > <h3>Volume Traded Today</h3></text>
                           </div>
-                          {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
+                          {this.state.loaded ?<ResponsiveContainer width="100%" height={500}>
                            
                            
                           <BarChart width={730} height={300} data={this.state.all_data} margin={{
