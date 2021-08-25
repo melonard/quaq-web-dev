@@ -55,6 +55,7 @@ onSelect(selectedList, selectedItem) {
 resetValues() {
   // By calling the belowe method will reset the selected values programatically
   this.multiselectRef.current.resetSelectedValues();
+  this.setState({filter: this.props.syms.sort()})
 }
 
 
@@ -82,8 +83,11 @@ async  componentDidMount() {
 
 this.setState({all_data: convertDataPT(data.result)})
 this.setState({date: new Date().toLocaleString()})
+if(!this.state.loaded){
+  this.setState({filter: this.props.syms.sort()})
+}
 this.setState({loaded:true})
-this.setState({filter: this.props.syms.sort()})
+
         },5000);
         } catch(e) {
         console.log(e);

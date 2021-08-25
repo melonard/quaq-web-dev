@@ -56,6 +56,7 @@ export default class Volatility extends React.Component {
 resetValues() {
   // By calling the belowe method will reset the selected values programatically
   this.multiselectRef.current.resetSelectedValues();
+  this.setState({filter : this.props.syms.sort()})
 }
 
 handleClick(event) {
@@ -84,14 +85,17 @@ handleClick(event) {
 
   yesterday() {
     this.setState({timeFilter:2})
+    this.setState({bSize : 300000000000})
     this.setAnchorEl(null);
   }
   week() {
     this.setState({timeFilter:8})
+    this.setState({bSize : 1000000000000})
     this.setAnchorEl(null);
   }
   month() {
     this.setState({timeFilter:31})
+    this.setState({bSize : 3000000000000})
     this.setAnchorEl(null);
   }
   
@@ -104,7 +108,7 @@ async  componentDidMount() {
           const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"hdb","query":"select by (`timestamp$time) from (`time xgroup update 10 mdev vol by sym from select vol:last price by sym,time: 300000000000 xbar `long$time from trade where  (`date$time) >.z.d-"+ this.state.timeFilter.toString() +")"},
+                "arguments": {"db":"hdb","query":"select by (`timestamp$time) from (`time xgroup update 10 mdev vol by sym from select vol:last price by sym,time: "+this.state.bSize+" xbar `long$time from trade where  (`date$time) >.z.d-"+ this.state.timeFilter.toString() +")"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
@@ -150,7 +154,7 @@ render() {
                 />
                 <Button variant='contained' onClick={this.resetValues}> Reset Filter</Button>
                 <Button variant='contained' aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
-                          Timeframe
+                          History
                       </Button>
                       <Menu id="fade-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleClose} TransitionComponent={Fade}>
                       <MenuItem onClick={this.yesterday}>Yesterday</MenuItem>
@@ -167,7 +171,7 @@ render() {
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
                               <Tooltip />
                              
-                              <XAxis dataKey="time" stroke="#000000" tick="rotate(-35)"/>
+                              <XAxis dataKey="time" tick="rotate(-35)"/>
                               <YAxis />
                               <Legend/>
                               {/* //<PolarAngleAxis  tick={{ fill: 'red', fontSize: 20,  angle: 30 }} /> */}
