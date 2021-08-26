@@ -38,7 +38,7 @@ async  componentDidMount() {
   const url = "https://homer.aquaq.co.uk:8040/executeFunction";
   try {
       setInterval(async () => {
-          const response = await 
+          try{const response = await 
           fetch (url,{
               "body": JSON.stringify({
                 "arguments": {"db":"hdb","query":"select sym,price by time from (select by sym,time:string 5 xbar time.minute from(select time,sym,price from trade where (`date$time) = -1 + .z.d))"},
@@ -55,6 +55,10 @@ async  componentDidMount() {
                  const data = await response.json();
 
                  this.setState({all_data: convertDataPT(data.result)})
+                 this.setState({sym: this.props.syms.sort()})}catch(e){
+                  console.log(e)
+                  this.setState({loaded:false})
+                }
              },1000);
              } catch(e) {
              console.log(e);

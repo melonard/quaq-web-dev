@@ -1,10 +1,12 @@
 import './App.css';
 import React from 'react';
 import '../../../node_modules/react-linechart/dist/styles.css';
-import {CartesianGrid, XAxis, YAxis,Brush, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
+import {CartesianGrid, XAxis, YAxis,Brush, ReferenceLine, Cell, Legend, Tooltip, Line, ResponsiveContainer, LineChart} from 'recharts';
 import Multiselect from 'multiselect-react-dropdown';
 import duck1 from './../duck1.png'
 import { Button } from '@material-ui/core';
+
+
 
 function convertDataPT(data) {
   let arr = [];
@@ -30,7 +32,7 @@ export default class Graph extends React.Component {
       loaded:false,
       sym:[],
       price:[],
-      options: [{name: 'AAPL', id: 1},{name: 'AIG', id: 2},{name: 'AMD', id: 3},{name: 'DELL', id: 4},{name: 'DOW', id: 5},{name: 'GOOG', id: 6},{name: 'HPQ', id: 7},{name: 'IBM', id: 8},{name: 'INTC', id: 9},{name: 'MSFT', id: 10}],
+      options: [],
       filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"],
       result:[],
       time: 1000
@@ -60,11 +62,11 @@ resetValues() {
 
 
 async  componentDidMount() {
-
   const url = "https://homer.aquaq.co.uk:8040/executeFunction";
+  this.setState({filter: this.props.syms.sort()})
   try {
       setInterval(async () => {
-          const response = await 
+          try{const response = await 
           fetch (url,{
               "body": JSON.stringify({
                 "arguments": {"db":"rdb","query":"-1_select sym, price by time from (select avg avgs price by sym,time:string 5 xbar time.minute from(select med avgs price by sym,time from trade))"},
@@ -82,26 +84,33 @@ async  componentDidMount() {
               // console.log(data)
 
 this.setState({all_data: convertDataPT(data.result)})
-this.setState({date: new Date().toLocaleString()})
-if(!this.state.loaded){
-  this.setState({filter: this.props.syms.sort()})
+var optArr=[]
+for(let i =0; i<this.props.syms.length;i++){
+  optArr.push({name:this.props.syms[i], id:(i+1)})
 }
-this.setState({loaded:true})
-
-        },5000);
+this.setState({options:optArr})
+this.setState({date: new Date().toLocaleString()})
+this.setState({loaded:true})}catch(e){
+  console.log(e)
+  this.setState({loaded:false})
+}
+        },15000);
         } catch(e) {
-        console.log(e);
+        //console.log(e);
+        this.setState({loaded:false})
         }
     }
 
  
 render() {
+  const { selected } = this.state;
     return (
         
         <div style={{paddingTop: 20}}>
         <p className='space'></p>
         <p className="header"> <h3>Running Average Price</h3></p>
                 <Multiselect
+                id="css_custom"
                 ref={this.multiselectRef}
                 showArrow={true}
                 options={this.state.options} // Options to display in the dropdown
@@ -110,7 +119,7 @@ render() {
                 onSelect={this.onSelect} // Function will trigger on select event
                 onRemove={this.onSelect} // Function will trigger on remove event
                 displayValue="name" // Property name to display in the dropdown options
-                />
+                                />
                 <Button variant='contained' onClick={this.resetValues}> Reset Filter</Button>
         <div>              
            
@@ -127,6 +136,8 @@ render() {
                               <XAxis dataKey="time"/>
                               <YAxis />
                               <Brush dataKey="time"   fill='rgba(0, 0, 0, 0)'/>
+                              <Brush />
+                              {selected && <ReferenceLine x={selected} isFront stroke="red" />}
                               <Legend/>
 
                               {this.state.filter.map((entry, index) => {

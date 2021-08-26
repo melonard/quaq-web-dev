@@ -31,6 +31,11 @@
   margin: auto;
 }
 
+.foot{
+  align-items: center;
+  text-align: center;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -59,6 +64,9 @@
 
 .space{
   margin-bottom : 3cm
+}
+.Lspace{
+  margin-bottom : 8cm
 }
 
 .lh3{
@@ -313,3 +321,115 @@ table.minimalistBlack tfoot td {
   margin: 0;
   padding: 0;
 }
+
+::-webkit-scrollbar:horizontal {
+  display: none;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.x-scroll-disabled {
+	overflow-x: hidden;
+}
+
+.footer-clean {
+  padding:50px 0;
+  background-color: #029344;
+  color:#000000;
+}
+
+.footer-clean h3 {
+  margin-top:0;
+  margin-bottom:12px;
+  font-weight:bold;
+  font-size:16px;
+}
+
+.footer-clean ul {
+  padding:0;
+  list-style:none;
+  line-height:1.6;
+  font-size:14px;
+  margin-bottom:0;
+}
+
+.footer-clean ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.footer-clean ul a:hover {
+  opacity:1;
+}
+
+.footer-clean .item.social {
+  text-align:right;
+}
+
+@media (max-width:767px) {
+  .footer-clean .item {
+    text-align:center;
+    padding-bottom:20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-clean .item.social {
+    text-align:center;
+  }
+}
+
+.footer-clean .item.social > a {
+  font-size:24px;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  border:1px solid #ccc;
+  margin-left:10px;
+  margin-top:22px;
+  color:inherit;
+  opacity:0.75;
+}
+
+.footer-clean .item.social > a:hover {
+  opacity:0.9;
+}
+
+@media (max-width:991px) {
+  .footer-clean .item.social > a {
+    margin-top:40px;
+  }
+}
+
+@media (max-width:767px) {
+  .footer-clean .item.social > a {
+    margin-top:10px;
+  }
+}
+
+.footer-clean .copyright {
+  margin-top:14px;
+  margin-bottom:0;
+  font-size:13px;
+  opacity:0.6;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/* .chips#css_custom_input::placeholder {
+  background: red;
+}
+.searchBox#css_custom_input::placeholder {
+  border: 1px;
+  font-size: 15px;
+  min-height: 50px;
+  color: black;
+} */

@@ -17,11 +17,13 @@ import { Avatar, Button } from '@material-ui/core';
 import duck4 from './../duck4clear2.png'
 import quaq from './../quaq3.png';
 import { ResponsiveContainer } from 'recharts';
+import Footer from './Footer'
 
 //import { CSSTransition } from 'react-transition-group';
-
+var intCon = true;
 window.addEventListener("offline", function() {
   alert("The application is currently offline and is unable to display up-to-date data until the connection has been restored. \n \nPlease check your internet connection.");
+  intCon=false;
 });
 window.addEventListener("online", function() {
   alert("The connection has been restored. \n \nThe application will now display up-to-date data.");
@@ -33,7 +35,8 @@ export default class App extends React.Component {
     this.state = {
       btnOption: true,
       symList: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"],
-      darkMode: false
+      darkMode: false,
+      qRest: true
     }
     this.handleClick = this.handleClick.bind(this)
     this.modeSwitch = this.modeSwitch.bind(this)
@@ -51,10 +54,10 @@ async  componentDidMount() {
   const url = "https://homer.aquaq.co.uk:8040/executeFunction";
   try {
       setInterval(async () => {
-          const response = await 
+          try {const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"rdb","query":"select distinct sym from trade"},
+                "arguments": {"db":"rdb","query":"select distinct sym from trade where sym <> `AAPL"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
@@ -71,20 +74,27 @@ async  componentDidMount() {
             symArr.push(data.result[i].sym)
           }
           this.setState({symList: symArr})
-        },1000);
+          this.setState({qRest: true})}
+          catch(e){
+            if(intCon){
+            this.setState({qRest:false})}
+          }
+        },500);
         } catch(e) {
-        console.log(e);
+        //console.log(e)
         }
     }
  
 render() {
+
     return (
+      <div>{  this.state.qRest ?
       <div className='div' style={{
         backgroundColor: (this.state.darkMode ? '#000000' : '#FFFFFF')
       }}>
       
 <span>
-<img position="absolute" src={quaq} width="20%" height="10%" className='title' />
+<img position="absolute" src={quaq} width="20%" height="10%" />
 <div class="center"><strong>Qu</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></div>
 {/* <marquee width="75%" scrollamount="20" behavior="alternate" direction="left" ><strong>QU</strong>antitative <strong>A</strong>nalytics using <strong>Q</strong></marquee>  */}
 </span>
@@ -99,7 +109,7 @@ render() {
           <div class="float-child"><MostTradedSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           <div class="float-child"><MinPriceSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           <div class="float-child"><MaxPriceSym darkMode={this.state.darkMode} syms={this.state.symList}/></div>
-          <div> <VolumePie darkMode={this.state.darkMode} syms={this.state.symList}/> <AmountPie darkMode={this.state.darkMode}/></div>
+          <div> <VolumePie darkMode={this.state.darkMode} syms={this.state.symList}/> <AmountPie darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           <div><Graph darkMode={this.state.darkMode} syms={this.state.symList}/></div>
           {this.state.btnOption ?<text className="header"> <h3>Yesterday's Price History</h3></text>:<text className="header"><h3>Two Day's Ago Price History</h3></text>}
           <div className="date">
@@ -110,8 +120,13 @@ render() {
           {this.state.btnOption === true ? <Yesterday darkMode={this.state.darkMode} syms={this.state.symList}/> :
           <TwoDaysAgo darkMode={this.state.darkMode} syms={this.state.symList}/>}</div>
           <div><Volatility darkMode={this.state.darkMode} syms={this.state.symList}/></div>
+          <div className='space'/>
+          
           </div>
+          <div className ='foot'><Footer className='foot'/></div>
+          </div>:<p>Fatal Error QRest or a kdb process(es) is down, Contact your kdb+ team</p>}
           </div>
+          
     )
   }
 }

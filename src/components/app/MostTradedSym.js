@@ -16,7 +16,7 @@ export default class MostTradedSym extends Component {
         const url = "https://homer.aquaq.co.uk:8040/executeFunction";
         try {
           setInterval(async () => {
-            const response = await 
+            try{const response = await 
             fetch (url,{
                   "body": JSON.stringify({
                     "arguments": {
@@ -34,10 +34,13 @@ export default class MostTradedSym extends Component {
             ) 
             const data = await response.json();
             this.setState({sym: data.result[0].sym})
-            this.setState({size: data.result[0].size})
+            this.setState({size: data.result[0].size}) }catch(e){
+              this.setState({loaded:false})
+              console.log(e)
+            }
           },1000);
         } catch(e) {
-          console.log(e);
+          //console.log(e);
         }
     }
     

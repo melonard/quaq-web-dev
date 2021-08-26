@@ -36,7 +36,7 @@ async  componentDidMount() {
     const url = "https://homer.aquaq.co.uk:8040/executeFunction";
     try {
         setInterval(async () => {
-            const response = await 
+            try{const response = await 
             fetch (url,{
                 "body": JSON.stringify({
                     "arguments": {
@@ -61,8 +61,8 @@ async  componentDidMount() {
             var openDiffArr=[] 
             var LVCpercentArr=[]
             var percentArr=[]
-
-            for (let i = 0;i<data.result.length;i++){
+            this.setState({sym: this.props.syms.sort()})
+            for (let i = 0;i<this.props.syms.length;i++){
                 symArr.push(data.result[i].sym)
                 currArr.push(data.result[i].curr)
                 diffArr.push(data.result[i].diff)
@@ -70,7 +70,7 @@ async  componentDidMount() {
                 percentArr.push(100* data.result[i].openDiff /(data.result[i].curr-data.result[i].openDiff)) 
                 LVCpercentArr.push(100* data.result[i].diff /(data.result[i].curr-data.result[i].diff))              
             }
-            this.setState({sym: symArr})
+            
             this.setState({curr: currArr.map(ele => parseFloat(ele.toFixed(2)))})
             this.setState({diff: diffArr.map(ele => parseFloat(ele.toFixed(2)))})
             this.setState({openDiff: openDiffArr.map(ele => parseFloat(ele.toFixed(2)))})
@@ -79,10 +79,14 @@ async  componentDidMount() {
             this.setState({percent: percentArr.map(ele => parseFloat(ele.toFixed(2)))})
             this.setState({lvc: joinArr(this.state.diff, this.state.LVCpercent)})
             this.setState({dfo: joinArr(this.state.openDiff, this.state.percent)})
-            this.setState({length:Math.floor(100/(1+data.result.length))})
+            this.setState({length:Math.floor(100/(1+data.result.length))})}catch(e){
+                console.log(e)
+                this.setState({loaded:false})
+              }
         },1000);
         } catch(e) {
-        console.log(e);
+        //console.log(e);
+        this.setState({loaded:false});
         }
 }
 
