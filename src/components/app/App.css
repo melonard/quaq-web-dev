@@ -432,3 +432,17 @@ table.minimalistBlack tfoot td {
   font-size:13px;
   opacity:0.6;
 }
+
+a {
+  text-decoration: none !important;
+}
+
+/* .chips#css_custom_input::placeholder {
+  background: red;
+}
+.searchBox#css_custom_input::placeholder {
+  border: 1px;
+  font-size: 15px;
+  min-height: 50px;
+  color: black;
+} */

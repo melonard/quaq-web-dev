@@ -14,7 +14,7 @@ export default class AmountPie extends React.Component {
     super()
     this.state = {
       loaded:false,
-      sym:[],
+      sym:"`AAPL`AIG`AMD`DELL`DOW`GOOG`HPQ`IBM`INTC`MSFT",
       size:[],
       result:[]
     }
@@ -25,10 +25,10 @@ async  componentDidMount() {
   const url = "https://homer.aquaq.co.uk:8040/executeFunction";
   try {
       setInterval(async () => {
-          const response = await 
+          try{const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"rdb","query":"select (sum (size*price)) by sym from trade"},
+                "arguments": {"db":"rdb","query":"select (sum (size*price)) by sym from trade where sym in " + this.state.sym},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
@@ -44,9 +44,18 @@ async  componentDidMount() {
 
 this.setState({all_data: (data.result)})
 this.setState({loaded:true})
+var tempSym=""
+for(let i = 0; i<this.props.syms.length; i++){
+  tempSym=" "+tempSym+"`"+this.props.syms[i]
+}
+this.setState({sym:tempSym})}catch(e){
+  this.setState({loaded:false})
+  console.log(e)
+}
         },5000);
         } catch(e) {
         console.log(e);
+        this.setState({loaded:false})
         }
     }
 

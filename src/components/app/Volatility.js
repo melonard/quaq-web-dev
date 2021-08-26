@@ -79,23 +79,26 @@ handleClick(event) {
       this.setState({filter : nArr})
     }
     else{
-      this.setState({filter: ["AAPL","AIG","AMD","DELL","DOW","GOOG","HPQ","IBM","INTC","MSFT"]})
+      this.setState({filter: this.props.syms.sort()})
     }
   }
 
   yesterday() {
     this.setState({timeFilter:2})
     this.setState({bSize : 300000000000})
+    this.setState({loaded : false})
     this.setAnchorEl(null);
   }
   week() {
     this.setState({timeFilter:8})
     this.setState({bSize : 1000000000000})
+    this.setState({loaded : false})
     this.setAnchorEl(null);
   }
   month() {
     this.setState({timeFilter:31})
     this.setState({bSize : 3000000000000})
+    this.setState({loaded : false})
     this.setAnchorEl(null);
   }
   
@@ -103,12 +106,13 @@ handleClick(event) {
 
 async  componentDidMount() {
   const url = "https://homer.aquaq.co.uk:8040/executeFunction";
+  this.setState({filter: this.props.syms.sort()})
   try {
       setInterval(async () => {
-          const response = await 
+          try{const response = await 
           fetch (url,{
               "body": JSON.stringify({
-                "arguments": {"db":"hdb","query":"select by (`timestamp$time) from (`time xgroup update 10 mdev vol by sym from select vol:last price by sym,time: "+this.state.bSize+" xbar `long$time from trade where  (`date$time) >.z.d-"+ this.state.timeFilter.toString() +")"},
+                "arguments": {"db":"hdb","query":"1_select by (`timestamp$time) from (`time xgroup update 10 mdev vol by sym from select vol:last price by sym,time: "+this.state.bSize+" xbar `long$time from trade where  (`date$time) >.z.d-"+ this.state.timeFilter.toString() +")"},
                 "function_name": ".aqrest.execute"
               }),
               method:"post",
@@ -123,10 +127,14 @@ async  componentDidMount() {
               // console.log(data)
 
 this.setState({all_data: convertDataPT(data.result)})
-this.setState({loaded:true})
+this.setState({loaded:true})}catch(e){
+  console.log(e)
+  this.setState({loaded:false})
+}
         },5000);
         } catch(e) {
-        console.log(e);
+        //console.log(e);
+        this.setState({loaded:false})
         }
     }
 

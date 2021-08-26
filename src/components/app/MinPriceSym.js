@@ -20,7 +20,7 @@ export default class MinPriceSym extends React.Component {
     const url = "https://homer.aquaq.co.uk:8040/executeFunction";
     try {
         setInterval(async () => {
-    const response = await 
+    try{const response = await 
     fetch (url,{
           "body": JSON.stringify({
             "arguments": {
@@ -38,10 +38,13 @@ export default class MinPriceSym extends React.Component {
       ) 
       const data = await response.json();
       this.setState({sym: data.result[0].sym})
-      this.setState({size: data.result[0].price.toFixed(2)})
+      this.setState({size: data.result[0].price.toFixed(2)})}catch(e){
+        console.log(e)
+        this.setState({loaded:false})
+      }
     },1000);
 } catch(e) {
-  console.log(e);
+  //console.log(e);
 }
   
   }
