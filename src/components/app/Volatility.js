@@ -6,6 +6,7 @@ import Multiselect from 'multiselect-react-dropdown';
 import { Button, Menu, MenuItem, Fade  } from '@material-ui/core';
 import duck1 from './../duck1.png'
 import moment from 'moment'
+import { AiOutlineCaretDown } from "react-icons/ai";
 
 
 function convertDataPT(data) {
@@ -154,7 +155,7 @@ render() {
                 />
                 <Button variant='contained' onClick={this.resetValues}> Reset Filter</Button>
                 <Button variant='contained' aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
-                          History
+                          History &nbsp; <AiOutlineCaretDown/>
                       </Button>
                       <Menu id="fade-menu" anchorEl={this.state.anchorEl} open={this.state.open} onClose={this.handleClose} TransitionComponent={Fade}>
                       <MenuItem onClick={this.yesterday}>Yesterday</MenuItem>
@@ -169,13 +170,10 @@ render() {
                         {this.state.loaded ?<ResponsiveContainer width="100%" height={400}>
                          
                             <LineChart data={this.state.all_data} margin={{ top: 15, right: 100, bottom: 15, left: 10 }}>
-                              <Tooltip />
-                             
+                              <Tooltip />                            
                               <XAxis dataKey="time" tick="rotate(-35)"/>
                               <YAxis />
                               <Legend/>
-                              {/* //<PolarAngleAxis  tick={{ fill: 'red', fontSize: 20,  angle: 30 }} /> */}
-
                               {this.state.filter.map((entry, index) => {
                                             return (
                                                         <Line
