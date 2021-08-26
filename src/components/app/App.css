@@ -161,7 +161,8 @@
 }
 
 .title {
-  padding: 25px;
+  padding: 35px;
+  
 }
 
 .dtitle {
@@ -285,7 +286,7 @@ table.minimalistBlack tfoot td {
 .header {
   text-align: center;
   color: #2d3091;
-  font-size: 15px;
+  font-size: 25px;
 }
 
 
