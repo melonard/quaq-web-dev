@@ -150,7 +150,7 @@ render() {
                <text className="header">  
               <h3>Historical Price Volatility       
                 </h3></text>
-
+                <div style={{width: '50%', margin: '0 auto'}}>
                 <Multiselect
                 ref={this.multiselectRef}
                 showArrow={true}
@@ -161,6 +161,7 @@ render() {
                 onRemove={this.onSelect} // Function will trigger on remove event
                 displayValue="name" // Property name to display in the dropdown options
                 />
+                 </div>
                 <Button variant='contained' onClick={this.resetValues}> Reset Filter</Button>
                 <Button variant='contained' aria-owns={this.state.open ? 'fade-menu' : undefined} aria-haspopup="true" onClick={this.handleClick}>
                           History &nbsp; <AiOutlineCaretDown/>

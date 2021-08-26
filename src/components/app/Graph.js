@@ -109,6 +109,8 @@ render() {
         <div style={{paddingTop: 20}}>
         <p className='space'></p>
         <p className="header"> <h3>Running Average Price</h3></p>
+        <div style={{width: '50%', margin: '0 auto'}}>
+                
                 <Multiselect
                 id="css_custom"
                 ref={this.multiselectRef}
@@ -120,6 +122,7 @@ render() {
                 onRemove={this.onSelect} // Function will trigger on remove event
                 displayValue="name" // Property name to display in the dropdown options
                                 />
+                                </div>
                 <Button variant='contained' onClick={this.resetValues}> Reset Filter</Button>
         <div>              
            
