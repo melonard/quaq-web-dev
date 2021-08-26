@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css'
-import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
+import { AiOutlineArrowUp, AiOutlineArrowDown, AiOutlineHistory } from "react-icons/ai";
 
 
 function joinArr(arr1,arr2){
@@ -96,7 +96,7 @@ render() {
         <div style={{marginBottom: 20}} >   
                  <p className="header"><h3> Stock Price Fluctuation   </h3></p>
                 <div className="date">
-                <p > Last Updated: {this.state.date}</p>
+                <p > <AiOutlineHistory/> Last Updated: {this.state.date}</p>
                 </div>
                  <div className='App'>
                       <table className={this.props.darkMode? 'minimalistBlackD' : 'minimalistBlack'}>

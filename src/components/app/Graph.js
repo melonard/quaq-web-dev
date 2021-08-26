@@ -5,7 +5,7 @@ import {CartesianGrid, XAxis, YAxis,Brush, ReferenceLine, Cell, Legend, Tooltip,
 import Multiselect from 'multiselect-react-dropdown';
 import duck1 from './../duck1.png'
 import { Button } from '@material-ui/core';
-
+import {AiOutlineHistory } from "react-icons/ai";
 
 
 function convertDataPT(data) {
@@ -128,7 +128,7 @@ render() {
            
                      
                         <div className="date">
-                          <p> Last Updated: {this.state.date}</p>                       
+                          <p> <AiOutlineHistory/>Last Updated: {this.state.date}</p>                       
                         </div>
                           <div> 
 
